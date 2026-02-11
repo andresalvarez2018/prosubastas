@@ -1,0 +1,5 @@
+# Schema for the configuration files of the prosubastas theme.
+
+prosubastas.settings:
+  type: theme_settings
+  label: 'prosubastas settings'
