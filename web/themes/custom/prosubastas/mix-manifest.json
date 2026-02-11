@@ -1,6 +1,7 @@
 {
     "/build/js/main.script.js": "/build/js/main.script.js",
     "/build/js/main.script.js.map": "/build/js/main.script.js.map",
+    "/components/header/header.css": "/components/header/header.css",
     "/build/css/main.style.css": "/build/css/main.style.css",
     "/build/css/main.style.css.map": "/build/css/main.style.css.map"
 }

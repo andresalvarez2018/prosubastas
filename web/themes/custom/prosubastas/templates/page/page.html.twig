@@ -42,4 +42,31 @@
  * @see html.html.twig
  */
 #}
-{% include 'radix:page' %}
+{#
+/**
+ * @file
+ * Template for the main page.
+ */
+#}
+{% set page_attributes = attributes ?: create_attribute() %}
+{% set
+  page_classes = [
+    'page',
+  ]|merge(page_utility_classes ?: [])
+%}
+
+
+<div {{ page_attributes.addClass(page_classes) }}>
+    {% include 'prosubastas:header' %}
+
+    {% block page_content %}
+        {% include 'radix:page-content' with {
+        page_main_utility_classes: ['py-2'],
+        page_header_container_utility_classes: ['mb-3'],
+        }%}
+    {% endblock %}
+
+	{% block page_footer %}
+        {% include 'blu_benefits:page-footer' %}
+	{% endblock %}
+</div>

@@ -1,0 +1,5 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: header
+status: experimental
+description: Header component for the Pro Subastas theme
+props: []
