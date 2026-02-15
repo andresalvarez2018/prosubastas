@@ -1,0 +1,22 @@
+uuid: 8b5821dd-2a24-424f-a32a-285d3036a8db
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - prosubastas
+_core:
+  default_config_hash: gP1TmbAk2_cYmV4RaDAm8_8DM13F6FX-qs44RonxzsE
+id: prosubastas_messages
+theme: prosubastas
+region: header
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Mensajes de estado'
+  label_display: '0'
+  provider: system
+visibility: {  }

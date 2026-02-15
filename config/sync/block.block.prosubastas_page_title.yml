@@ -1,0 +1,20 @@
+uuid: 2130b7d9-83f8-4e2a-ac85-1ccc4f99b582
+langcode: es
+status: true
+dependencies:
+  theme:
+    - prosubastas
+_core:
+  default_config_hash: RbpEep0xd3LJu7bRBRanEtc0ssTvlqSk2HWpbMhHjkA
+id: prosubastas_page_title
+theme: prosubastas
+region: header
+weight: -2
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Título de la página'
+  label_display: '0'
+  provider: core
+visibility: {  }

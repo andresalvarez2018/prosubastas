@@ -1,0 +1,31 @@
+uuid: ef182fa1-edf1-4080-bec4-b18fc24eb151
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_link
+    - field.storage.block_content.field_card_link
+    - paragraphs.paragraphs_type.card_link
+  module:
+    - entity_reference_revisions
+id: block_content.card_link.field_card_link
+field_name: field_card_link
+entity_type: block_content
+bundle: card_link
+label: 'Card Enlace'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      card_link: card_link
+    negate: 0
+    target_bundles_drag_drop:
+      card_link:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

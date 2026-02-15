@@ -1,0 +1,16 @@
+uuid: fe484f84-57d5-4a6c-9d73-abcb26a33f64
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: QgF3JDg2h0tf2gaqzc4mNvlHttNkUpmxk1LZefP82hE
+id: document
+label: Documento
+description: 'A locally hosted document, such as a PDF file.'
+source: file
+queue_thumbnail_downloads: false
+new_revision: true
+source_configuration:
+  source_field: field_media_document
+field_map:
+  name: name

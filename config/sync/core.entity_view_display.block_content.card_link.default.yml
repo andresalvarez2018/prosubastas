@@ -1,0 +1,25 @@
+uuid: fb7d7d8a-15f0-4654-a0da-6475935ced45
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_link
+    - field.field.block_content.card_link.field_card_link
+  module:
+    - entity_reference_revisions
+id: block_content.card_link.default
+targetEntityType: block_content
+bundle: card_link
+mode: default
+content:
+  field_card_link:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

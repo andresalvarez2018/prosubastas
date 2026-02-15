@@ -1,0 +1,22 @@
+uuid: 3801f8f8-d39c-4fc1-a13a-896097ec604d
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - prosubastas
+_core:
+  default_config_hash: Axlc7oVfyVzFBVNFTnpXlxv_UE_FC0HrJJ54MjrIAsA
+id: prosubastas_breadcrumbs
+theme: prosubastas
+region: header
+weight: -5
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: 'Enlaces de ayuda a la navegación'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,20 @@
+uuid: 359012f1-6318-48df-bbff-6f81457444dc
+langcode: es
+status: true
+dependencies:
+  theme:
+    - prosubastas
+_core:
+  default_config_hash: kaaLRE1HwL6Ct4Hw0RxCNT0kZn3B_dcrbKt_Nw-q6nU
+id: prosubastas_local_actions
+theme: prosubastas
+region: header
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Acciones principales de administración'
+  label_display: '0'
+  provider: core
+visibility: {  }

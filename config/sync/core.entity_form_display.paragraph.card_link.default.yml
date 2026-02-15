@@ -1,0 +1,50 @@
+uuid: bec73d8b-2471-4157-bbcf-b7078d11cc8e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card_link.field_image
+    - field.field.paragraph.card_link.field_link
+    - field.field.paragraph.card_link.field_tittle
+    - paragraphs.paragraphs_type.card_link
+  module:
+    - field_layout
+    - layout_discovery
+    - link
+    - media_library
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.card_link.default
+targetEntityType: paragraph
+bundle: card_link
+mode: default
+content:
+  field_image:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_tittle:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

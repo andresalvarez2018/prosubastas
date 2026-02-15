@@ -1,0 +1,10 @@
+uuid: af4aa4ea-c7e0-4f0e-b6b5-a90a717fe2fc
+langcode: es
+status: true
+dependencies: {  }
+id: card_link
+label: 'Card Enlace'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

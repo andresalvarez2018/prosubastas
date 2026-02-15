@@ -1,0 +1,8 @@
+uuid: 366c0027-54b8-4add-81b2-80f5560a879c
+langcode: es
+status: true
+dependencies: {  }
+id: card_link
+label: 'Card Lista Enlaces'
+revision: false
+description: null

@@ -1,0 +1,22 @@
+uuid: b3bdd9f4-c7a8-4457-9c24-fc90923d666e
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - prosubastas
+_core:
+  default_config_hash: I1to2wPxx8reYXofNohbRzwSSK26Jj5rhyaXCH_W1Tk
+id: prosubastas_content
+theme: prosubastas
+region: content
+weight: -5
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Contenido principal de la página'
+  label_display: '0'
+  provider: system
+visibility: {  }

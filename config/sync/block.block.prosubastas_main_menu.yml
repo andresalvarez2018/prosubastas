@@ -1,0 +1,27 @@
+uuid: fc506baa-f1bf-4980-bd73-d009dc218ea2
+langcode: es
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - prosubastas
+_core:
+  default_config_hash: 9v2xvw7lg8fKsjjJknB6uaVLir313-1cdLSG7VamJrc
+id: prosubastas_main_menu
+theme: prosubastas
+region: navbar_left
+weight: -5
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Navegación principal'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 2
+  expand_all_items: false
+visibility: {  }

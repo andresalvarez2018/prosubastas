@@ -1,0 +1,19 @@
+uuid: 9c9cd0b9-8bc3-4603-a19d-13876d211bfa
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_information_general
+    - field.storage.block_content.field_tittle
+id: block_content.card_information_general.field_tittle
+field_name: field_tittle
+entity_type: block_content
+bundle: card_information_general
+label: Título
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

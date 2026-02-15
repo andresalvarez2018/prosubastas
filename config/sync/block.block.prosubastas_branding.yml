@@ -1,0 +1,25 @@
+uuid: 12c737dc-485d-44f9-a61c-ba7bac283d6c
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - prosubastas
+_core:
+  default_config_hash: LnF3XmDiVZHjOF6slGyxywBGUN0REeDps0vF4iDEVdk
+id: prosubastas_branding
+theme: prosubastas
+region: navbar_branding
+weight: -1
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Marca del sitio'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

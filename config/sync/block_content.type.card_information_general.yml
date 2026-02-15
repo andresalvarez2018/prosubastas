@@ -1,0 +1,8 @@
+uuid: 62e61b41-de3f-4758-a814-a11bf5941afd
+langcode: es
+status: true
+dependencies: {  }
+id: card_information_general
+label: 'Card Informacion general'
+revision: false
+description: null

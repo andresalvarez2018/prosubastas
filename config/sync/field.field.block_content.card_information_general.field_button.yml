@@ -1,0 +1,23 @@
+uuid: 780f7805-d280-40e9-8c7c-3cf55826ca62
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_information_general
+    - field.storage.block_content.field_button
+  module:
+    - link
+id: block_content.card_information_general.field_button
+field_name: field_button
+entity_type: block_content
+bundle: card_information_general
+label: Boton
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

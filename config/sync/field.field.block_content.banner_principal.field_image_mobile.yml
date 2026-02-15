@@ -1,0 +1,31 @@
+uuid: a69b9644-424c-4230-a914-18f6745bc752
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_principal
+    - field.storage.block_content.field_image_mobile
+    - media.type.image
+    - media.type.video
+id: block_content.banner_principal.field_image_mobile
+field_name: field_image_mobile
+entity_type: block_content
+bundle: banner_principal
+label: 'Imagen Resposive'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference
