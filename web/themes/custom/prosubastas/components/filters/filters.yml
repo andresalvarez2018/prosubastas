@@ -1,0 +1,13 @@
+# Filters component configuration structure
+# Edit this file to add/remove vehicle types or change labels/icons.
+types:
+  - key: auto
+    label: Autos
+    icon: src/assets/icons/auto.svg
+  - key: truck
+    label: Truck
+    icon: src/assets/icons/truck.svg
+  # Add more types as needed
+  # - key: van
+  #   label: Van
+  #   icon: src/assets/icons/van.svg

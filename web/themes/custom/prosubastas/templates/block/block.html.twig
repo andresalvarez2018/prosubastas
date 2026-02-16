@@ -26,4 +26,9 @@
  * @see template_preprocess_block()
  */
 #}
-{% include 'prosubastas:block' %}
+{{ title_prefix }}
+{% if label and configuration.label_display != 'hidden' %}
+	<h2{{title_attributes.addClass('block-title')}}>{{ label }}</h2>
+{% endif %}
+{{ title_suffix }}
+{{ content }}

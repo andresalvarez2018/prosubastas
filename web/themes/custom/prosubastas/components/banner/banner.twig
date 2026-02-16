@@ -30,53 +30,31 @@
  * @ingroup themeable
  */
 #}
-{% set block_attributes = attributes ?: create_attribute() %}
-{% set block_html_tag = block_html_tag ?? 'div' %}
 
-{%
-  set block_classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    layout ? 'layout--' ~ layout|clean_class,
-    bundle ? 'block--' ~ bundle|clean_class : "",
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : "",
-  ]|merge(block_utility_classes ?: [])
-%}
-
-{%
-  set block_content_classes = [
-    'block__content',
-  ]|merge(block_content_utility_classes ?: [])
-%}
-
-{% if block_html_tag %}
-<{{block_html_tag}} {{ block_attributes|without('id').addClass(block_classes) }}>
+{{  title_prefix }}
+{% if label and configuration.label_display != 'hidden' %}
+	<h2{{title_attributes.addClass('block-title')}}>{{ label }}</h2>
 {% endif %}
+{{ title_suffix }}
+<div class="c-banner">
+	<div class="c-banner__box">
+		<div class="c-banner__media">
+			{% if image %}
+				<div class="c-banner__image c-banner__image--desktop">{{ image|raw }}</div>
+			{% endif %}
+			{% if image_mobile %}
+				<div class="c-banner__image c-banner__image--mobile">{{ image_mobile|raw }}</div>
+			{% endif %}
+			<div class="c-banner__overlay"></div>
+		</div>
 
-  {{ title_prefix }}
-  {% block block_label %}
-    {% if label %}
-      {%
-        include 'radix:heading' with {
-          heading_attributes: title_attributes,
-          content: label,
-          heading_html_tag: heading_html_tag|default('h2'),
-          heading_utility_classes: heading_utility_classes|default(['block__title']),
-        }
-      %}
-    {% endif %}
-  {% endblock %}
-  {{ title_suffix }}
-
-  {% block block_content %}
-    {% if content %}
-      <div{{content_attributes.addClass(block_content_classes)}}>
-        {{ content }}
-      </div>
-    {% endif %}
-  {% endblock %}
-
-{% if block_html_tag %}
-</{{block_html_tag}}>
-{% endif %}
+		<div class="c-banner__content">
+			{% if title %}
+				<h1 class="c-banner__title">{{ title }}</h1>
+			{% endif %}
+			{% if body %}
+				<div class="c-banner__desc">{{ body|raw }}</div>
+			{% endif %}
+		</div>
+	</div>
+</div>

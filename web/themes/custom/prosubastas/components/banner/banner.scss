@@ -1,1 +1,158 @@
 @import "../../src/scss/init";
+
+.c-banner {
+    position: relative;
+    overflow: hidden;
+    background-color: #cfe7ff;
+    /* subtle blue like design */
+    padding: 4rem 0 6rem;
+
+    &__media {
+        width: 100%;
+
+        .c-banner__image {
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+
+        .c-banner__image--mobile {
+            display: none;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        left: 10%;
+        top: 40%;
+        max-width: 60%;
+        color: #0b0b0b;
+    }
+
+    &__title {
+        margin: 0 0 1rem;
+        font-size: 64px;
+        line-height: 1.02;
+        font-weight: 700;
+    }
+
+    &__desc {
+        font-size: 20px;
+        opacity: 0.85;
+    }
+}
+
+/* Mobile breakpoint: 767px and below */
+@media (max-width: 767px) {
+    .c-banner {
+        padding: 2rem 0 2rem;
+
+        &__media {
+            .c-banner__image--desktop {
+                display: none;
+            }
+
+            .c-banner__image--mobile {
+                display: block;
+            }
+        }
+
+        &__content {
+            position: relative;
+            overflow: visible;
+            padding: 3rem 0 6rem;
+
+            .c-banner__box {
+                position: relative;
+                overflow: hidden;
+                border-radius: 2px;
+            }
+
+            &__media {
+                position: relative;
+                width: 100%;
+
+                .c-banner__image {
+                    img {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                    }
+                }
+
+                .c-banner__image--mobile {
+                    display: none;
+                }
+            }
+
+            &__overlay {
+                position: absolute;
+                inset: 0 0 0 0;
+                background: rgba(255, 255, 255, 0.35);
+                /* light overlay so black text reads */
+                pointer-events: none;
+            }
+
+            &__content {
+                position: absolute;
+                left: 3rem;
+                right: 3rem;
+                top: 50%;
+                transform: translateY(-50%);
+                max-width: 60%;
+                color: #0b0b0b;
+                z-index: 2;
+            }
+
+            &__title {
+                margin: 0 0 1rem;
+                font-size: 64px;
+                line-height: 1.02;
+                font-weight: 700;
+            }
+
+            &__desc {
+                font-size: 20px;
+                opacity: 0.95;
+            }
+
+        }
+
+        /* Mobile breakpoint: 767px and below */
+        @media (max-width: 767px) {
+            .c-banner {
+                padding: 2rem 0 4rem;
+
+                &__media {
+                    .c-banner__image--desktop {
+                        display: none;
+                    }
+
+                    .c-banner__image--mobile {
+                        display: block;
+                    }
+                }
+
+                &__content {
+                    position: relative;
+                    transform: none;
+                    top: auto;
+                    left: auto;
+                    right: auto;
+                    max-width: 100%;
+                    padding: 1rem 0;
+                }
+
+                &__title {
+                    font-size: 28px;
+                }
+
+                &__desc {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}

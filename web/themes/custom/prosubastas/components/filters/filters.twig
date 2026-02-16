@@ -1,0 +1,89 @@
+{#
+  Filters component
+  Sends query params to /buscador via GET
+#}
+<form class="c-filters {{ overlap ? 'c-filters--overlap' : '' }}" action="/buscador" method="get" role="search" aria-label="Buscador">
+	<div class="container">
+		<nav class="c-filters__tabs" role="tablist" aria-label="Vehicle type">
+			<button type="button" class="c-filters__tab c-filters__tab--active" data-value="auto" aria-pressed="true">
+				<img src="/themes/custom/prosubastas/src/assets/icons/auto.svg" alt="Autos" class="c-filters__icon">
+				Autos
+			</button>
+			<button type="button" class="c-filters__tab" data-value="truck" aria-pressed="false">
+				<img src="/themes/custom/prosubastas/src/assets/icons/truck.svg" alt="Truck" class="c-filters__icon">
+				Truck
+			</button>
+		</nav>
+
+		<div class="c-filters__inner">
+			<div class="c-filters__row">
+				<div class="c-filters__group">
+					<label class="c-filters__label" for="q_product">Search for Car</label>
+					<input id="q_product" name="product" class="c-filters__input" type="search" placeholder="Select your product">
+				</div>
+
+				<div class="c-filters__group">
+					<label class="c-filters__label" for="q_location">Pick Location</label>
+					<input id="q_location" name="location" class="c-filters__input" type="search" placeholder="Select your Location">
+				</div>
+
+				<div class="c-filters__group">
+					<label class="c-filters__label" for="q_date">Picking Date</label>
+					<input id="q_date" name="date" class="c-filters__input" type="date">
+				</div>
+
+				<div class="c-filters__actions">
+					<input type="hidden" id="q_tipo" name="tipo" value="auto">
+					<button type="submit" class="c-button c-button--primary">Search</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script>
+	(function () {
+var form = document.querySelector('.c-filters');
+if (! form) 
+return;
+
+
+
+var tabs = form.querySelectorAll('.c-filters__tab');
+var hidden = form.querySelector('#q_tipo');
+
+function setActive(value) {
+tabs.forEach(function (btn) {
+var v = btn.getAttribute('data-value');
+var active = v === value;
+btn.classList.toggle('c-filters__tab--active', active);
+btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+});
+if (hidden) 
+hidden.value = value;
+
+
+
+}
+
+// Initialize from query param if present
+try {
+var params = new URLSearchParams(window.location.search);
+var tipo = params.get('tipo') || params.get('type') || null;
+if (tipo) 
+setActive(tipo);
+
+
+
+} catch (e) { /* ignore */
+}
+
+// Click handlers
+tabs.forEach(function (btn) {
+btn.addEventListener('click', function () {
+var val = btn.getAttribute('data-value');
+setActive(val);
+});
+});
+})();
+</script>

@@ -1,0 +1,4 @@
+name: filters
+description: Filters component that sends query params to /buscador
+version: 1.0.0
+# This file is informational and follows the same pattern as other components
