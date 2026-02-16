@@ -8291,6 +8291,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./components/list-card-link/list-card-link.scss":
+/*!*******************************************************!*\
+  !*** ./components/list-card-link/list-card-link.scss ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./components/list-card-link/llist-card-link.scss":
 /*!********************************************************!*\
   !*** ./components/list-card-link/llist-card-link.scss ***!
@@ -8494,6 +8507,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			"components/banner/banner": 0,
 /******/ 			"build/css/main.style": 0,
 /******/ 			"components/list-card-link/llist-card-link": 0,
+/******/ 			"components/list-card-link/list-card-link": 0,
 /******/ 			"components/header/header": 0,
 /******/ 			"components/filters/filters": 0
 /******/ 		};
@@ -8547,15 +8561,16 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./src/js/main.script.js"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./src/scss/main.style.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/banner/banner.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/card-info-general/card-info-general.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/card-link/card-link.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/filter/filter.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/filters/filters.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/header/header.scss"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/list-card-link/llist-card-link.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./src/js/main.script.js"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./src/scss/main.style.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/banner/banner.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/card-info-general/card-info-general.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/card-link/card-link.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/filter/filter.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/filters/filters.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/header/header.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/list-card-link/list-card-link.scss"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/header/header","components/filters/filters"], function() { return __webpack_require__("./components/list-card-link/llist-card-link.scss"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

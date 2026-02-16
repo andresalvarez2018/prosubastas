@@ -1,0 +1,17 @@
+items:
+  - image: "https://picsum.photos/350/263?random=1"
+    title: Autos Sedán
+    link: "/buscador?tipo=sedan"
+    link_text: "Ver catálogo"
+  - image: "https://picsum.photos/350/263?random=2"
+    title: Camiones y Carga
+    link: "/buscador?tipo=camion"
+    link_text: "Ver catálogo"
+  - image: "https://picsum.photos/350/263?random=3"
+    title: Vans Comerciales
+    link: "/buscador?tipo=van"
+    link_text: "Ver catálogo"
+  - image: "https://picsum.photos/350/263?random=4"
+    title: SUV y Deportivos
+    link: "/buscador?tipo=suv"
+    link_text: "Ver catálogo"

@@ -61,10 +61,10 @@
 
     {% block page_content %}
       {% set banner_data = {
-        image: '<img src="https://picsum.photos/1320/513" alt="Banner desktop">',
-        image_mobile: '<img src="https://picsum.photos/767/400" alt="Banner mobile">',
-        title: 'Introducing Electric Car rent company.',
-        body: '<p>Für den Arbeitsalltag. Für eine saubere Zukunft.</p>'
+        image: '<img src="https://picsum.photos/1320/513" alt="Banner ProSubastas">',
+        image_mobile: '<img src="https://picsum.photos/767/400" alt="Banner ProSubastas">',
+        title: 'Subastas de Vehículos en Línea',
+        body: '<p>Encuentra los mejores vehículos a precios competitivos. Participa en subastas seguras y transparentes.</p>'
       } %}
 
       {% include 'prosubastas:banner' with {
@@ -76,7 +76,48 @@
 
       {% include 'prosubastas:filters' with { overlap: true } only %}
 
-      {# {{ page.content }} #}
+      {% set card_items = [
+        {
+          image: 'https://picsum.photos/350/263?random=1',
+          title: 'Autos Sedán',
+          link: '/buscador?tipo=sedan',
+          link_text: 'Ver catálogo'
+        },
+        {
+          image: 'https://picsum.photos/350/263?random=2',
+          title: 'Camiones y Carga',
+          link: '/buscador?tipo=camion',
+          link_text: 'Ver catálogo'
+        },
+        {
+          image: 'https://picsum.photos/350/263?random=3',
+          title: 'Vans Comerciales',
+          link: '/buscador?tipo=van',
+          link_text: 'Ver catálogo'
+        },
+        {
+          image: 'https://picsum.photos/350/263?random=4',
+          title: 'SUV y Deportivos',
+          link: '/buscador?tipo=suv',
+          link_text: 'Ver catálogo'
+        }
+      ] %}
+
+      <div class="container">
+        {% include 'prosubastas:list-card-link' with {
+          items: card_items
+        } only %}
+      </div>
+
+      <div class="container">
+        {% include 'prosubastas:card-info-general' with {
+          image: 'https://picsum.photos/600/400?random=10',
+          title: 'Cómo Participar en la Subasta',
+          description: 'Regístrate como comprador, explora nuestro catálogo de vehículos en subasta, completa la verificación de identidad y comienza a pujar. Con ProSubastas obtienes transparencia total, pagos seguros y acceso a vehículos de calidad a los mejores precios del mercado.',
+          button_text: 'Registrarse Ahora',
+          button_url: '/registro'
+        } only %}
+      </div>
     {% endblock %}
 
 	{% block page_footer %}

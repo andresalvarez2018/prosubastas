@@ -13,9 +13,11 @@
     "/build/css/main.style.css.map": "/build/css/main.style.css.map",
     "/components/list-card-link/llist-card-link.css": "/components/list-card-link/llist-card-link.css",
     "/components/list-card-link/llist-card-link.css.map": "/components/list-card-link/llist-card-link.css.map",
+    "/components/list-card-link/list-card-link.css": "/components/list-card-link/list-card-link.css",
+    "/components/list-card-link/list-card-link.css.map": "/components/list-card-link/list-card-link.css.map",
     "/components/header/header.css": "/components/header/header.css",
     "/components/filters/filters.css": "/components/filters/filters.css",
     "/components/filters/filters.css.map": "/components/filters/filters.css.map",
-    "/build/assets/icons/truck.svg": "/build/assets/icons/truck.svg",
-    "/build/assets/icons/auto.svg": "/build/assets/icons/auto.svg"
+    "/build/assets/icons/auto.svg": "/build/assets/icons/auto.svg",
+    "/build/assets/icons/truck.svg": "/build/assets/icons/truck.svg"
 }

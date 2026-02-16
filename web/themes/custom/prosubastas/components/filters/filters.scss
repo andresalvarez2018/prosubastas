@@ -2,18 +2,15 @@
 
 .c-filters {
     background: transparent;
-    /* allow page background to show outside container */
     padding: 1rem 0 0;
-    /* top spacing only */
 
     &__tabs {
         display: flex;
         gap: 0.5rem;
-        margin: 0.5rem 0 1rem;
     }
 
     &__tab {
-        background: transparent;
+        background: white;
         border: none;
         padding: 0.75rem 1rem;
         display: inline-flex;
@@ -22,22 +19,16 @@
         font-size: 16px;
         border-radius: 4px 4px 0 0;
         cursor: pointer;
-        color: #111;
+        color: #4a2970;
     }
 
     &__tab--active {
-        background: #ffffff;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-        transform: translateY(-2px);
         outline: none;
-    }
-
-    /* make sure the active tab text is prominent */
-    &__tab--active {
+        border: 1px solid #8B5FBF;
         font-weight: 600;
     }
 
-    /* ensure buttons look like clickable tabs and reset default button styles */
     &__tab {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -49,6 +40,8 @@
         width: 28px;
         height: 28px;
         display: inline-block;
+        color: #609BA2;
+        fill: currentColor;
     }
 
     &__inner {
@@ -56,7 +49,7 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
         padding: 1.25rem 1.5rem;
         border-radius: 4px;
-        margin-top: 0.5rem;
+        // margin-top: 0.5rem;
     }
 
     &__row {
@@ -73,6 +66,8 @@
         display: block;
         font-size: 14px;
         margin-bottom: 0.5rem;
+        color: #4a2970;
+        font-weight: 600;
     }
 
     &__input {
@@ -87,22 +82,36 @@
         align-items: center;
     }
 
-    /* overlap modifier: move the filters up so it overlaps the bottom of the banner */
     &--overlap {
-        margin-top: -10%;
+        margin-top: -13%;
         position: relative;
         z-index: 5;
+
+        .container {
+            background: transparent;
+        }
     }
 
-    /* button styles inside filters */
     .c-button--primary {
-        background: #0b0b0b;
+        background: #663399;
         color: #fff;
         padding: 0.75rem 1.25rem;
         border-radius: 10px;
         border: none;
         font-weight: 600;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+        box-shadow: 0 6px 16px rgba(102, 51, 153, 0.18);
+        transition: background .18s ease, transform .12s ease;
+    }
+
+    .c-button--primary:hover,
+    .c-button--primary:focus {
+        background: #4a2970;
+        transform: translateY(-1px);
+    }
+
+    /* accents and link hover */
+    a:hover {
+        color: #663399;
     }
 
     @media (max-width: 767px) {
