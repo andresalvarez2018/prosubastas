@@ -8284,7 +8284,20 @@ __webpack_require__.r(__webpack_exports__);
   \***************************************/
 /***/ (function() {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nunmatched \"}\".\n    ╷\n560 │ }\n    │ ^\n    ╵\n  components/header/header.scss 560:1  root stylesheet\n    at processResult (/Users/andres.alvarez/lennin/prosubastas/web/themes/custom/prosubastas/node_modules/webpack/lib/NormalModule.js:961:19)\n    at /Users/andres.alvarez/lennin/prosubastas/web/themes/custom/prosubastas/node_modules/webpack/lib/NormalModule.js:1163:5\n    at /Users/andres.alvarez/lennin/prosubastas/web/themes/custom/prosubastas/node_modules/loader-runner/lib/LoaderRunner.js:499:11\n    at runSyncOrAsyncCallback (/Users/andres.alvarez/lennin/prosubastas/web/themes/custom/prosubastas/node_modules/loader-runner/lib/LoaderRunner.js:259:19)\n    at innerCallback (/Users/andres.alvarez/lennin/prosubastas/web/themes/custom/prosubastas/node_modules/loader-runner/lib/LoaderRunner.js:175:13)\n    at Object.loader (/Users/andres.alvarez/lennin/prosubastas/web/themes/custom/prosubastas/node_modules/sass-loader/dist/index.js:63:5)");
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nunmatched \"}\".\n    ╷\n529 │ }\n    │ ^\n    ╵\n  components/header/header.scss 529:1  root stylesheet\n    at processResult (/Users/luisperez/Documents/sites/prosubastas/web/themes/custom/prosubastas/node_modules/webpack/lib/NormalModule.js:961:19)\n    at /Users/luisperez/Documents/sites/prosubastas/web/themes/custom/prosubastas/node_modules/webpack/lib/NormalModule.js:1163:5\n    at /Users/luisperez/Documents/sites/prosubastas/web/themes/custom/prosubastas/node_modules/loader-runner/lib/LoaderRunner.js:499:11\n    at runSyncOrAsyncCallback (/Users/luisperez/Documents/sites/prosubastas/web/themes/custom/prosubastas/node_modules/loader-runner/lib/LoaderRunner.js:259:19)\n    at innerCallback (/Users/luisperez/Documents/sites/prosubastas/web/themes/custom/prosubastas/node_modules/loader-runner/lib/LoaderRunner.js:175:13)\n    at Object.loader (/Users/luisperez/Documents/sites/prosubastas/web/themes/custom/prosubastas/node_modules/sass-loader/dist/index.js:63:5)");
+
+/***/ }),
+
+/***/ "./components/list-card-link/list-card-link.scss":
+/*!*******************************************************!*\
+  !*** ./components/list-card-link/list-card-link.scss ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -8491,6 +8504,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 			"components/banner/banner": 0,
 /******/ 			"build/css/main.style": 0,
 /******/ 			"components/list-card-link/llist-card-link": 0,
+/******/ 			"components/list-card-link/list-card-link": 0,
 /******/ 			"components/filters/filters": 0
 /******/ 		};
 /******/ 		
@@ -8543,15 +8557,16 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./src/js/main.script.js"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./src/scss/main.style.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./components/banner/banner.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./components/card-info-general/card-info-general.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./components/card-link/card-link.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./components/filter/filter.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./components/filters/filters.scss"); })
-/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./components/header/header.scss"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/filters/filters"], function() { return __webpack_require__("./components/list-card-link/llist-card-link.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./src/js/main.script.js"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./src/scss/main.style.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/banner/banner.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/card-info-general/card-info-general.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/card-link/card-link.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/filter/filter.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/filters/filters.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/header/header.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/list-card-link/list-card-link.scss"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["components/filter/filter","components/card-link/card-link","components/card-info-general/card-info-general","components/banner/banner","build/css/main.style","components/list-card-link/llist-card-link","components/list-card-link/list-card-link","components/filters/filters"], function() { return __webpack_require__("./components/list-card-link/llist-card-link.scss"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

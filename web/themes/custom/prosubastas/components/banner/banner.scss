@@ -3,7 +3,7 @@
 .c-banner {
     position: relative;
     overflow: hidden;
-    background-color: #cfe7ff;
+    // background-color: #cfe7ff;
     /* subtle blue like design */
     padding: 4rem 0 6rem;
 
@@ -15,6 +15,7 @@
                 width: 100%;
                 height: auto;
                 display: block;
+                filter: brightness(0.92) saturate(0.88) contrast(1.03);
             }
         }
 
@@ -23,12 +24,26 @@
         }
     }
 
+    &__overlay {
+        position: absolute;
+        inset: 0 0 0 0;
+        background: rgba(255, 255, 255, 0.45);
+        /* slightly light overlay to help dark text */
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    &__image--desktop {
+        padding: 0 4rem;
+    }
+
     &__content {
         position: absolute;
         left: 10%;
         top: 40%;
         max-width: 60%;
-        color: #0b0b0b;
+        color: #111111;
+        z-index: 2;
     }
 
     &__title {
@@ -36,11 +51,13 @@
         font-size: 64px;
         line-height: 1.02;
         font-weight: 700;
+        color: #4a2970;
     }
 
     &__desc {
         font-size: 20px;
         opacity: 0.85;
+        color: #4a2970;
     }
 }
 
@@ -155,4 +172,28 @@
             }
         }
     }
+}
+
+.c-button--primary {
+    background: #663399 !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(102, 51, 153, 0.18);
+}
+
+.c-button--primary:hover,
+.c-button--primary:focus {
+    background: #4a2970 !important;
+}
+
+a:hover {
+    color: #663399;
+}
+
+/* Active border accent */
+.is-active,
+.active,
+.c-filters__tab--active {
+    border-color: #8B5FBF;
 }
