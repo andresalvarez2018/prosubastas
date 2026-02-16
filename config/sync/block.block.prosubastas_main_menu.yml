@@ -12,8 +12,8 @@ _core:
   default_config_hash: 9v2xvw7lg8fKsjjJknB6uaVLir313-1cdLSG7VamJrc
 id: prosubastas_main_menu
 theme: prosubastas
-region: navbar_left
-weight: -5
+region: header
+weight: -1
 provider: null
 plugin: 'system_menu_block:main'
 settings:

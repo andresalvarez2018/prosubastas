@@ -221,7 +221,12 @@
           transform: translateY(-50%) rotate(-45deg);
 }
 .component--auction-header .main-nav {
-  display: none;
+  display: block;
+}
+@media (max-width: 991px) {
+  .component--auction-header .main-nav {
+    display: none;
+  }
 }
 .component--auction-header .header-cta {
   display: flex;
@@ -356,6 +361,47 @@
 .component--auction-header .mobile-menu__content .navbar-nav a.is-active {
   color: #6f42c1;
   background-color: rgba(111, 66, 193, 0.1);
+}
+.component--auction-header .mobile-menu__content .nav .dropdown-menu,
+.component--auction-header .mobile-menu__content .navbar-nav .dropdown-menu {
+  display: none;
+  list-style: none;
+  padding-left: 1.5rem;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: none;
+  box-shadow: none;
+  position: static;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: none;
+          transform: none;
+}
+.component--auction-header .mobile-menu__content .nav .dropdown-menu.show,
+.component--auction-header .mobile-menu__content .navbar-nav .dropdown-menu.show {
+  display: block;
+}
+.component--auction-header .mobile-menu__content .nav .dropdown-menu .dropdown-item,
+.component--auction-header .mobile-menu__content .navbar-nav .dropdown-menu .dropdown-item {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9375rem;
+}
+.component--auction-header .mobile-menu__content .nav .dropdown-menu .dropdown-item:last-child,
+.component--auction-header .mobile-menu__content .navbar-nav .dropdown-menu .dropdown-item:last-child {
+  border-bottom: none;
+}
+.component--auction-header .mobile-menu__content .nav .dropdown.show > .dropdown-menu,
+.component--auction-header .mobile-menu__content .navbar-nav .dropdown.show > .dropdown-menu {
+  display: block;
+}
+.component--auction-header .mobile-menu__content .nav,
+.component--auction-header .mobile-menu__content .navbar-nav {
+  /*
+  .dropdown-menu {
+      display: block !important;
+  }
+  */
 }
 .component--auction-header .contextual {
   display: none !important;
