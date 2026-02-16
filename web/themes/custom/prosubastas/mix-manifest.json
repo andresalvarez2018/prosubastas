@@ -19,5 +19,6 @@
     "/components/filters/filters.css": "/components/filters/filters.css",
     "/components/filters/filters.css.map": "/components/filters/filters.css.map",
     "/build/assets/icons/auto.svg": "/build/assets/icons/auto.svg",
-    "/build/assets/icons/truck.svg": "/build/assets/icons/truck.svg"
+    "/build/assets/icons/truck.svg": "/build/assets/icons/truck.svg",
+    "/components/header/header.css.map": "/components/header/header.css.map"
 }
