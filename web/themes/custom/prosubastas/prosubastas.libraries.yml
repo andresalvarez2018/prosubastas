@@ -6,6 +6,8 @@ style:
     build/js/main.script.js: {}
   dependencies:
     - core/drupal
+    - core/jquery
+    - core/once
 
 drupal.ajax:
   js:

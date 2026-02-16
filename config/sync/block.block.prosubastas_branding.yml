@@ -10,8 +10,8 @@ _core:
   default_config_hash: LnF3XmDiVZHjOF6slGyxywBGUN0REeDps0vF4iDEVdk
 id: prosubastas_branding
 theme: prosubastas
-region: navbar_branding
-weight: -1
+region: header
+weight: -2
 provider: null
 plugin: system_branding_block
 settings:

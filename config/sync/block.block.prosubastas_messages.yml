@@ -10,7 +10,7 @@ _core:
   default_config_hash: gP1TmbAk2_cYmV4RaDAm8_8DM13F6FX-qs44RonxzsE
 id: prosubastas_messages
 theme: prosubastas
-region: header
+region: content
 weight: -3
 provider: null
 plugin: system_messages_block

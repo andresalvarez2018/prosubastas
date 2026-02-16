@@ -57,7 +57,15 @@
 
 
 <div {{ page_attributes.addClass(page_classes) }}>
-    {% include 'prosubastas:header' %}
+    {% embed 'prosubastas:header' %}
+      {% block branding %}
+        {{ page.header }}
+      {% endblock %}
+      {% block navigation %}
+        {{ page.primary_menu }}
+      {% endblock %}
+    {% endembed %}
+
 
     {% block page_content %}
       {% set banner_data = {

@@ -1,0 +1,550 @@
+// Auction Header Component
+// SDC Implementation - Fixed horizontal layout
+
+.component--auction-header {
+    background-color: #f9f9f9;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+
+    &.is-scrolled {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    // Container
+    .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        min-height: 4rem;
+        position: relative;
+
+        @media (min-width: 768px) {
+            padding: 0 2rem;
+        }
+
+        @media (min-width: 1200px) {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+    }
+
+    // Logo section - reorganized layout
+    .logo {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        z-index: 10;
+
+        @media (max-width: 991px) {
+            flex: none;
+        }
+
+        // Hide breadcrumbs completely
+        .breadcrumb,
+        nav[aria-label="breadcrumb"] {
+            display: none !important;
+        }
+
+        // Drupal region structure
+        .region {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            gap: 0;
+        }
+
+        // Branding block - logo only
+        .block--system-branding {
+            flex-shrink: 0;
+            margin-right: 2rem;
+
+            @media (max-width: 991px) {
+                margin-right: 0;
+            }
+        }
+
+        // Menu block - center navigation  
+        .block--system-menu {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+
+            @media (max-width: 991px) {
+                display: none; // Hide desktop menu on mobile
+            }
+
+            .block__content {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        // Override all Drupal block margins
+        .block {
+            margin: 0;
+        }
+
+        // Navbar brand styling
+        .navbar-brand {
+            color: #000000;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            &:hover,
+            &:focus {
+                color: #000000;
+                text-decoration: none;
+            }
+
+            &__logo {
+                display: flex;
+                align-items: center;
+
+                img {
+                    height: 6.5rem;
+                    width: auto;
+                    max-width: none;
+                }
+            }
+        }
+
+        // Main navigation styling - HORIZONTAL
+        .nav,
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row; // Force horizontal
+            gap: 2.5rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 100%;
+
+            .nav-item {
+                margin: 0;
+                display: inline-block; // Ensure inline display
+            }
+
+            .nav-link {
+                color: #000000;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                position: relative;
+                transition: color 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                white-space: nowrap;
+
+                // Dropdown arrow
+                &.dropdown-toggle {
+                    &:after {
+                        content: '';
+                        display: inline-block;
+                        width: 0.4rem;
+                        height: 0.4rem;
+                        border-right: 2px solid currentColor;
+                        border-bottom: 2px solid currentColor;
+                        transform: rotate(45deg);
+                        transition: transform 0.3s ease;
+                        margin-left: 0.25rem;
+                        border-top: none;
+                        border-left: none;
+                        position: static !important;
+                    }
+                }
+
+                &:hover,
+                &:focus,
+                &[aria-current="page"],
+                &.is-active {
+                    color: #6f42c1;
+                    text-decoration: none;
+
+                    &:after {
+                        width: calc(100% - 2rem);
+                    }
+                }
+
+                // Underline effect
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -0.25rem;
+                    left: 50%;
+                    width: 0;
+                    height: 2px;
+                    background-color: #6f42c1;
+                    transition: all 0.3s ease;
+                    transform: translateX(-50%);
+                }
+            }
+
+            // Dropdown Menu Styling
+            .dropdown {
+                position: relative;
+
+                &:hover {
+                    >.dropdown-menu {
+                        display: block;
+                        visibility: visible;
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+
+                    >.nav-link:after {
+                        transform: rotate(225deg);
+                        width: 0.4rem; // Keep arrow size
+                    }
+                }
+            }
+
+            .dropdown-menu {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                min-width: 220px;
+                background-color: #ffffff;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 0.75rem 0;
+                margin: 0;
+                list-style: none;
+                z-index: 1000;
+                visibility: hidden;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+
+                .dropdown-item {
+                    display: block;
+                    width: 100%;
+                    padding: 0.6rem 1.5rem;
+                    clear: both;
+                    font-weight: 500;
+                    color: #000000;
+                    text-align: inherit;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    background-color: transparent;
+                    border: 0;
+                    transition: all 0.2s ease;
+
+                    &:hover,
+                    &:focus {
+                        color: #6f42c1;
+                        background-color: rgba(111, 66, 193, 0.05);
+                        padding-left: 1.75rem;
+                    }
+
+                    &.active,
+                    &:active {
+                        color: #ffffff;
+                        background-color: #6f42c1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Mobile menu toggle
+.mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    position: relative;
+    order: 2;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    @media (min-width: 992px) {
+        display: none;
+    }
+
+    &:hover {
+        color: #6f42c1;
+    }
+
+    .hamburger {
+        position: relative;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .hamburger__line {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: currentColor;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger__line:nth-child(1) {
+        top: 0.25rem;
+    }
+
+    .hamburger__line:nth-child(2) {
+        top: 0.75rem;
+    }
+
+    .hamburger__line:nth-child(3) {
+        top: 1.25rem;
+    }
+
+    &[aria-expanded="true"] {
+
+        .hamburger__line:nth-child(1) {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .hamburger__line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger__line:nth-child(3) {
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+        }
+    }
+}
+
+// Main navigation slot
+.main-nav {
+    display: block;
+
+    @media (max-width: 991px) {
+        display: none; // Keep hidden on mobile as we use mobile-menu
+    }
+}
+
+// Header CTA
+.header-cta {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    order: 3; // Always last
+
+    @media (max-width: 575px) {
+        order: 3;
+    }
+
+    &__button {
+        background-color: #6f42c1;
+        color: #ffffff;
+        border: 2px solid #6f42c1;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        @media (max-width: 575px) {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: #5a359a;
+            border-color: #5a359a;
+            color: #ffffff;
+            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
+
+// Button icons
+.btn__icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+
+    &--phone:before {
+        content: '📞';
+    }
+}
+
+// Mobile menu
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+
+    @media (min-width: 992px) {
+        display: none !important;
+    }
+
+    &.is-active {
+        display: block;
+    }
+
+    &__nav {
+        padding: 1rem;
+    }
+
+    &__content {
+
+        // Style mobile navigation - VERTICAL for mobile
+        .nav,
+        .navbar-nav {
+            display: flex;
+            flex-direction: column; // Vertical for mobile
+            gap: 0;
+            align-items: stretch;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            .nav-item,
+            li {
+                border-bottom: 1px solid #e0e0e0;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+
+            .nav-link,
+            a {
+                color: #000000;
+                padding: 1rem 0;
+                display: block;
+                width: 100%;
+                text-decoration: none;
+                transition: all 0.3s ease;
+
+                &:after {
+                    display: none; // Remove underline effect in mobile
+                }
+
+                &:hover,
+                &:focus {
+                    background-color: rgba(111, 66, 193, 0.1);
+                    color: #6f42c1;
+                    padding-left: 1rem;
+                }
+
+                &[aria-current="page"],
+                &.is-active {
+                    color: #6f42c1;
+                    background-color: rgba(111, 66, 193, 0.1);
+                }
+            }
+
+            // Mobile Submenus
+            .dropdown-menu {
+                display: none;
+                list-style: none;
+                padding-left: 1.5rem;
+                margin: 0;
+                background-color: rgba(0, 0, 0, 0.02);
+                border: none;
+                box-shadow: none;
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+
+                &.show {
+                    display: block;
+                }
+
+                .dropdown-item {
+                    padding: 0.75rem 1rem;
+                    border-bottom: 1px solid #f0f0f0;
+                    font-size: 0.9375rem;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+
+            // Show submenus in mobile menu if bootstrap classes are used
+            .dropdown.show>.dropdown-menu {
+                display: block;
+            }
+
+            // Alternative: just show them all in mobile if preferred
+            /*
+                .dropdown-menu {
+                    display: block !important;
+                }
+                */
+        }
+    }
+}
+
+// Force hide contextual links
+.contextual {
+    display: none !important;
+}
+
+// Override Drupal styles
+.block {
+    margin: 0 !important;
+}
+
+.region {
+    margin: 0 !important;
+}
+}
+
+// Responsive adjustments
+@media (max-width: 991px) {
+    .component--auction-header {
+        .header-inner {
+            flex-wrap: nowrap;
+        }
+
+        .logo {
+            .block--system-menu {
+                display: none !important;
+            }
+        }
+    }
+}
+
+// Scroll effect
+.component--auction-header.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
