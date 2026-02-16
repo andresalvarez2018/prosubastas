@@ -10,7 +10,29 @@
  * Copy the desired variable from node_modules/bootstrap/scss/_variables.scss
  * @see https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
  * Change the value and remove the !default flag.
- * Examples:
- * $body-bg: #000;
- * $body-color: $gray-100;
  */
+
+// ProSubastas Color Palette
+$primary: #6A0DAD; // Morado principal
+$primary-dark: #4B0082; // Morado oscuro
+$primary-light: #A881E6; // Morado claro / acento
+
+$gray-very-light: #F5F5F7; // Fondo general
+$gray-light: #E5E5EA; // Bordes, separadores
+$gray-medium: #6C757D; // Texto secundario
+$black-soft: #1C1C1E; // Footer o fondos oscuros
+$white: #FFFFFF; // Cards y header
+
+// Bootstrap Overrides
+$body-bg: $gray-very-light;
+$body-color: $black-soft;
+$link-color: $primary;
+$border-color: $gray-light;
+$text-muted: $gray-medium;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $primary-light,
+    "dark": $black-soft,
+    "light": $gray-very-light
+);

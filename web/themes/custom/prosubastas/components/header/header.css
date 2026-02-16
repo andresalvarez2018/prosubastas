@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .component--auction-header {
-  background-color: #f9f9f9;
+  background-color: #FFFFFF;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -155,7 +155,7 @@
 .component--auction-header .logo .navbar-nav .nav-link:focus,
 .component--auction-header .logo .navbar-nav .nav-link[aria-current=page],
 .component--auction-header .logo .navbar-nav .nav-link.is-active {
-  color: #6f42c1;
+  color: #6A0DAD;
   text-decoration: none;
 }
 .component--auction-header .logo .nav .nav-link:hover:after, .component--auction-header .logo .nav .nav-link:focus:after, .component--auction-header .logo .nav .nav-link[aria-current=page]:after, .component--auction-header .logo .nav .nav-link.is-active:after,
@@ -173,7 +173,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background-color: #6f42c1;
+  background-color: #6A0DAD;
   transition: all 0.3s ease;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -235,15 +235,15 @@
 .component--auction-header .logo .nav .dropdown-menu .dropdown-item:hover, .component--auction-header .logo .nav .dropdown-menu .dropdown-item:focus,
 .component--auction-header .logo .navbar-nav .dropdown-menu .dropdown-item:hover,
 .component--auction-header .logo .navbar-nav .dropdown-menu .dropdown-item:focus {
-  color: #6f42c1;
-  background-color: rgba(111, 66, 193, 0.05);
+  color: #6A0DAD;
+  background-color: rgba(106, 13, 173, 0.05);
   padding-left: 1.75rem;
 }
 .component--auction-header .logo .nav .dropdown-menu .dropdown-item.active, .component--auction-header .logo .nav .dropdown-menu .dropdown-item:active,
 .component--auction-header .logo .navbar-nav .dropdown-menu .dropdown-item.active,
 .component--auction-header .logo .navbar-nav .dropdown-menu .dropdown-item:active {
   color: #ffffff;
-  background-color: #6f42c1;
+  background-color: #6A0DAD;
 }
 
 .mobile-menu-toggle {
@@ -265,7 +265,7 @@
   }
 }
 .mobile-menu-toggle:hover {
-  color: #6f42c1;
+  color: #6A0DAD;
 }
 .mobile-menu-toggle .hamburger {
   position: relative;
@@ -324,9 +324,9 @@
   }
 }
 .header-cta__button {
-  background-color: #6f42c1;
+  background-color: #6A0DAD;
   color: #ffffff;
-  border: 2px solid #6f42c1;
+  border: 2px solid #6A0DAD;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   text-decoration: none;
@@ -344,13 +344,13 @@
   }
 }
 .header-cta__button:hover, .header-cta__button:focus {
-  background-color: #5a359a;
-  border-color: #5a359a;
+  background-color: #4B0082;
+  border-color: #4B0082;
   color: #ffffff;
   text-decoration: none;
   -webkit-transform: translateY(-1px);
           transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+  box-shadow: 0 4px 8px rgba(106, 13, 173, 0.3);
 }
 .header-cta__button:active {
   -webkit-transform: translateY(0);
@@ -434,8 +434,8 @@
 .mobile-menu__content .navbar-nav .nav-link:focus,
 .mobile-menu__content .navbar-nav a:hover,
 .mobile-menu__content .navbar-nav a:focus {
-  background-color: rgba(111, 66, 193, 0.1);
-  color: #6f42c1;
+  background-color: rgba(106, 13, 173, 0.1);
+  color: #6A0DAD;
   padding-left: 1rem;
 }
 .mobile-menu__content .nav .nav-link[aria-current=page], .mobile-menu__content .nav .nav-link.is-active,
@@ -445,8 +445,8 @@
 .mobile-menu__content .navbar-nav .nav-link.is-active,
 .mobile-menu__content .navbar-nav a[aria-current=page],
 .mobile-menu__content .navbar-nav a.is-active {
-  color: #6f42c1;
-  background-color: rgba(111, 66, 193, 0.1);
+  color: #6A0DAD;
+  background-color: rgba(106, 13, 173, 0.1);
 }
 .mobile-menu__content .nav .dropdown-menu,
 .mobile-menu__content .navbar-nav .dropdown-menu {
@@ -511,9 +511,26 @@
   }
 }
 .component--auction-header.is-scrolled {
-  background-color: #f9f9f9;
+  background-color: #4B0082;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+}
+.component--auction-header.is-scrolled .nav-link,
+.component--auction-header.is-scrolled .navbar-brand {
+  color: #FFFFFF !important;
+}
+.component--auction-header.is-scrolled .mobile-menu-toggle {
+  color: #FFFFFF;
+}
+.component--auction-header.is-scrolled .header-cta__button {
+  background-color: #FFFFFF;
+  color: #4B0082;
+  border-color: #FFFFFF;
+}
+.component--auction-header.is-scrolled .header-cta__button:hover {
+  background-color: #A881E6;
+  color: #FFFFFF;
+  border-color: #A881E6;
 }
 
 /*# sourceMappingURL=header.css.map*/

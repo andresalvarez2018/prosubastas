@@ -2,7 +2,7 @@
 // SDC Implementation - Fixed horizontal layout
 
 .component--auction-header {
-    background-color: #f9f9f9;
+    background-color: #FFFFFF;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -171,7 +171,7 @@
                 &:focus,
                 &[aria-current="page"],
                 &.is-active {
-                    color: #6f42c1;
+                    color: #6A0DAD;
                     text-decoration: none;
 
                     &:after {
@@ -187,7 +187,7 @@
                     left: 50%;
                     width: 0;
                     height: 2px;
-                    background-color: #6f42c1;
+                    background-color: #6A0DAD;
                     transition: all 0.3s ease;
                     transform: translateX(-50%);
                 }
@@ -247,15 +247,15 @@
 
                     &:hover,
                     &:focus {
-                        color: #6f42c1;
-                        background-color: rgba(111, 66, 193, 0.05);
+                        color: #6A0DAD;
+                        background-color: rgba(106, 13, 173, 0.05);
                         padding-left: 1.75rem;
                     }
 
                     &.active,
                     &:active {
                         color: #ffffff;
-                        background-color: #6f42c1;
+                        background-color: #6A0DAD;
                     }
                 }
             }
@@ -282,7 +282,7 @@
     }
 
     &:hover {
-        color: #6f42c1;
+        color: #6A0DAD;
     }
 
     .hamburger {
@@ -351,9 +351,9 @@
     }
 
     &__button {
-        background-color: #6f42c1;
+        background-color: #6A0DAD;
         color: #ffffff;
-        border: 2px solid #6f42c1;
+        border: 2px solid #6A0DAD;
         padding: 0.75rem 1.5rem;
         border-radius: 6px;
         text-decoration: none;
@@ -371,12 +371,12 @@
 
         &:hover,
         &:focus {
-            background-color: #5a359a;
-            border-color: #5a359a;
+            background-color: #4B0082;
+            border-color: #4B0082;
             color: #ffffff;
             text-decoration: none;
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+            box-shadow: 0 4px 8px rgba(106, 13, 173, 0.3);
         }
 
         &:active {
@@ -457,15 +457,15 @@
 
                 &:hover,
                 &:focus {
-                    background-color: rgba(111, 66, 193, 0.1);
-                    color: #6f42c1;
+                    background-color: rgba(106, 13, 173, 0.1);
+                    color: #6A0DAD;
                     padding-left: 1rem;
                 }
 
                 &[aria-current="page"],
                 &.is-active {
-                    color: #6f42c1;
-                    background-color: rgba(111, 66, 193, 0.1);
+                    color: #6A0DAD;
+                    background-color: rgba(106, 13, 173, 0.1);
                 }
             }
 
@@ -545,6 +545,27 @@
 
 // Scroll effect
 .component--auction-header.is-scrolled {
-    background-color: #f9f9f9;
+    background-color: #4B0082;
     backdrop-filter: blur(10px);
+
+    .nav-link,
+    .navbar-brand {
+        color: #FFFFFF !important;
+    }
+
+    .mobile-menu-toggle {
+        color: #FFFFFF;
+    }
+
+    .header-cta__button {
+        background-color: #FFFFFF;
+        color: #4B0082;
+        border-color: #FFFFFF;
+
+        &:hover {
+            background-color: #A881E6;
+            color: #FFFFFF;
+            border-color: #A881E6;
+        }
+    }
 }
