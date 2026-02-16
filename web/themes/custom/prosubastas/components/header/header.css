@@ -511,7 +511,7 @@
   }
 }
 .component--auction-header.is-scrolled {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: #f9f9f9;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
 }
