@@ -1,6 +1,7 @@
 {
     "/build/js/main.script.js": "/build/js/main.script.js",
     "/build/js/main.script.js.map": "/build/js/main.script.js.map",
+    "/components/header/header.js": "/components/header/header.js",
     "/components/filter/filter.css": "/components/filter/filter.css",
     "/components/filter/filter.css.map": "/components/filter/filter.css.map",
     "/components/card-link/card-link.css": "/components/card-link/card-link.css",
@@ -14,8 +15,10 @@
     "/components/list-card-link/llist-card-link.css": "/components/list-card-link/llist-card-link.css",
     "/components/list-card-link/llist-card-link.css.map": "/components/list-card-link/llist-card-link.css.map",
     "/components/header/header.css": "/components/header/header.css",
+    "/components/header/header.css.map": "/components/header/header.css.map",
     "/components/filters/filters.css": "/components/filters/filters.css",
     "/components/filters/filters.css.map": "/components/filters/filters.css.map",
+    "/build/assets/icons/auto.svg": "/build/assets/icons/auto.svg",
     "/build/assets/icons/truck.svg": "/build/assets/icons/truck.svg",
-    "/build/assets/icons/auto.svg": "/build/assets/icons/auto.svg"
+    "/components/header/header.js.map": "/components/header/header.js.map"
 }

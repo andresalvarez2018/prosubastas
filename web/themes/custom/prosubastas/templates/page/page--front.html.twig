@@ -57,16 +57,37 @@
 
 
 <div {{ page_attributes.addClass(page_classes) }}>
-    {% include 'prosubastas:header' %}
+    {% embed 'prosubastas:header' %}
+      {% block branding %}
+        {{ page.header }}
+      {% endblock %}
+      {% block navigation %}
+        {{ page.primary_menu }}
+      {% endblock %}
+    {% endembed %}
 
-  {% block page_content %}
-    {% include 'radix:page-content' with {
-      page_main_utility_classes: ['py-2'],
-      page_header_container_utility_classes: ['mb-3'],
-    }%}
-  {% endblock %}
+
+    {% block page_content %}
+      {% set banner_data = {
+        image: '<img src="https://picsum.photos/1320/513" alt="Banner desktop">',
+        image_mobile: '<img src="https://picsum.photos/767/400" alt="Banner mobile">',
+        title: 'Introducing Electric Car rent company.',
+        body: '<p>Für den Arbeitsalltag. Für eine saubere Zukunft.</p>'
+      } %}
+
+      {% include 'prosubastas:banner' with {
+        image: banner_data.image,
+        image_mobile: banner_data.image_mobile,
+        title: banner_data.title,
+        body: banner_data.body
+      } only %}
+
+      {% include 'prosubastas:filters' with { overlap: true } only %}
+
+      {# {{ page.content }} #}
+    {% endblock %}
 
 	{% block page_footer %}
-    {# {% include 'blu_benefits:page-footer' %} #}
+        {# {% include 'blu_benefits:page-footer' %} #}
 	{% endblock %}
 </div>

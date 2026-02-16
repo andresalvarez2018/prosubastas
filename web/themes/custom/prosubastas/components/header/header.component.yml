@@ -2,4 +2,16 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc
 name: header
 status: experimental
 description: Header component for the Pro Subastas theme
-props: []
+props:
+  type: object
+  properties: {}
+slots:
+  branding:
+    title: Branding
+    description: "Slot for site branding/logo"
+  navigation:
+    title: Navigation
+    description: "Slot for main navigation menu"
+  cta:
+    title: CTA
+    description: "Slot for the call to action button"
