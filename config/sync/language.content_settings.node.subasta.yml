@@ -1,0 +1,11 @@
+uuid: 13bb4ebc-4f2f-40eb-8b7e-cc7683243bd4
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.subasta
+id: node.subasta
+target_entity_type_id: node
+target_bundle: subasta
+default_langcode: site_default
+language_alterable: false

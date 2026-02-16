@@ -1,0 +1,29 @@
+uuid: 4827df5b-543e-4424-9a89-b900f4df8af1
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_estado_fisico
+    - node.type.vehiculo
+    - taxonomy.vocabulary.estado_fisico
+id: node.vehiculo.field_estado_fisico
+field_name: field_estado_fisico
+entity_type: node
+bundle: vehiculo
+label: 'Estado Fisico'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      estado_fisico: estado_fisico
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

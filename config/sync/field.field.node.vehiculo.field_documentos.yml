@@ -1,0 +1,29 @@
+uuid: fec6b88e-a1a4-4b47-97eb-82f9f8239898
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_documentos
+    - media.type.document
+    - node.type.vehiculo
+id: node.vehiculo.field_documentos
+field_name: field_documentos
+entity_type: node
+bundle: vehiculo
+label: Documentos
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

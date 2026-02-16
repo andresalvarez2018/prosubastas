@@ -1,0 +1,29 @@
+uuid: 54352d52-5f05-4e27-8069-167ca04a42ab
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tipo_de_vehiculo
+    - node.type.vehiculo
+    - taxonomy.vocabulary.tipo_de_vehiculo
+id: node.vehiculo.field_tipo_de_vehiculo
+field_name: field_tipo_de_vehiculo
+entity_type: node
+bundle: vehiculo
+label: 'Tipo de Vehiculo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tipo_de_vehiculo: tipo_de_vehiculo
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

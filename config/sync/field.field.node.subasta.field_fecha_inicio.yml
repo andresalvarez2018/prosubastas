@@ -1,0 +1,21 @@
+uuid: 23706c04-1176-4e99-948e-76f0bf987597
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fecha_inicio
+    - node.type.subasta
+  module:
+    - datetime
+id: node.subasta.field_fecha_inicio
+field_name: field_fecha_inicio
+entity_type: node
+bundle: subasta
+label: 'Fecha inicio'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

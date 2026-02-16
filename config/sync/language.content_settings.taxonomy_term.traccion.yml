@@ -1,0 +1,11 @@
+uuid: 7b5c0c0f-c08c-4faf-856e-1d79e22e9a25
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.traccion
+id: taxonomy_term.traccion
+target_entity_type_id: taxonomy_term
+target_bundle: traccion
+default_langcode: site_default
+language_alterable: false

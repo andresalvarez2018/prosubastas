@@ -1,0 +1,19 @@
+uuid: 2693ef79-d53d-4ca5-9ba2-999c7f042645
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_modelo
+field_name: field_modelo
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

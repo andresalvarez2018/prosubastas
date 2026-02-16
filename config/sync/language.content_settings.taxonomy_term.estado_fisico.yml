@@ -1,0 +1,11 @@
+uuid: b49a273e-2851-49ce-b3a5-00fc6f7aabeb
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.estado_fisico
+id: taxonomy_term.estado_fisico
+target_entity_type_id: taxonomy_term
+target_bundle: estado_fisico
+default_langcode: site_default
+language_alterable: false

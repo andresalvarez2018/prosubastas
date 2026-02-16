@@ -1,0 +1,18 @@
+uuid: 4f379997-3c78-4c09-a008-739c7b7fe88b
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Subasta
+type: subasta
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

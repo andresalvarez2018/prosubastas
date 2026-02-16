@@ -1,0 +1,19 @@
+uuid: 7608c743-9cf3-427d-a5ce-1b06710354cc
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_cilindraje
+field_name: field_cilindraje
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

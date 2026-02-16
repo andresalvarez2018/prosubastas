@@ -1,0 +1,19 @@
+uuid: ef11e10d-ce59-4b47-b81b-511d00760434
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_precio_inicial
+    - node.type.subasta
+id: node.subasta.field_precio_inicial
+field_name: field_precio_inicial
+entity_type: node
+bundle: subasta
+label: 'Precio inicial'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

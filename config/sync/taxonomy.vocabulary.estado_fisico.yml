@@ -1,0 +1,9 @@
+uuid: 3173467e-76a1-4f4f-a21a-3cfcb6feb94e
+langcode: es
+status: true
+dependencies: {  }
+name: 'Estado físico'
+vid: estado_fisico
+description: null
+weight: 0
+new_revision: false

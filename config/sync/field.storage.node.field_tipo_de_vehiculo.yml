@@ -1,0 +1,20 @@
+uuid: 19301664-c4ba-4c0d-bb23-770ca09348fa
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_tipo_de_vehiculo
+field_name: field_tipo_de_vehiculo
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

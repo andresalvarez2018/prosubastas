@@ -1,0 +1,29 @@
+uuid: 54875c5e-ef69-4cf3-8c0c-edf3d9ae773c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_marca
+    - node.type.vehiculo
+    - taxonomy.vocabulary.marca
+id: node.vehiculo.field_marca
+field_name: field_marca
+entity_type: node
+bundle: vehiculo
+label: Marca
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      marca: marca
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,29 @@
+uuid: 431cca7a-9acc-4f31-9fd8-b8e5548c77cc
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ganador
+    - node.type.subasta
+id: node.subasta.field_ganador
+field_name: field_ganador
+entity_type: node
+bundle: subasta
+label: Ganador
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: _none
+    include_anonymous: false
+field_type: entity_reference

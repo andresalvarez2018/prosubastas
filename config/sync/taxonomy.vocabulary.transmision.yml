@@ -1,0 +1,9 @@
+uuid: dfcfbc36-b8d7-4882-84c9-f97a812c7f24
+langcode: es
+status: true
+dependencies: {  }
+name: Transmisión
+vid: transmision
+description: null
+weight: 0
+new_revision: false

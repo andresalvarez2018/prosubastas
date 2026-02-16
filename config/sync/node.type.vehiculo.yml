@@ -1,4 +1,4 @@
-uuid: 09380e09-9599-4154-a614-3d3585904848
+uuid: 443b3ab4-c081-4b1c-97a8-530dcd25a61f
 langcode: es
 status: true
 dependencies:
@@ -9,7 +9,7 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: Vehiculo
+name: Vehículo
 type: vehiculo
 description: null
 help: null

@@ -1,0 +1,20 @@
+uuid: 5564e884-2992-4a04-8480-1b06d1d06205
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - user
+id: node.field_ganador
+field_name: field_ganador
+entity_type: node
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

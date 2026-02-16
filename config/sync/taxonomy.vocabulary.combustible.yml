@@ -1,0 +1,9 @@
+uuid: 940f0159-1131-4c3e-90b0-e3a244fa4a0a
+langcode: es
+status: true
+dependencies: {  }
+name: Combustible
+vid: combustible
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,19 @@
+uuid: 8934938a-3d05-4ac7-9ed7-21e29744c981
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_incremento_minimo
+    - node.type.subasta
+id: node.subasta.field_incremento_minimo
+field_name: field_incremento_minimo
+entity_type: node
+bundle: subasta
+label: 'Incremento mínimo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

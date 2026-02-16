@@ -1,0 +1,96 @@
+uuid: 05222b4f-a875-46ff-af0d-c54f6296b09c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.subasta.field_fecha_fin
+    - field.field.node.subasta.field_fecha_inicio
+    - field.field.node.subasta.field_ganador
+    - field.field.node.subasta.field_incremento_minimo
+    - field.field.node.subasta.field_precio_final
+    - field.field.node.subasta.field_precio_inicial
+    - field.field.node.subasta.field_precio_reserva
+    - field.field.node.subasta.field_vehiculo
+    - node.type.subasta
+  module:
+    - datetime
+    - user
+id: node.subasta.default
+targetEntityType: node
+bundle: subasta
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  field_fecha_fin:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_fecha_inicio:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_ganador:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_incremento_minimo:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_precio_final:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_precio_inicial:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_precio_reserva:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_vehiculo:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

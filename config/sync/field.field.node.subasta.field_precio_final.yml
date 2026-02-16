@@ -1,0 +1,19 @@
+uuid: a32f4575-d8e2-4280-94ac-afb562608a05
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_precio_final
+    - node.type.subasta
+id: node.subasta.field_precio_final
+field_name: field_precio_final
+entity_type: node
+bundle: subasta
+label: 'Precio final'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

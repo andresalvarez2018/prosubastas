@@ -1,8 +1,8 @@
-// Auction Header Component
-// SDC Implementation - Fixed horizontal layout
+@import "../../src/scss/init";
+
 
 .component--auction-header {
-    background-color: #FFFFFF;
+    background-color: $white;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -218,7 +218,7 @@
                 top: 100%;
                 left: 0;
                 min-width: 220px;
-                background-color: #ffffff;
+                background-color: $white;
                 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
                 border: 1px solid #e0e0e0;
                 border-radius: 8px;
@@ -254,7 +254,7 @@
 
                     &.active,
                     &:active {
-                        color: #ffffff;
+                        color: $white;
                         background-color: #6A0DAD;
                     }
                 }
@@ -352,7 +352,7 @@
 
     &__button {
         background-color: #6A0DAD;
-        color: #ffffff;
+        color: $white;
         border: 2px solid #6A0DAD;
         padding: 0.75rem 1.5rem;
         border-radius: 6px;
@@ -373,7 +373,7 @@
         &:focus {
             background-color: #4B0082;
             border-color: #4B0082;
-            color: #ffffff;
+            color: $white;
             text-decoration: none;
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(106, 13, 173, 0.3);
@@ -403,7 +403,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #ffffff;
+    background-color: $white;
     border-top: 1px solid #e0e0e0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     z-index: 5;
@@ -554,17 +554,17 @@
     }
 
     .mobile-menu-toggle {
-        color: #FFFFFF;
+        color: $white;
     }
 
     .header-cta__button {
-        background-color: #FFFFFF;
+        background-color: $white;
         color: #4B0082;
-        border-color: #FFFFFF;
+        border-color: $white;
 
         &:hover {
             background-color: #A881E6;
-            color: #FFFFFF;
+            color: $white;
             border-color: #A881E6;
         }
     }

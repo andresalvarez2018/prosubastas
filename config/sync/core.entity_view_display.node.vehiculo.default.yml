@@ -1,0 +1,164 @@
+uuid: 6904fc1e-a256-47dc-a244-895ada62cd67
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.vehiculo.field_ano
+    - field.field.node.vehiculo.field_cilindraje
+    - field.field.node.vehiculo.field_ciudad
+    - field.field.node.vehiculo.field_combustible
+    - field.field.node.vehiculo.field_descripcion
+    - field.field.node.vehiculo.field_documentos
+    - field.field.node.vehiculo.field_estado_fisico
+    - field.field.node.vehiculo.field_galeria
+    - field.field.node.vehiculo.field_kilometraje
+    - field.field.node.vehiculo.field_marca
+    - field.field.node.vehiculo.field_modelo
+    - field.field.node.vehiculo.field_numero_puertas
+    - field.field.node.vehiculo.field_tipo_de_vehiculo
+    - field.field.node.vehiculo.field_traccion
+    - field.field.node.vehiculo.field_transmision
+    - field.field.node.vehiculo.field_version
+    - node.type.vehiculo
+  module:
+    - text
+    - user
+id: node.vehiculo.default
+targetEntityType: node
+bundle: vehiculo
+mode: default
+content:
+  field_ano:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_cilindraje:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_ciudad:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_combustible:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_descripcion:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_documentos:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_estado_fisico:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_galeria:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_kilometraje:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_marca:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_modelo:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_numero_puertas:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_tipo_de_vehiculo:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_traccion:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_transmision:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_version:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

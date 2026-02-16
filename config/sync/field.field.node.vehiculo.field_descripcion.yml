@@ -1,0 +1,24 @@
+uuid: 0e622355-0e27-4242-9059-231914080a53
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_descripcion
+    - filter.format.full_html
+    - node.type.vehiculo
+  module:
+    - text
+id: node.vehiculo.field_descripcion
+field_name: field_descripcion
+entity_type: node
+bundle: vehiculo
+label: Descripcion
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

@@ -1,0 +1,9 @@
+uuid: 9918c474-29f3-4e75-ae1f-89787bad8c91
+langcode: es
+status: true
+dependencies: {  }
+name: Tracción
+vid: traccion
+description: null
+weight: 0
+new_revision: false

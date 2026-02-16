@@ -1,0 +1,23 @@
+uuid: 309fd484-a494-41fb-867e-33fb760ae27e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_numero_puertas
+    - node.type.vehiculo
+id: node.vehiculo.field_numero_puertas
+field_name: field_numero_puertas
+entity_type: node
+bundle: vehiculo
+label: 'Numero puertas'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

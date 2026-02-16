@@ -1,0 +1,11 @@
+uuid: 5428e5e7-fdf8-4a82-a6c4-8dbbfe0893b6
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tipo_de_vehiculo
+id: taxonomy_term.tipo_de_vehiculo
+target_entity_type_id: taxonomy_term
+target_bundle: tipo_de_vehiculo
+default_langcode: site_default
+language_alterable: false

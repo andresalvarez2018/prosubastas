@@ -1,0 +1,19 @@
+uuid: b13168fe-637e-4a99-ba02-18edb5a23b74
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_kilometraje
+    - node.type.vehiculo
+id: node.vehiculo.field_kilometraje
+field_name: field_kilometraje
+entity_type: node
+bundle: vehiculo
+label: Kilometraje
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

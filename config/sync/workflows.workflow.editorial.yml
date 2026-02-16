@@ -1,0 +1,104 @@
+uuid: 9c1ad45b-f6c0-4624-b1b9-b93db857aac4
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.subasta
+  module:
+    - content_moderation
+_core:
+  default_config_hash: T7gMMyFbTYLalxpIOnzJebvek2OW0b1RgLVE9I2y228
+id: editorial
+label: Editorial
+type: content_moderation
+type_settings:
+  states:
+    archivar:
+      label: Archivar
+      weight: 4
+      published: false
+      default_revision: false
+    cancelada:
+      label: Cancelada
+      weight: 3
+      published: true
+      default_revision: false
+    cerrada:
+      label: Cerrada
+      weight: 2
+      published: true
+      default_revision: false
+    draft:
+      label: Borrador
+      weight: -5
+      published: false
+      default_revision: false
+    proxima:
+      label: Próxima
+      weight: 1
+      published: true
+      default_revision: false
+    published:
+      label: Activa
+      weight: 0
+      published: true
+      default_revision: true
+  transitions:
+    activa_a_cancelada:
+      label: 'Activa a Cancelada'
+      from:
+        - published
+      to: cancelada
+      weight: 5
+    activa_a_cerrada:
+      label: 'Activa  a Cerrada'
+      from:
+        - published
+      to: cerrada
+      weight: 6
+    borrador_a_cancelada:
+      label: 'Borrador a Cancelada'
+      from:
+        - draft
+      to: cancelada
+      weight: 1
+    borrador_a_proxima:
+      label: 'Borrador a Proxima'
+      from:
+        - draft
+      to: proxima
+      weight: 0
+    cancelada_a_archivar:
+      label: 'Cancelada  a Archivar'
+      from:
+        - cancelada
+      to: archivar
+      weight: 8
+    cerrada_a_archivar:
+      label: 'Cerrada  a Archivar'
+      from:
+        - cerrada
+      to: archivar
+      weight: 7
+    proxima_a:
+      label: 'Próxima a Activa'
+      from:
+        - proxima
+      to: published
+      weight: 2
+    proxima_a_borrador:
+      label: 'Próxima a Borrador'
+      from:
+        - proxima
+      to: draft
+      weight: 4
+    proxima_a_cancelada:
+      label: 'Próxima a Cancelada'
+      from:
+        - proxima
+      to: cancelada
+      weight: 3
+  entity_types:
+    node:
+      - subasta
+  default_moderation_state: draft

@@ -1,0 +1,9 @@
+uuid: 9e6ebacf-ecb1-478f-ab22-604746988a80
+langcode: es
+status: true
+dependencies: {  }
+name: Marca
+vid: marca
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,29 @@
+uuid: ec7f1322-be4e-4ad9-9e78-5c75d70dbe4c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_traccion
+    - node.type.vehiculo
+    - taxonomy.vocabulary.traccion
+id: node.vehiculo.field_traccion
+field_name: field_traccion
+entity_type: node
+bundle: vehiculo
+label: Traccion
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      traccion: traccion
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
