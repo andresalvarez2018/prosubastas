@@ -1,0 +1,4 @@
+services:
+  auctions_core.tools:
+    class: Drupal\auctions_core\Service\AuctionTools
+    arguments: ['@entity_type.manager', '@module_handler', '@config.factory', '@current_user', '@language.default', '@language_manager', '@database', '@renderer', '@uuid']

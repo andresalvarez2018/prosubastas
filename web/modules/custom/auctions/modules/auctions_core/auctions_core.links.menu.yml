@@ -1,0 +1,33 @@
+entity.auction_item.content:
+  title: 'Auctions Core'
+  route_name: entity.auction_item.collection
+  description: 'List of Auction Items Entities'
+  parent: system.admin_content
+entity.auction_item.landing:
+  title: 'Item Overview'
+  route_name: entity.auction_item.collection
+  description: 'List of Auction Items Entities'
+  parent: entity.auction_item.collection
+  weight: -10
+entity.auction_bid.collection:
+  title: 'Bids Overview'
+  route_name: entity.auction_bid.collection
+  description: 'List of Auction Bids Entities'
+  parent: entity.auction_item.content
+
+entity.auction_item.structure:
+  title: 'Auctions'
+  route_name: auction_item.settings
+  description: 'List of Auction Items Entities'
+  parent: system.admin_structure
+auction_item.admin.structure.settings:
+  title: 'Item Settings & Structure'
+  description: 'Configure Auction Items Entities'
+  route_name: auction_item.settings
+  parent: entity.auction_item.structure
+  weight: -10
+auction_bid.admin.structure.settings:
+  title: 'Bids'
+  description: 'Configure Auction Bid Entities'
+  route_name: auction_bid.settings
+  parent: entity.auction_item.structure

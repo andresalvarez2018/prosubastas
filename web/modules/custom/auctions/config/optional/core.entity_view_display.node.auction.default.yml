@@ -1,0 +1,30 @@
+uuid: ce6e1628-a0a6-4f56-9652-86fcb117678e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.auction.body
+    - field.field.node.auction.field_auction_item
+    - node.type.auction
+  module:
+    - text
+    - user
+id: node.auction.default
+targetEntityType: node
+bundle: auction
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_auction_item: true

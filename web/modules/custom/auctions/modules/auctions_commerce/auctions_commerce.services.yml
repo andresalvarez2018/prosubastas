@@ -1,0 +1,4 @@
+services:
+  auctions_commerce.orderItem:
+    class: \Drupal\auctions_commerce\Service\AuctionOrderItem
+    arguments: ['@entity_type.manager', '@commerce_store.current_store', '@commerce_cart.cart_provider', '@commerce_cart.cart_manager', '@logger.factory', '@config.factory', '@auctions_core.tools', '@renderer']

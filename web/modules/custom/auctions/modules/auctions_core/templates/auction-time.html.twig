@@ -1,0 +1,24 @@
+{#
+/**
+ * @file auction-time.html.twig
+ *
+ * This template is used when viewing Auction Item Countdown.
+ *
+ *
+ * Available variables:
+ * - unix: unix timestamp for javascript
+ * - font-size: px.  size JS will user to display clock digits.
+ * - datetime: <time> element attribute
+ * - formatter: <time> html content
+ *
+ * @see template_preprocess_auction_bid()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('auctions_core/countdown') }}
+<section class="auction-countdown" data-unix="{{ unix }}" data-font-size="{{ font_size }}">
+  <header class="countdown"></header>
+  <time datetime="{{ datetime }}"{% if hide_time == true %} class="visually-hidden"{% endif %}>{{ formatted }}</time>
+  {% if hide_interval == false %}<footer class="interval"></footer>{% endif %}
+</section>

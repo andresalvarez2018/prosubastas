@@ -1,0 +1,52 @@
+# Auction Item routing definition
+auction_item.settings_tab:
+  route_name: auction_item.settings
+  title: 'Item Structure'
+  base_route: auction_item.settings
+
+entity.auction_item.canonical:
+  route_name: entity.auction_item.canonical
+  base_route: entity.auction_item.canonical
+  title: 'View'
+
+entity.auction_item.edit_form:
+  route_name: entity.auction_item.edit_form
+  base_route: entity.auction_item.canonical
+  title: 'Edit'
+
+entity.auction_item.relist_form:
+  route_name: entity.auction_item.relist_form
+  base_route: entity.auction_item.canonical
+  title: 'Relist'
+
+entity.auction_item.version_history:
+  route_name: entity.auction_item.version_history
+  base_route: entity.auction_item.canonical
+  title: 'Revisions'
+
+entity.auction_item.delete_form:
+  route_name:  entity.auction_item.delete_form
+  base_route:  entity.auction_item.canonical
+  title: Delete
+  weight: 10
+# Auction Bid(s) routing definition
+auction_bid.settings_tab:
+  route_name: auction_bid.settings
+  title: 'Bid Structure'
+  base_route: auction_bid.settings
+
+entity.auction_bid.canonical:
+  route_name: entity.auction_bid.canonical
+  base_route: entity.auction_bid.canonical
+  title: 'View'
+
+entity.auction_bid.edit_form:
+  route_name: entity.auction_bid.edit_form
+  base_route: entity.auction_bid.canonical
+  title: 'Edit'
+
+entity.auction_bid.delete_form:
+  route_name:  entity.auction_bid.delete_form
+  base_route:  entity.auction_bid.canonical
+  title: Delete
+  weight: 10

@@ -1,0 +1,97 @@
+.visually-hidden {
+  position: absolute;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0,0,0,0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.auction-countdown .countdown {
+  display: flex;
+  align-items: center;
+}
+
+.auction-countdown .position {
+  display: inline-block;
+  height: 1.6em;
+  overflow: hidden;
+  position: relative;
+  width: 1.1em;
+}
+
+.auction-countdown .digit {
+  position: absolute;
+  display: block;
+  width: 1em;
+  background-color: #444;
+  border-radius: 0.2em;
+  text-align: center;
+  color: #fff;
+  letter-spacing: -1px;
+}
+.auction-countdown .svg {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: visible;
+  height: .5rem;
+  position: relative;
+  top: -.5rem;
+}
+.auction-countdown .svg img {
+  /* Not Responsive */
+  border: 0;
+  width: inherit;
+  max-width: inherit;
+}
+
+.auction-countdown .digit.static {
+  box-shadow: 1px 1px 1px rgba(4, 4, 4, 0.35);
+  background-image: linear-gradient(bottom, #3a3a3a 50%, #444444 50%);
+  background-image: -o-linear-gradient(bottom, #3a3a3a 50%, #444444 50%);
+  background-image: -moz-linear-gradient(bottom, #3a3a3a 50%, #444444 50%);
+  background-image: -webkit-linear-gradient(bottom, #3a3a3a 50%, #444444 50%);
+  background-image: -ms-linear-gradient(bottom, #3a3a3a 50%, #444444 50%);
+  background-image: -webkit-gradient(
+  linear,
+  left bottom,
+  left top,
+  color-stop(0.5, #3a3a3a),
+  color-stop(0.5, #444444)
+  );
+}
+
+.auction-countdown .countDiv {
+  display: inline-block;
+  width: .6em;
+  height: 1.6em;
+  position: relative;
+  font-size: .6em;
+}
+
+.auction-countdown .countDiv:before,
+.auction-countdown .countDiv:after {
+  position: absolute;
+  width: .4em;
+  height: .4em;
+  background-color: #444;
+  border-radius: 50%;
+  left: 40%;
+  margin-left: -3px;
+  top: .2rem;
+  box-shadow: 1px 1px 1px rgba(4, 4, 4, 0.5);
+  content: '';
+}
+
+.auction-countdown .countDiv:after {
+  top: -.2rem;
+}
+
+.auction-countdown footer {
+  font-size: 12px;
+}

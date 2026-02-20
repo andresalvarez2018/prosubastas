@@ -1,0 +1,25 @@
+uuid: cc10bbfa-1dd8-46ba-bd03-2fa806eda83a
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.auction_item
+    - field.storage.commerce_order_item.field_order_item
+id: commerce_order_item.auction_item.field_order_item
+field_name: field_order_item
+entity_type: commerce_order_item
+bundle: auction_item
+label: 'Auction Item'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:auction_item'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

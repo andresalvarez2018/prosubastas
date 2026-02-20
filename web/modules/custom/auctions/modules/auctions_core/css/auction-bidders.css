@@ -1,0 +1,47 @@
+.view-bids-relist-group.view-id-bids_relist_group .view-filters {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  text-align: right;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-filters,
+.view-bids-relist-group.view-id-bids_relist_group .view-filters label,
+.view-bids-relist-group.view-id-bids_relist_group .view-filters select,
+.view-bids-relist-group.view-id-bids_relist_group .view-filters .form-actions,
+.view-bids-relist-group.view-id-bids_relist_group .view-filters input {
+  font-size: 12px;
+  margin-top: 0 !important;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-filters .form-item,
+.view-bids-relist-group.view-id-bids_relist_group .view-filters .form-actions,
+.view-bids-relist-group.view-id-bids_relist_group .view-filters label {
+  display: inline;
+  float: inherit;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-filters select,
+.view-bids-relist-group.view-id-bids_relist_group .view-filters .button {
+  height: 2rem;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-content {
+  margin: 0 0 0.5rem 0;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-content table {
+  width: 100%;
+  margin: 0 0 0 0;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-content .views-table td {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem !important;
+  font-size: 12px;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-content tr {
+  display: flex;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-content .views-field-amount {
+  flex-shrink: 0;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-content .views-field-user-id {
+  flex: 2;
+}
+.view-bids-relist-group.view-id-bids_relist_group .view-content .views-field-type {
+  flex-shrink: 1;
+}

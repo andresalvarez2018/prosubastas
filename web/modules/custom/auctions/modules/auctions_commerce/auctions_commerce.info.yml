@@ -1,0 +1,14 @@
+name: 'Auctions Commerce'
+description: 'Auction Commerce integration base.  Auction Order Item.'
+core_version_requirement: ^11
+package: Auctions
+dependencies:
+  auctions_core: 'auctions:auctions_core'
+  address: 'address:address'
+  commerce_checkout: 'commerce:commerce_checkout'
+  commerce_cart: 'commerce:commerce_cart'
+  commerce_store: 'commerce:commerce_store'
+  commerce_order: 'commerce:commerce_order'
+  commerce_price: 'commerce:commerce_price'
+type: module
+configure: auctions_commerce.mail_settings

@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Provides installation and uninstallation functions for the Auctions module.
+ */
+
+/**
+ * Enable Auctions (node integration). Also enable Auction Mail submodule.
+ */
+function auctions_install() {
+  // Enable Auction Mail toolkit (soft dependency).
+  \Drupal::service('module_installer')->install(['auctions_mail']);
+}
+
+/**
+ * Remove Auction Content and Content type when the module is deactivated.
+ */
+function auctions_uninstall() {
+  // Delete all nodes of the Auction content type.
+  $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
+  $nodes = $storage_handler->loadByProperties(['type' => 'auction']);
+  if ($nodes) {
+    $storage_handler->delete($nodes);
+  }
+  // Delete Auction content type.
+  $content_type = \Drupal::entityTypeManager()->getStorage('node_type')->load('auction');
+  if ($content_type) {
+    $content_type->delete();
+  }
+}

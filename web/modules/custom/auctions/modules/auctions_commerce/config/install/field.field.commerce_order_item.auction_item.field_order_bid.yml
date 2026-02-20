@@ -1,0 +1,25 @@
+uuid: d75252d9-0512-4f1d-8a6a-8538f5c0cc26
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.auction_item
+    - field.storage.commerce_order_item.field_order_bid
+id: commerce_order_item.auction_item.field_order_bid
+field_name: field_order_bid
+entity_type: commerce_order_item
+bundle: auction_item
+label: 'Auction Bid'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:auction_bid'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

@@ -1,0 +1,61 @@
+.auctions-core-bidders .form-item-welcome label {
+  display: inline;
+  margin-right: 1rem;
+}
+.auctions-core-bidders .form-item-welcome label::after {
+  content: ":";
+}
+.auctions-core-bidders .form-item-welcome .description {
+  display: inline;
+  font-size: 1.4rem;
+}
+.auctions-core-bidders .form-item-welcome .description small {
+  font-size: 12px;
+}
+.auctions-core-bidders .autobid-wrapper input[type="number"] {
+  font-size: 1.4rem;
+  width: 80%;
+  min-width: 80%;
+}
+.auctions-core-bidders .field-prefix {
+  width: 10%;
+  text-align: right;
+}
+.auctions-core-bidders .standard-bid .form-item-amount {
+  display: block;
+  text-align: center;
+}
+.auctions-core-bidders .standard-bid .form-item-amount label {
+  text-align: left;
+}
+.auctions-core-bidders .standard-bid .form-item-amount label:after {
+  content: ":";
+}
+.auctions-core-bidders .standard-bid input[type="number"] {
+  width: 80%;
+  min-width: 80%;
+  font-size: 1.4rem;
+}
+.auctions-core-bidders .standard-bid input[type="submit"] {
+  float: inherit;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-top: 1rem;
+}
+@media only screen and (min-width: 600px) {
+  .auctions-core-bidders .standard-bid .form-item-amount {
+    display: inline;
+    text-align: left;
+  }
+  .auctions-core-bidders .standard-bid input[type="number"] {
+    width: inherit;
+    min-width: inherit;
+  }
+  .auctions-core-bidders .standard-bid input[type="submit"] {
+    float: right;
+    width: inherit;
+    display: inline;
+    margin-top: 0;
+  }
+}

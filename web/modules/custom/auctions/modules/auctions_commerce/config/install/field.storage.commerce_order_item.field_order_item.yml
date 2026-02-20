@@ -1,0 +1,20 @@
+uuid: e9d97635-1d12-4c63-86df-a625b3ed0086
+langcode: en
+status: true
+dependencies:
+  module:
+    - auctions_core
+    - commerce_order
+id: commerce_order_item.field_order_item
+field_name: field_order_item
+entity_type: commerce_order_item
+type: entity_reference
+settings:
+  target_type: auction_item
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,12 @@
+subject-bidder: 'You have the winning bid!'
+body-bidder:
+  value: "<p>A new bid has been placed in your auction.</p>\r\n\r\n<p>You can check out through your @cart.</p>\r\n"
+  format: auction_html
+subject-owner: 'A Cart Item had been set for your auction'
+body-owner:
+  value: "<p>Auction Closed, cart item added.</p>\r\n"
+  format: auction_html
+subject-removed: 'Auction Item Removed from cart'
+body-removed:
+  value: "<p>This is to let someone know that the Auction Order Item has been removed from the Winning Bidders cart.</p>\r\n"
+  format: auction_html

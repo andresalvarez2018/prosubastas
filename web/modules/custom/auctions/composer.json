@@ -1,0 +1,40 @@
+{
+    "name": "drupal/auctions",
+    "type": "drupal-module",
+    "description": "Auctions toolkit for Drupal 11.",
+    "keywords": [
+        "Drupal",
+        "Commerce",
+        "Auctions",
+        "Auction"
+    ],
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://repo.packagist.org"
+        }
+    },
+    "homepage": "https://www.drupal.org/project/auctions",
+    "prefer-stable": true,
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/auctions",
+        "source": "http://cgit.drupalcode.org/auctions"
+    },
+    "config": {
+        "disable-tls": true,
+        "secure-http": false
+    },
+    "require": {
+        "drupal/core": "^11",
+        "drupal/commerce": "^3.0",
+        "drupal/inline_entity_form": "^3.0@RC"
+    },
+    "authors": [
+        {
+            "name": "Scott Carpenter",
+            "email": "drupal-auctions@goodscott.com",
+            "homepage": "https://www.drupal.org/u/skaught",
+            "role": "Drupal Developer"
+        }
+    ]
+}

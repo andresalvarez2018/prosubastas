@@ -1,0 +1,293 @@
+<?php
+
+/**
+ * @file
+ * Contains auctions_core.module.
+ */
+
+use Drupal\auctions_core\Entity\AuctionBid;
+use Drupal\auctions_core\Entity\AuctionItem;
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\node\Entity\NodeType;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_help().
+ */
+function auctions_mail_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the auctions_core module.
+    case 'help.page.auctions_mail':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Auctions Mail Handling.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_auctions_core_workflow_action().
+ *
+ * AUCTION CORE HOOK.
+ *
+ * allow other modules to interact upon auction_item workflow changes.
+ */
+function auctions_mail_auctions_core_workflow_action(AuctionItem $auctionItem, $workflow) {
+  // Reminder: this hook will be triggered at ALL auciton_item workflow changes.
+  // auctionItem maybe new and not have an id yet.
+  if ($auctionItem && $auctionItem->id()) {
+    $auctionTools = auctions_core_tools();
+    $mailconfig = $auctionTools->configFactory->get('auctions_mail.content');
+
+    $auctionLink = '';
+    // Sort out link to item or node.  todo: make this better.
+    $auctionItemUrl = Url::fromRoute('entity.auction_item.canonical',
+      ['auction_item' => $auctionItem->id()],
+      ['absolute' => TRUE]
+    );
+    $auctionLink = Link::fromTextAndUrl($auctionItem->getName(), $auctionItemUrl)->toString();
+
+    // Then, check to see if any Auction Node type has attached item.
+    $nodeTypes = NodeType::loadMultiple();
+    if (isset($nodeTypes['auction'])) {
+      $query = $auctionTools->entityTypeManager->getStorage('node')->getQuery();
+      $query->condition('type', 'auction');
+      $query->condition('status', 1);
+      $query->condition('field_auction_item', $auctionItem->id());
+      $query->accessCheck();
+      $nids = $query->execute();
+      if ($nids) {
+        $key = \array_keys($nids);
+        $node = $auctionTools->entityTypeManager->getStorage('node')->load($nids[$key[0]]);
+        $nodeUrl = $node->toUrl()->setOption('absolute', TRUE);
+        $auctionLink = Link::fromTextAndUrl($node->getTitle(), $nodeUrl)->toString();
+      }
+    }
+
+    switch ($workflow) {
+      case 1:
+        // Bidding open.
+        // noop.
+        break;
+
+      case 2:
+        // Auction relisted.  regardless of relist group.
+        $owner = $auctionItem->getOwner();
+        $build = [
+          '#type' => 'processed_text',
+          '#text' => $mailconfig->get('body-relisted-owner')['value'],
+          '#format' => $mailconfig->get('body-relisted-owner')['format'],
+          '#filter_types_to_skip' => [],
+          '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+        ];
+        $formattedBody = $auctionTools->renderer->renderPlain($build);
+        $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+        $body = ['#markup' => $tokenBody];
+        $mail = $auctionTools->sendMail($owner->getEmail(), $mailconfig->get('email-from'), $mailconfig->get('email-replyto'), $mailconfig->get('subject-relisted-owner'), $body);
+        /* FALSE:  has bid in any previous relisting.*/
+        $relistBids = $auctionTools->bidsGroupedByUser($auctionItem->id(), FALSE);
+        if ($relistBids) {
+          // Mail each bidder.
+          foreach ($relistBids as $uid => $rawBid) {
+            $user = $auctionTools->entityTypeManager->getStorage('user')->load($uid);
+            $to = $user->getEmail();
+            $build = [
+              '#type' => 'processed_text',
+              '#text' => $mailconfig->get('body-relisted-bidder')['value'],
+              '#format' => $mailconfig->get('body-relisted-bidder')['format'],
+              '#filter_types_to_skip' => [],
+              '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+            ];
+            $formattedBody = $auctionTools->renderer->renderPlain($build);
+            $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+            $body = ['#markup' => $tokenBody];
+            $auctionTools->sendMail($user->getEmail(), $mailconfig->get('email-from'), $mailconfig->get('email-replyto'), $mailconfig->get('subject-relisted-bidder'), $body);
+          }
+        }
+        break;
+
+      case 3:
+        // Auction closed.
+        // Mail auction owner. close may be instant..
+        $owner = $auctionItem->getOwner();
+
+        $build = [
+          '#type' => 'processed_text',
+          '#text' => $mailconfig->get('body-closed-owner')['value'],
+          '#format' => $mailconfig->get('body-closed-owner')['format'],
+          '#filter_types_to_skip' => [],
+          '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+        ];
+
+        $formattedBody = $auctionTools->renderer->renderPlain($build);
+        $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+        $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+        $body = ['#markup' => $tokenBody];
+
+        $mail = $auctionTools->sendMail(
+          $owner->getEmail(),
+          $mailconfig->get('email-from'),
+          $mailconfig->get('email-replyto'),
+          $mailconfig->get('subject-closed-owner'),
+          $body
+        );
+
+        $userBids = $auctionItem->hasBids() ? $auctionTools->bidsGroupedByUser($auctionItem->id(), $auctionItem->getRelistCount()) : FALSE;
+        if ($userBids) {
+          // Mail each bidder.
+          foreach ($userBids as $uid => $rawBid) {
+            $user = $auctionTools->entityTypeManager->getStorage('user')->load($uid);
+            $build = [
+              '#type' => 'processed_text',
+              '#text' => $mailconfig->get('body-closed-bidder')['value'],
+              '#format' => $mailconfig->get('body-closed-bidder')['format'],
+              '#filter_types_to_skip' => [],
+              '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+            ];
+
+            $formattedBody = $auctionTools->renderer->renderPlain($build);
+            $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+            $body = ['#markup' => $tokenBody];
+
+            $auctionTools->sendMail(
+              $user->getEmail(),
+              $mailconfig->get('email-from'),
+              $mailconfig->get('email-replyto'),
+              $mailconfig->get('subject-closed-bidder'),
+              $body
+            );
+          }
+        }
+
+        $winner = $auctionItem->hasBids() ?
+        $auctionTools->getAuctionItemWinner($auctionItem->id(), $auctionItem->getRelistCount()) :
+        FALSE;
+
+        if ($winner instanceof User) {
+          $build = [
+            '#type' => 'processed_text',
+            '#text' => $mailconfig->get('body-closed-winner')['value'],
+            '#format' => $mailconfig->get('body-closed-winner')['format'],
+            '#filter_types_to_skip' => [],
+            '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+          ];
+
+          $formattedBody = $auctionTools->renderer->renderPlain($build);
+          $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+          $body = ['#markup' => $tokenBody];
+
+          $winnerEmail = $auctionTools->sendMail(
+            $winner->getEmail(),
+            $mailconfig->get('email-from'),
+            $mailconfig->get('email-replyto'),
+            $mailconfig->get('subject-closed-winner'),
+            $body
+          );
+
+          $build = [
+            '#type' => 'processed_text',
+            '#text' => $mailconfig->get('body-closed-owner-winner')['value'],
+            '#format' => $mailconfig->get('body-closed-owner-winner')['format'],
+            '#filter_types_to_skip' => [],
+            '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+          ];
+
+          $userLink = $winner->toLink()->toString()->__toString();
+          $formattedBody = $auctionTools->renderer->renderPlain($build);
+          $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+          $tokenBody = \str_replace('@user', $userLink, $tokenBody);
+          $body = ['#markup' => $tokenBody];
+
+          $ownerEmail = $auctionTools->sendMail(
+            $owner->getEmail(),
+            $mailconfig->get('email-from'),
+            $mailconfig->get('email-replyto'),
+            $mailconfig->get('subject-closed-owner-winner'),
+            $body
+          );
+        }
+        break;
+    }
+
+  }
+}
+
+/**
+ * Implements hook_auctions_core_new_bid().
+ *
+ * AUCTION CORE HOOK.
+ *
+ * Alow other modules to interact upon auction_item workflow changes.
+ *  Standard and instant types only. Autobid type is not to trigger.
+ */
+function auctions_mail_auctions_core_new_bid(AuctionBid $auctionBid) {
+  // @todo ! Notify any other bidder that 'they have compitition'.
+  // @todo ! Notify author of new bid.
+  $auctionItem = $auctionBid->getItemEntity();
+  $auctionTools = auctions_core_tools();
+  $mailconfig = $auctionTools->configFactory->get('auctions_mail.content');
+  $userBids = FALSE;
+  $auctionLink = '';
+  if ($auctionItem->hasBids()) {
+    // Assume auction_item  will be only path.
+    $userBids = $auctionTools->bidsGroupedByUser($auctionItem->id(), $auctionItem->getRelistCount());
+    // Sort out link to item or node.  todo: make this better.
+    $auctionItemUrl = Url::fromRoute('entity.auction_item.canonical',
+      ['auction_item' => $auctionItem->id()],
+      ['absolute' => TRUE]
+    );
+    $auctionLink = Link::fromTextAndUrl($auctionItem->getName(), $auctionItemUrl)->toString();
+
+    // Check to see if any Auction Node type has attached item.
+    $nodeTypes = NodeType::loadMultiple();
+    if (isset($nodeTypes['auction'])) {
+      $query = $auctionTools->entityTypeManager->getStorage('node')->getQuery();
+      $query->condition('type', 'auction');
+      $query->condition('status', 1);
+      $query->condition('field_auction_item', $auctionItem->id());
+      $query->accessCheck();
+      $nids = $query->execute();
+      if ($nids) {
+        $key = \array_keys($nids);
+        $node = $auctionTools->entityTypeManager->getStorage('node')->load($nids[$key[0]]);
+        $nodeUrl = $node->toUrl()->setOption('absolute', TRUE);
+        $auctionLink = Link::fromTextAndUrl($node->getTitle(), $nodeUrl)->toString();
+      }
+    }
+  }
+  $owner = $auctionItem->getOwner();
+  $build = [
+    '#type' => 'processed_text',
+    '#text' => $mailconfig->get('body-author')['value'],
+    '#format' => $mailconfig->get('body-author')['format'],
+    '#filter_types_to_skip' => [],
+    '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+  ];
+  $formattedBody = $auctionTools->renderer->renderPlain($build);
+  $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+  $body = ['#markup' => $tokenBody];
+  $mail = $auctionTools->sendMail($owner->getEmail(), $mailconfig->get('email-from'), $mailconfig->get('email-replyto'), $mailconfig->get('subject-author'), $body);
+  if ($userBids) {
+    // Mail each bidder.
+    foreach ($userBids as $uid => $rawBid) {
+      $user = $auctionTools->entityTypeManager->getStorage('user')->load($uid);
+      $to = $user->getEmail();
+      $build = [
+        '#type' => 'processed_text',
+        '#text' => $mailconfig->get('body-bidder')['value'],
+        '#format' => $mailconfig->get('body-bidder')['format'],
+        '#filter_types_to_skip' => [],
+        '#langcode' => $auctionTools->languageManager->getCurrentLanguage()->getId(),
+      ];
+      $formattedBody = $auctionTools->renderer->renderPlain($build);
+      $tokenBody = \str_replace('@auction', $auctionLink, $formattedBody);
+      $body = ['#markup' => $tokenBody];
+      $auctionTools->sendMail($user->getEmail(), $mailconfig->get('email-from'), $mailconfig->get('email-replyto'), $mailconfig->get('subject-bidder'), $body);
+    }
+  }
+
+}

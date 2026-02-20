@@ -1,0 +1,25 @@
+uuid: 780665d1-bb3b-4fa8-b5ba-ce5c24ef5e8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_auction_item
+    - node.type.auction
+id: node.auction.field_auction_item
+field_name: field_auction_item
+entity_type: node
+bundle: auction
+label: 'Auction Item'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:auction_item'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

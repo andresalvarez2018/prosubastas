@@ -1,0 +1,17 @@
+name: 'Auctions Core'
+type: module
+description: 'Auctions Core.'
+core_version_requirement: ^11
+package: Auctions
+dependencies:
+  inline_entity_form: 'inline_entity_form:inline_entity_form'
+  datetime_range: 'drupal:datetime_range'
+  options: 'drupal:options'
+  user: 'drupal:user'
+  views: 'drupal:views'
+  field: 'drupal:field'
+  block: 'drupal:block'
+  editor: 'drupal:editor'
+  filter: 'drupal:filter'
+
+configure: auction_item.settings

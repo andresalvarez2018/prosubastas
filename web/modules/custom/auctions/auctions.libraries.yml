@@ -1,0 +1,5 @@
+node:
+  version: VERSION
+  css:
+    theme:
+      css/auctions.node.css: {weight: 150}

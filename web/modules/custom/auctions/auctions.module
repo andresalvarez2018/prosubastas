@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * @file
+ * Provides installation and uninstallation functions for the Auctions module.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function auctions_inline_entity_form_entity_form_alter(array &$entity_form, FormStateInterface $form_state) {
+  if ($entity_form['#entity_type'] == 'auction_item') {
+
+    $entity_form['bids']['#access'] = FALSE;
+    $entity_form['workflow']['#disabled'] = TRUE;
+    $entity_form['revision_log_message']['#access'] = FALSE;
+    $entity_form['status']['#access'] = FALSE;
+    $entity_form['#after_build'][] = '_auctions_ife_alter_build';
+
+    $entity_form['price_starting']['widget'][0]['value']['#min'] = 0;
+    $entity_form['price_starting']['widget'][0]['value']['#field_prefix'] = '$';
+    $entity_form['price_starting']['widget'][0]['value']['#states'] = [
+      'invisible' => [
+        ':input[name*="instant_only"]' => ['checked' => TRUE],
+      ],
+      'required' => [
+        ':input[name*="instant_only"]' => ['checked' => FALSE],
+      ],
+    ];
+
+    $entity_form['bid_step']['widget'][0]['value']['#field_prefix'] = '$';
+    $entity_form['bid_step']['widget'][0]['value']['#states'] = [
+      'invisible' => [
+        ':input[name*="instant_only"]' => ['checked' => TRUE],
+      ],
+      'required' => [
+        ':input[name*="instant_only"]' => ['checked' => FALSE],
+      ],
+    ];
+
+    $entity_form['price_threshold']['widget'][0]['value']['#min'] = 0;
+    $entity_form['price_threshold']['widget'][0]['value']['#step'] = '1';
+    $entity_form['price_threshold']['widget'][0]['value']['#field_suffix'] = '%';
+    $entity_form['price_threshold']['widget'][0]['value']['#size'] = '4';
+    $entity_form['price_threshold']['widget'][0]['value']['#states'] = [
+      'invisible' => [
+        ':input[name*="instant_only"]' => ['checked' => TRUE],
+      ],
+      'required' => [
+        ':input[name*="instant_only"]' => ['!value' => 0],
+      ],
+    ];
+
+    $entity_form['price_buy_now']['widget'][0]['value']['#field_prefix'] = '$';
+    $entity_form['price_buy_now']['widget'][0]['value']['#min'] = 0;
+    $entity_form['price_buy_now']['widget'][0]['value']['#states'] = [
+      'required' => [
+        ':input[name*="instant_only"]' => ['checked' => TRUE],
+      ],
+    ];
+  }
+}
+
+/**
+ * Form element #after_build callback: Updates the entity with submitted data.
+ */
+function _auctions_ife_alter_build(array $element, FormStateInterface $form_state) {
+  // Only let users select one year, change to radios.
+  // Daterange has past years, remove them.
+  $now = new DrupalDateTime('now');
+  $years = \Drupal::config('auctions.item_settings')->get('years-ahead');
+  $current = $now->format('Y');
+  $then = $now->modify("$years year")->format('Y');
+  $rawRange = \range($current, $then);
+  $yearRange = \array_combine($rawRange, $rawRange);
+  $element['date']['widget'][0]['value']['year']['#options'] = $yearRange;
+  $element['date']['widget'][0]['end_value']['year']['#options'] = $yearRange;
+  return $element;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function auctions_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->bundle() == 'auction') {
+    $auctionItem = $entity->hasField('field_auction_item') && !$entity->get('field_auction_item')->isEmpty() ? $entity->field_auction_item->referencedEntities() : FALSE;
+
+    // Disable caching.
+    $build['#cache'] = [
+      'max-age' => 0,
+      'tags' => $entity->getCacheTags(),
+    ];
+    if ($auctionItem) {
+      $build['#cache']['tags'][] = 'auction_item:' . $auctionItem[0]->id();
+    }
+
+    if ($auctionItem) {
+      $build['auction-countdown'] = [
+        '#weight' => -500,
+        '#type' => 'container',
+        '#prefix' => '<div class="auction-node-countdown">',
+        '#suffix' => '</div>',
+      ];
+      $block_manager = \Drupal::service('plugin.manager.block');
+      $block_config = [
+        'font_size' => $view_mode == 'teaser' ? 14 : 20,
+        'auction_item' => $auctionItem,
+      ];
+      $block_plugin = $block_manager->createInstance('auction_item_countdown', $block_config);
+      $block_build = $block_plugin->build();
+      $build['auction-countdown']['header'] = $block_build;
+
+      // Display layout. If comments are enabled, ensure Bidders Form is above.
+      $weight = 1000;
+      if (isset($build['field_comments'])) {
+        $weight = $build['field_comments']['#weight'] - 0.01;
+      }
+      $build['auction-bidder'] = [
+        '#weight' => $weight,
+        '#access' => $view_mode == 'full' ? TRUE : FALSE,
+        '#type' => 'container',
+        '#prefix' => '<div class="auction-node-bidders">',
+        '#suffix' => '</div>',
+      ];
+      $build['auction-bidder']['bidder-form'] = \Drupal::formBuilder()->getForm('\Drupal\auctions_core\Form\BiddersForm', $auctionItem);
+    }
+  }
+}

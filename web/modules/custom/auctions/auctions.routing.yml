@@ -1,0 +1,8 @@
+# todo: convert this to a view for contrib..
+auctions_core.landing_page:
+  path: '/auctions'
+  defaults:
+    _entity_list: 'auction_item'
+    _title: 'Auctions'
+  requirements:
+    _permission: 'administer auction items entities'

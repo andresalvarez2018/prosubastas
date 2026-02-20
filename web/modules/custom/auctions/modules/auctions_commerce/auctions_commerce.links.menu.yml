@@ -1,0 +1,5 @@
+auctions_commerce.mail:
+  title: 'Auctions Commerce'
+  parent: system.admin_config_system
+  description: 'Commerce Settings.'
+  route_name: auctions_commerce.mail_settings

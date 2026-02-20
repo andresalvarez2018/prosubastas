@@ -1,0 +1,29 @@
+{
+    "_hash": "407e59c08019bcd1181a68f3f41956e8b12e214b4dc0cb98f87c244b437506bd",
+    "patches": {
+        "drupal/core": [
+            {
+                "package": "drupal/core",
+                "description": "Fix TypeError in Html::escape() with null values",
+                "url": "patches/drupal-core-html-escape-null-3523317.patch",
+                "sha256": "9a4c444f7ef859b186be006baa9ac1132aba37167f7c7ed7b86f9522681fef57",
+                "depth": 2,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ],
+        "drupal/auctions_core": [
+            {
+                "package": "drupal/auctions_core",
+                "description": "fixed drupal 11",
+                "url": "https://git.drupalcode.org/project/auctions/-/merge_requests/16.diff",
+                "sha256": "3a37baec1fb965fd27e87899148e6711978e4d38970bfc940c7a560122389539",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

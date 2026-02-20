@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Contains auctions_core.module.
+ */
+
+/**
+ * Implements hook_uninstall() for the Auctions Mail module.
+ *
+ * Removes the configuration related to the module during uninstallation.
+ */
+function auctions_mail_uninstall() {
+  // Remove the general confs this module uses.
+  \Drupal::configFactory()->getEditable('auctions_mail.content')->delete();
+}

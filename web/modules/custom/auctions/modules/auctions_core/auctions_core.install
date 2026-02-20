@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\user\Entity\Role;
+
+/**
+ * @file
+ * Contains auctions_core.module.
+ */
+
+/**
+ * Implements hook_install() for the Auctions Core module.
+ *
+ * Enables required modules and performs other tasks when module is installed.
+ */
+function auctions_core_install() {
+  // Enable Auction Mail toolkit (soft dependency)
+  \Drupal::service('module_installer')->install(['auctions_mail']);
+}
+
+/**
+ * Implements hook_uninstall() for the Auctions Core module.
+ *
+ * Disable required modules and remove configuration when module is uninstalled.
+ */
+function auctions_core_uninstall() {
+  // Disable Auction Mail toolkit (soft dependency)
+  \Drupal::service('module_installer')->uninstall(['auctions_mail']);
+  // Remove the general configuration used by this module.
+  \Drupal::configFactory()->getEditable('auctions.item_settings')->delete();
+  \Drupal::configFactory()->getEditable('editor.editor.auction_html')->delete();
+  \Drupal::configFactory()->getEditable('filter.format.auction_html')->delete();
+}
+
+/**
+ * Implements hook_update_x() 11000 for the Auctions Core module.
+ *
+ * Add permission for ALL to see Bids In Progress.
+ */
+function auctions_core_update_110000() {
+  $role_object = Role::load('anonymous');
+  $role_object->grantPermission('see auction bid inprogress');
+  $role_object->save();
+  $role_object = Role::load('authenticated');
+  $role_object->grantPermission('see auction bid inprogress');
+  $role_object->save();
+}

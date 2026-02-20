@@ -1,0 +1,159 @@
+<?php
+
+/**
+ * @file
+ * Contains auctions_core.module.
+ */
+
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function auctions_core_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the auctions_core module.
+    case 'help.page.auctions_core':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Auctions Core Entities.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function auctions_core_theme($existing, $type, $theme, $path) {
+  return [
+    'auction_time' => [
+      'variables' => [
+        'datetime' => NULL,
+        'formatted' => NULL,
+        'unix' => NULL,
+        'font_size' => 12,
+        'hide_time' => FALSE,
+        'hide_interval' => FALSE,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Auciton Item & Bid entity creation 'allowed_values_function'.
+ */
+function auctions_core_active_currency_list(BaseFieldDefinition $definition, ContentEntityInterface $entity = NULL, $cacheable) {
+  $currencyList = ['USD' => 'United States Dollar'];
+  // If in install phase, config service will not availible, thus use one item.
+  $auctionsSettings = \Drupal::service('config.factory')->getEditable('auctions.item_settings');
+  if ($auctionsSettings) {
+    $currencyList = \Drupal::service('auctions_core.tools')->getActiveItemCurrencies();
+  }
+  return $currencyList;
+}
+
+/**
+ * Get the default active currency for auctions.
+ *
+ * This function returns the default active currency, which is used in auctions.
+ * If no specific currency is set, it defaults to USD (United States Dollar).
+ *
+ * @return string
+ *   The default active currency code (e.g., 'USD').
+ */
+function auctions_core_active_currency_list_default() {
+  return 'USD';
+}
+
+/**
+ * Implements hook_cron().
+ */
+function auctions_core_cron() {
+  $now = new DrupalDateTime('now');
+  $datestamp = (string) $now->format('Y-m-d\TH:i:s');
+  $isStartDayList = auctions_core_list_new($datestamp);
+  if ($isStartDayList) {
+    foreach ($isStartDayList as $rev => $id) {
+      $queue = \Drupal::queue('auction_item_workflow');
+      $item = (object) ['id' => $id, 'workflow' => 1];
+      $queue->createItem($item);
+    }
+  }
+
+  $isEndDayList = auctions_core_list_active($datestamp);
+  if ($isEndDayList) {
+    foreach ($isEndDayList as $rev => $id) {
+      $queue = \Drupal::queue('auction_item_workflow');
+      $item = (object) ['id' => $id, 'workflow' => 3];
+      $queue->createItem($item);
+    }
+  }
+
+}
+
+/**
+ * Get all action items that are currently active.
+ */
+function auctions_core_list_active($datestamp) {
+  $auctionItem = \Drupal::entityTypeManager()->getStorage('auction_item')->getQuery();
+  $auctionItem->condition('date.end_value', $datestamp, '<');
+  $auctionItem->condition('workflow', [1], 'IN');
+  $auctionItem->accessCheck();
+  return $auctionItem->execute();
+}
+
+/**
+ * Get all auction items that to start..
+ */
+function auctions_core_list_new($datestamp) {
+  $auctionItem = \Drupal::entityTypeManager()->getStorage('auction_item')->getQuery();
+  $auctionItem->condition('date.value', $datestamp, '<=');
+  $auctionItem->condition('workflow', [0, 2], 'IN');
+  $auctionItem->accessCheck();
+  return $auctionItem->execute();
+}
+
+/**
+ * Implements hook_entity_type_build().
+ *
+ *  Add validation of to Auction Entities.
+ */
+function auctions_core_entity_type_build(array &$entity_types) {
+  // Attach validation to the Highest Bidder to Bid Entitities.
+  $entity_types['auction_bid']->addConstraint('CurbBids');
+  $entity_types['auction_item']->addConstraint('CurbItems');
+}
+
+/**
+ * Implements hook_entity_operation().
+ *
+ * Add 'relist' to admin operation lists.
+ */
+function auctions_core_entity_operation(EntityInterface $entity) {
+  if (in_array($entity->bundle(), ['auction_item'])) {
+    $operations = [];
+    $operations['relist'] = [
+      'title' => t('Relist'),
+      'url' => Url::fromRoute('entity.auction_item.relist_form', ["auction_item" => $entity->id()]),
+      'weight' => 150,
+    ];
+    return $operations;
+  }
+}
+
+/**
+ * Uses the 'auctions_core.tools' Service to get bids grouped by user.
+ *
+ * @return false|array
+ *   An array containing bids grouped by user, or FALSE if there are no bids.
+ */
+function auctions_core_tools() {
+  return \Drupal::service('auctions_core.tools');
+}

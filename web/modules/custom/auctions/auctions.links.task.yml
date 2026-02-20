@@ -1,0 +1,4 @@
+auctions.settings_form:
+  route_name: auctions.settings_form
+  title: Settings
+  base_route: auctions.settings_form

@@ -1,0 +1,10 @@
+uuid: 6ddf3c58-fc5f-41a6-b513-7104641aedf4
+langcode: en
+status: true
+dependencies: {  }
+label: 'Auction Item'
+id: auction_item
+purchasableEntityType: ''
+orderType: default
+traits: {  }
+locked: false

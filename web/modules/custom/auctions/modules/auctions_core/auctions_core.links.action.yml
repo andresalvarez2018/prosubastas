@@ -1,0 +1,15 @@
+entity.auction_item.add_form:
+  route_name: entity.auction_item.add_form
+  title: 'Add Auction Item'
+  appears_on:
+    - entity.auction_item.collection
+entity.auction_bid.add_form:
+  route_name: entity.auction_bid.add_form
+  title: 'Add Auction Bid'
+  appears_on:
+    - entity.auction_bid.collection
+entity.auction_landing_page.add_form:
+  route_name: entity.auction_item.add_form
+  title: 'Add Auction Item'
+  appears_on:
+    - auctions_core.landing_page

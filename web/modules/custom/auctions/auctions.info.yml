@@ -1,0 +1,12 @@
+name: Auctions
+description: 'Auctions integration for Node.'
+type: module
+core_version_requirement: ^11
+package: Auctions
+dependencies:
+  auctions_core: 'auctions:auctions_core'
+  inline_entity_form: 'inline_entity_form:inline_entity_form'
+  block: 'drupal:block'
+  node: 'drupal:node'
+  field: 'drupal:field'
+  views: 'drupal:views'

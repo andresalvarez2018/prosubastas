@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - auctions_core
+title: 'Default cron handler'
+id: auctions_core_cron
+weight: 0
+module: auctions_core
+callback: auctions_core_cron
+scheduler:
+  id: simple
+  configuration:
+    rules:
+      - '* * * * *'
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000

@@ -1,0 +1,5 @@
+auctions_mail.content:
+  title: 'Auctions Mail'
+  parent: system.admin_config_system
+  description: 'Mail Settings.'
+  route_name: auctions_mail.settings

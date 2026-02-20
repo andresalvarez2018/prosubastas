@@ -1,0 +1,14 @@
+uuid: ec7875ae-39a8-4a31-a01e-82c5bf9d64b8
+langcode: en
+status: true
+dependencies: {  }
+label: 'Auction Item'
+id: auction_item
+workflow: order_default
+numberPattern: order_default
+refresh_mode: customer
+refresh_frequency: 300
+sendReceipt: true
+receiptBcc: ''
+traits: {  }
+locked: false

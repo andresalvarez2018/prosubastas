@@ -1,0 +1,9 @@
+name: 'Auctions Mail'
+type: module
+description: 'Email Notifications Toolbox.'
+core_version_requirement: ^11
+package: Auctions
+dependencies:
+  auctions_core: 'auctions:auctions_core'
+
+configure: auctions_mail.settings

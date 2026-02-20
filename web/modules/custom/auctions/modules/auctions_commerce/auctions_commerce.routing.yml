@@ -1,0 +1,7 @@
+auctions_commerce.mail_settings:
+  path: '/admin/config/system/auctions-commerce'
+  defaults:
+    _form: '\Drupal\auctions_commerce\Form\AuctionsCommerceMail'
+    _title: 'Auctions Commerce mail notices'
+  requirements:
+    _permission: 'administer site configuration'

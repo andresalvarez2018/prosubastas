@@ -1,0 +1,34 @@
+email-from: auction@example.com
+email-replyto: auction@example.com
+subject-author: 'Bid placed in your auction'
+body-author:
+  value: "<p>A new bid has been placed in your auction.<br />\r\n<br />\r\nYou can check it at @auction.</p>\r\n"
+  format: auction_html
+subject-bidder: 'Another Bid has been placed.'
+body-bidder:
+  value: "<p>A new bid has been placed in your auction.<br />\r\n<br />\r\nYou can check it at @auction.</p>\r\n"
+  format: auction_html
+subject-closed-owner: 'Auction Item has been closed!'
+body-closed-owner:
+  value: "<p>Your Auction Item has been closed: @auction</p>\r\n"
+  format: auction_html
+subject-closed-bidder: 'Auction Item has been closed!'
+subject-closed-owner-winner: 'Auction Winner'
+body-closed-owner-winner:
+  value: "<p>Your Auction Item has been closed: @auction</p>\r\n\r\n<p>Here is the Winner: @user</p>\r\n"
+  format: auction_html
+body-closed-bidder:
+  value: "<p>See your placement at: @auction</p>\r\n"
+  format: auction_html
+subject-closed-winner: 'You are the Winner!'
+body-closed-winner:
+  value: "<p>You have won the: @auction</p>\r\n"
+  format: auction_html
+subject-relisted-owner: 'Your Auction Item has been Relisted'
+body-relisted-owner:
+  value: "<p>Item has been relisted!  <br>@auction</p>\r\n"
+  format: auction_html
+subject-relisted-bidder: 'An Auction Item has been Relisted'
+body-relisted-bidder:
+  value: "<p>You have previously bid on an item that has come back up for auction!<br />\r\n<br />\r\n@auction</p>\r\n"
+  format: auction_html

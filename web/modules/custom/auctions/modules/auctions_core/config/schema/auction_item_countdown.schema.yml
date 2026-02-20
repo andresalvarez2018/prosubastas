@@ -1,0 +1,7 @@
+block.settings.auction_item_countdown:
+  type: block_settings
+  label: 'Auction Item Countdown settings'
+  mapping:
+    font_size:
+      type: text
+      label: 'Font size'
