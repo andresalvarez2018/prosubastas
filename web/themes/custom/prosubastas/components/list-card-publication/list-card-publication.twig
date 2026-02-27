@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Template for a Publications List component.
+ *
+ * Available config:
+ * - title: (optional) Section title.
+ * - description: (optional) Section description.
+ * - items: (required) Array of publication items.
+ *   - image: Image src or renderable.
+ *   - title: Publication title.
+ *   - description: Short description.
+ *   - link: URL to detail page.
+ *   - link_text: (optional) Link label.
+ */
+#}
+
+<div class="c-list-card-publication">
+	<div class="container">
+		{% if title %}
+			<div class="c-list-card-publication__header">
+				<h2 class="c-list-card-publication__title">{{ title }}</h2>
+				{% if description %}
+					<p class="c-list-card-publication__description">{{ description }}</p>
+				{% endif %}
+			</div>
+		{% endif %}
+
+		<div class="c-list-card-publication__grid">
+			{% for item in items %}
+				{% include 'prosubastas:card-publication' with {
+          image: item.image,
+          title: item.title,
+          description: item.description,
+          link: item.link,
+          link_text: item.link_text|default('Detalles')
+        } only %}
+			{% endfor %}
+		</div>
+	</div>
+</div>

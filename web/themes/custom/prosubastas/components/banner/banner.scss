@@ -171,6 +171,13 @@
                 }
             }
         }
+
+        .c-banner__box {
+
+            @media (max-width: 767px) {
+                padding: 0 2rem;
+            }
+        }
     }
 }
 

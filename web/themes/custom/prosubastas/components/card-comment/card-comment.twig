@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Template for a Comment Card component.
+ *
+ * Available config:
+ * - avatar: (optional) Avatar image src or renderable.
+ * - quote: (required) Testimonial quote text.
+ * - author_name: (required) Author name.
+ * - author_company: (optional) Author company or context.
+ */
+#}
+
+<div class="c-card-comment">
+	<div class="c-card-comment__avatar">
+		{% if avatar is iterable %}
+			{{ avatar }}
+		{% else %}
+			<img src="{{ avatar }}" alt="{{ author_name }}"/>
+		{% endif %}
+	</div>
+	<p class="c-card-comment__quote">"{{ quote }}"</p>
+	<div class="c-card-comment__author">
+		<strong class="c-card-comment__name">{{ author_name }}</strong>
+		{% if author_company %}
+			<span class="c-card-comment__company">{{ author_company }}</span>
+		{% endif %}
+	</div>
+</div>

@@ -1,0 +1,106 @@
+@import "../../src/scss/init";
+
+.c-list-card-icons {
+    width: 100%;
+    padding: 2rem 0;
+    overflow: hidden;
+
+    // ─── Static grid (6 or fewer) ───────────────────────────────────────
+    &__track {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem 3rem;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__logo {
+        width: 200px;
+        height: 70px;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.6;
+        transition: filter 0.2s ease, opacity 0.2s ease;
+
+        &:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    }
+
+    // ─── Marquee mode (more than 6 items) ───────────────────────────────
+    &--marquee {
+        .c-list-card-icons__track {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            width: max-content;
+            animation: marquee 28s linear infinite;
+            gap: 0;
+        }
+
+        .c-list-card-icons__item {
+            padding: 0 2.5rem;
+        }
+
+        &:hover .c-list-card-icons__track {
+            animation-play-state: paused;
+        }
+    }
+}
+
+// ─── Keyframes ──────────────────────────────────────────────────────────
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+@media (max-width: 767px) {
+    .c-list-card-icons {
+        &__track {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            gap: 0;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        &__item {
+            scroll-snap-align: start;
+            padding: 0 1rem;
+            min-width: 50%; // ← esto asegura exactamente 2 por vista
+            flex-shrink: 0; // ← este es clave, sin él se comprimen
+        }
+
+        &--marquee .c-list-card-icons__track {
+            animation: none;
+            width: auto; // era max-content, cámbialo a auto
+        }
+
+        &__item--clone {
+            display: none;
+        }
+
+        &__logo {
+            width: 160px;
+            height: 60px;
+        }
+    }
+}

@@ -126,6 +126,73 @@
           button_url: '/registro'
         } only %}
       </div>
+
+      {% set logo_items = [
+        { image: 'https://placehold.co/150x50/e8e8e8/999999?text=Granded&font=playfair-display', alt: 'Granded Originals' },
+        { image: 'https://placehold.co/150x50/e8e8e8/999999?text=Menuine&font=raleway', alt: 'Menuine Agency' },
+        { image: 'https://placehold.co/150x50/e8e8e8/999999?text=Kaligo&font=montserrat', alt: 'Kaligo' },
+        { image: 'https://placehold.co/150x50/e8e8e8/999999?text=Atrimm&font=raleway', alt: 'Atrimm Technology' },
+        { image: 'https://placehold.co/150x50/e8e8e8/999999?text=CLIMO&font=montserrat', alt: 'CLIMO' },
+        { image: 'https://placehold.co/150x50/e8e8e8/999999?text=Mount+Rain&font=raleway', alt: 'Mount Rain' },
+        { image: 'https://placehold.co/150x50/e8e8e8/999999?text=Extra+Co&font=montserrat', alt: 'Extra Brand' }
+      ] %}
+
+      {% include 'prosubastas:list-card-icons' with {
+        items: logo_items
+      } only %}
+
+      <div class="container">
+        {% include 'prosubastas:list-card-comment' with {
+          title: 'Lo que dicen nuestros usuarios',
+          description: 'Compradores y vendedores confían en ProSubastas para cerrar negocios seguros y transparentes.',
+          items: [
+            {
+              avatar: 'https://i.pravatar.cc/80?img=11',
+              quote: 'Vendí mi camioneta en menos de 48 horas. El proceso fue transparente y el pago llegó puntual.',
+              author_name: 'Carlos Mendoza',
+              author_company: 'Toyota Hilux 2019 – Vendedor'
+            },
+            {
+              avatar: 'https://i.pravatar.cc/80?img=32',
+              quote: 'Compré un sedán a muy buen precio. La verificación del vehículo me dio total confianza antes de pujar.',
+              author_name: 'María Fernández',
+              author_company: 'Honda Civic 2020 – Compradora'
+            },
+            {
+              avatar: 'https://i.pravatar.cc/80?img=53',
+              quote: 'La plataforma es muy fácil de usar. En mi primera subasta gané un SUV con un 30% de descuento.',
+              author_name: 'Andrés Quiroga',
+              author_company: 'Mazda CX-5 2021 – Comprador'
+            }
+          ]
+        } only %}
+
+</div>
+{% include 'prosubastas:list-card-publication' with {
+        title: 'Últimas Publicaciones',
+        description: 'Vehículos recién ingresados a subasta. Puja ahora y consigue el mejor precio.',
+        items: [
+          {
+            image: 'https://picsum.photos/400/260?random=20',
+            title: 'Toyota Hilux 2019 – 4x4 Diesel',
+            description: 'Camioneta en excelente estado, 85,000 km. Un solo dueño, service al día. Base desde $18,000.',
+            link: '/subasta/toyota-hilux-2019'
+          },
+          {
+            image: 'https://picsum.photos/400/260?random=21',
+            title: 'Honda Civic 2020 – Sedán Automático',
+            description: '42,000 km, color gris metalizado, full equipo, pantalla táctil. Base desde $12,500.',
+            link: '/subasta/honda-civic-2020'
+          },
+          {
+            image: 'https://picsum.photos/400/260?random=22',
+            title: 'Mazda CX-5 2021 – SUV AWD',
+            description: 'SUV familiar, 30,000 km, techo solar, cuero genuino. Base desde $22,000.',
+            link: '/subasta/mazda-cx5-2021'
+          }
+        ]
+      } only %}
+
     {% endblock %}
 
 	{% block page_footer %}

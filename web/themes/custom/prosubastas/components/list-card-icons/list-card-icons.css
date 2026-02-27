@@ -180,176 +180,114 @@
   --bs-form-invalid-border-color: rgb(234, 133.8, 143.4);
 }
 
-.c-banner {
-  position: relative;
+.c-list-card-icons {
+  width: 100%;
+  padding: 2rem 0;
   overflow: hidden;
-  /* subtle blue like design */
-  padding: 4rem 0 6rem;
 }
-.c-banner__media {
-  width: 100%;
+.c-list-card-icons__track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
 }
-.c-banner__media .c-banner__image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  -webkit-filter: brightness(0.92) saturate(0.88) contrast(1.03);
-          filter: brightness(0.92) saturate(0.88) contrast(1.03);
+.c-list-card-icons__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
-.c-banner__media .c-banner__image--mobile {
-  display: none;
+.c-list-card-icons__logo {
+  width: 200px;
+  height: 70px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -webkit-filter: grayscale(100%);
+          filter: grayscale(100%);
+  opacity: 0.6;
+  transition: opacity 0.2s ease, -webkit-filter 0.2s ease;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+  transition: filter 0.2s ease, opacity 0.2s ease, -webkit-filter 0.2s ease;
 }
-.c-banner__overlay {
-  position: absolute;
-  inset: 0 0 0 0;
-  background: rgba(255, 255, 255, 0.45);
-  /* slightly light overlay to help dark text */
-  pointer-events: none;
-  z-index: 1;
+.c-list-card-icons__logo:hover {
+  -webkit-filter: grayscale(0%);
+          filter: grayscale(0%);
+  opacity: 1;
 }
-.c-banner__image--desktop {
-  padding: 0 4rem;
+.c-list-card-icons--marquee .c-list-card-icons__track {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-animation: marquee 28s linear infinite;
+          animation: marquee 28s linear infinite;
+  gap: 0;
 }
-.c-banner__content {
-  position: absolute;
-  left: 10%;
-  top: 40%;
-  max-width: 60%;
-  color: #111111;
-  z-index: 2;
+.c-list-card-icons--marquee .c-list-card-icons__item {
+  padding: 0 2.5rem;
 }
-.c-banner__title {
-  margin: 0 0 1rem;
-  font-size: 64px;
-  line-height: 1.02;
-  font-weight: 700;
-  color: #4B0082;
-}
-.c-banner__desc {
-  font-size: 20px;
-  opacity: 0.85;
-  color: #4B0082;
+.c-list-card-icons--marquee:hover .c-list-card-icons__track {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
 }
 
-/* Mobile breakpoint: 767px and below */
+@-webkit-keyframes marquee {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
 @media (max-width: 767px) {
-  .c-banner {
-    padding: 2rem 0 2rem;
+  .c-list-card-icons__track {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-scroll-snap-type: x mandatory;
+        -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
   }
-  .c-banner__media .c-banner__image--desktop {
+  .c-list-card-icons__track::-webkit-scrollbar {
     display: none;
   }
-  .c-banner__media .c-banner__image--mobile {
-    display: block;
+  .c-list-card-icons__item {
+    scroll-snap-align: start;
+    padding: 0 1rem;
+    min-width: 50%;
+    flex-shrink: 0;
   }
-  .c-banner__content {
-    position: relative;
-    overflow: visible;
-    padding: 3rem 0 6rem;
+  .c-list-card-icons--marquee .c-list-card-icons__track {
+    -webkit-animation: none;
+            animation: none;
+    width: auto;
   }
-  .c-banner__content .c-banner__box {
-    position: relative;
-    overflow: hidden;
-    border-radius: 2px;
-  }
-  .c-banner__content__media {
-    position: relative;
-    width: 100%;
-  }
-  .c-banner__content__media .c-banner__image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .c-banner__content__media .c-banner__image--mobile {
+  .c-list-card-icons__item--clone {
     display: none;
   }
-  .c-banner__content__overlay {
-    position: absolute;
-    inset: 0 0 0 0;
-    background: rgba(255, 255, 255, 0.35);
-    /* light overlay so black text reads */
-    pointer-events: none;
+  .c-list-card-icons__logo {
+    width: 160px;
+    height: 60px;
   }
-  .c-banner__content__content {
-    position: absolute;
-    left: 3rem;
-    right: 3rem;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-    max-width: 60%;
-    color: #0b0b0b;
-    z-index: 2;
-  }
-  .c-banner__content__title {
-    margin: 0 0 1rem;
-    font-size: 64px;
-    line-height: 1.02;
-    font-weight: 700;
-  }
-  .c-banner__content__desc {
-    font-size: 20px;
-    opacity: 0.95;
-  }
-  .c-banner {
-    /* Mobile breakpoint: 767px and below */
-  }
-}
-@media (max-width: 767px) and (max-width: 767px) {
-  .c-banner .c-banner {
-    padding: 2rem 0 4rem;
-  }
-  .c-banner .c-banner__media .c-banner__image--desktop {
-    display: none;
-  }
-  .c-banner .c-banner__media .c-banner__image--mobile {
-    display: block;
-  }
-  .c-banner .c-banner__content {
-    position: relative;
-    -webkit-transform: none;
-            transform: none;
-    top: auto;
-    left: auto;
-    right: auto;
-    max-width: 100%;
-    padding: 1rem 0;
-  }
-  .c-banner .c-banner__title {
-    font-size: 28px;
-  }
-  .c-banner .c-banner__desc {
-    font-size: 16px;
-  }
-}
-@media (max-width: 767px) and (max-width: 767px) {
-  .c-banner .c-banner__box {
-    padding: 0 2rem;
-  }
-}
-.c-button--primary {
-  background: #6A0DAD !important;
-  color: #fbfafb !important;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(106, 13, 173, 0.18);
 }
 
-.c-button--primary:hover,
-.c-button--primary:focus {
-  background: #4B0082 !important;
-}
-
-a:hover {
-  color: #6A0DAD;
-}
-
-/* Active border accent */
-.is-active,
-.active,
-.c-filters__tab--active {
-  border-color: #A881E6;
-}
-
-/*# sourceMappingURL=banner.css.map*/
+/*# sourceMappingURL=list-card-icons.css.map*/

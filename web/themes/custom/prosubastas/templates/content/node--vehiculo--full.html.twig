@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Template for vehiculo node full view.
+ */
+#}
+
+{% set image_uri = node.field_galeria.entity.field_media_image.entity.uri.value %}
+{% set image_url = image_uri ? file_url(image_uri) : 'https://picsum.photos/800/500?random=99' %}
+
+{% include 'prosubastas:card-vehiculo-full' with {
+  title: node.title.value,
+  image: image_url,
+  marca: node.field_marca.entity.label,
+  modelo: node.field_modelo.value,
+  version: node.field_version.value,
+  ano: node.field_ano.value,
+  kilometraje: node.field_kilometraje.value,
+  combustible: node.field_combustible.entity.label,
+  transmision: node.field_transmision.entity.label,
+  traccion: node.field_traccion.entity.label,
+  cilindraje: node.field_cilindraje.value,
+  numero_puertas: node.field_numero_puertas.value,
+  estado_fisico: node.field_estado_fisico.entity.label,
+  ciudad: node.field_ciudad.entity.label,
+  descripcion: node.field_descripcion.value,
+} only %}
+{% include 'prosubastas:list-card-publication' with {
+        title: 'Publicaciones Recientes',
+        description: 'Vehículos recién ingresados a subasta. Puja ahora y consigue el mejor precio.',
+        items: [
+          {
+            image: 'https://picsum.photos/400/260?random=20',
+            title: 'Toyota Hilux 2019 – 4x4 Diesel',
+            description: 'Camioneta en excelente estado, 85,000 km. Un solo dueño, service al día. Base desde $18,000.',
+            link: '/subasta/toyota-hilux-2019'
+          },
+          {
+            image: 'https://picsum.photos/400/260?random=21',
+            title: 'Honda Civic 2020 – Sedán Automático',
+            description: '42,000 km, color gris metalizado, full equipo, pantalla táctil. Base desde $12,500.',
+            link: '/subasta/honda-civic-2020'
+          },
+          {
+            image: 'https://picsum.photos/400/260?random=22',
+            title: 'Mazda CX-5 2021 – SUV AWD',
+            description: 'SUV familiar, 30,000 km, techo solar, cuero genuino. Base desde $22,000.',
+            link: '/subasta/mazda-cx5-2021'
+          }
+        ]
+      } only %}

@@ -1,0 +1,150 @@
+{#
+/**
+ * @file
+ * Template for Vehiculo Full component.
+ *
+ * Available config:
+ * - title: Node title.
+ * - image: Main image URL or renderable.
+ * - marca, modelo, version, ano, kilometraje
+ * - combustible, transmision, traccion, cilindraje
+ * - numero_puertas, estado_fisico, ciudad
+ * - descripcion: Body text (HTML).
+ */
+#}
+
+<div class="c-vehiculo-full">
+	<div
+		class="c-vehiculo-full__inner">
+
+		{# Breadcrumb #}
+		<nav class="c-vehiculo-full__breadcrumb" aria-label="Breadcrumb">
+			<a href="/">Inicio</a>
+			<span>/</span>
+			<a href="/buscador">Búsqueda</a>
+			<span>/</span>
+			<span>{{ title }}</span>
+		</nav>
+
+		{# Back + Title #}
+		<div class="c-vehiculo-full__heading">
+			<a href="/buscador" class="c-vehiculo-full__back" aria-label="Volver">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<polyline points="15 18 9 12 15 6"/>
+				</svg>
+			</a>
+			<h1 class="c-vehiculo-full__title">{{ title }}</h1>
+		</div>
+
+		<div
+			class="c-vehiculo-full__layout">
+
+			{# Left: image + description #}
+			<div class="c-vehiculo-full__main">
+				<div class="c-vehiculo-full__image">
+					{% if image is iterable %}
+						{{ image }}
+					{% else %}
+						<img src="{{ image }}" alt="{{ title }}"/>
+					{% endif %}
+				</div>
+
+				{% if descripcion %}
+					<div class="c-vehiculo-full__description">
+						<h2>Descripción</h2>
+						{{ descripcion|raw }}
+					</div>
+				{% endif %}
+			</div>
+
+			{# Right: sidebar with specs #}
+			<aside class="c-vehiculo-full__sidebar">
+				<div class="c-vehiculo-full__specs-card">
+					<h3 class="c-vehiculo-full__specs-title">Detalles del vehículo</h3>
+
+					<ul class="c-vehiculo-full__specs">
+						{% if marca %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Marca</span>
+								<span class="c-vehiculo-full__spec-value">{{ marca }}</span>
+							</li>
+						{% endif %}
+						{% if modelo %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Modelo</span>
+								<span class="c-vehiculo-full__spec-value">{{ modelo }}</span>
+							</li>
+						{% endif %}
+						{% if version %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Versión</span>
+								<span class="c-vehiculo-full__spec-value">{{ version }}</span>
+							</li>
+						{% endif %}
+						{% if ano %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Año</span>
+								<span class="c-vehiculo-full__spec-value">{{ ano }}</span>
+							</li>
+						{% endif %}
+						{% if kilometraje %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Kilometraje</span>
+								<span class="c-vehiculo-full__spec-value">{{ kilometraje }}</span>
+							</li>
+						{% endif %}
+						{% if combustible %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Combustible</span>
+								<span class="c-vehiculo-full__spec-value">{{ combustible }}</span>
+							</li>
+						{% endif %}
+						{% if transmision %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Transmisión</span>
+								<span class="c-vehiculo-full__spec-value">{{ transmision }}</span>
+							</li>
+						{% endif %}
+						{% if traccion %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Tracción</span>
+								<span class="c-vehiculo-full__spec-value">{{ traccion }}</span>
+							</li>
+						{% endif %}
+						{% if cilindraje %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Cilindraje</span>
+								<span class="c-vehiculo-full__spec-value">{{ cilindraje }}</span>
+							</li>
+						{% endif %}
+						{% if numero_puertas %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Puertas</span>
+								<span class="c-vehiculo-full__spec-value">{{ numero_puertas }}</span>
+							</li>
+						{% endif %}
+						{% if estado_fisico %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Estado físico</span>
+								<span class="c-vehiculo-full__spec-value">{{ estado_fisico }}</span>
+							</li>
+						{% endif %}
+						{% if ciudad %}
+							<li class="c-vehiculo-full__spec">
+								<span class="c-vehiculo-full__spec-label">Ciudad</span>
+								<span class="c-vehiculo-full__spec-value">{{ ciudad }}</span>
+							</li>
+						{% endif %}
+					</ul>
+
+					<div class="c-vehiculo-full__cta">
+						<a href="#pujar" class="c-button c-button--primary c-button--full">
+							Participar en subasta
+						</a>
+					</div>
+				</div>
+			</aside>
+
+		</div>
+	</div>
+</div>

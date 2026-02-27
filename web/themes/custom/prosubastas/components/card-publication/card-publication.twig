@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Template for a Publication Card component.
+ *
+ * Available config:
+ * - image: (required) Image src or renderable.
+ * - title: (required) Publication title.
+ * - description: (optional) Short description.
+ * - link: (optional) URL to publication detail.
+ * - link_text: (optional) Link label, defaults to 'Detalles'.
+ */
+#}
+
+<article class="c-card-publication">
+	<div class="c-card-publication__image">
+		{% if image is iterable %}
+			{{ image }}
+		{% else %}
+			<img src="{{ image }}" alt="{{ title }}"/>
+		{% endif %}
+	</div>
+	<div class="c-card-publication__body">
+		<h3 class="c-card-publication__title">{{ title }}</h3>
+		{% if description %}
+			<p class="c-card-publication__description">{{ description }}</p>
+		{% endif %}
+		{% if link %}
+			<a href="{{ link }}" class="c-card-publication__link">
+				<span>{{ link_text|default('Detalles') }}</span>
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<line x1="5" y1="12" x2="19" y2="12"/>
+					<polyline points="12 5 19 12 12 19"/>
+				</svg>
+			</a>
+		{% endif %}
+	</div>
+</article>

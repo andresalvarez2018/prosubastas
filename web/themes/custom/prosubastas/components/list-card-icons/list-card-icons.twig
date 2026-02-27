@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Template for a Logo/Icons List component.
+ *
+ * Available config:
+ * - items: (required) Array of logo items.
+ *   - image: (required) Image src or renderable image.
+ *   - alt: (optional) Alt text for the image.
+ */
+#}
+
+{% set item_count = items|length %}
+
+<div class="c-list-card-icons {% if item_count > 3 %}c-list-card-icons--marquee{% endif %}">
+	<div class="c-list-card-icons__track">
+		{% for item in items %}
+			<div class="c-list-card-icons__item">
+				{% if item.image is iterable %}
+					{{ item.image }}
+				{% else %}
+					<img src="{{ item.image }}" alt="{{ item.alt|default('') }}" class="c-list-card-icons__logo"/>
+				{% endif %}
+			</div>
+		{% endfor %}
+
+		{# Duplicate items for seamless marquee loop when > 6 #}
+		{% if item_count > 6 %}
+			{% for item in items %}
+				<div class="c-list-card-icons__item c-list-card-icons__item--clone" aria-hidden="true">
+					{% if item.image is iterable %}
+						{{ item.image }}
+					{% else %}
+						<img src="{{ item.image }}" alt="" class="c-list-card-icons__logo"/>
+					{% endif %}
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>

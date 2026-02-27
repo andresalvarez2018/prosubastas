@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Template for a Comments List component.
+ *
+ * Available config:
+ * - title: (optional) Section title.
+ * - description: (optional) Section description.
+ * - items: (required) Array of comment items.
+ *   - avatar: (optional) Avatar image src or renderable.
+ *   - quote: (required) Testimonial quote.
+ *   - author_name: (required) Author name.
+ *   - author_company: (optional) Author context.
+ */
+#}
+
+<div class="c-list-card-comment">
+	{% if title %}
+		<div class="c-list-card-comment__header">
+			<h2 class="c-list-card-comment__title">{{ title }}</h2>
+			{% if description %}
+				<p class="c-list-card-comment__description">{{ description }}</p>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	<div class="c-list-card-comment__grid">
+		{% for item in items %}
+			{% include 'prosubastas:card-comment' with {
+        avatar: item.avatar,
+        quote: item.quote,
+        author_name: item.author_name,
+        author_company: item.author_company
+      } only %}
+		{% endfor %}
+	</div>
+</div>
