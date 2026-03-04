@@ -1,0 +1,20 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: footer
+status: experimental
+description: Custom footer component with Webform support
+props:
+  type: object
+  properties:
+    company_name:
+      type: string
+      title: Company Name
+    description:
+      type: string
+      title: Description
+    copyright:
+      type: string
+      title: Copyright Text
+slots:
+  webform:
+    title: Webform
+    description: "Slot for the contact webform"

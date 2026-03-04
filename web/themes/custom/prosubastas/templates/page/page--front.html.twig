@@ -196,6 +196,10 @@
     {% endblock %}
 
 	{% block page_footer %}
-        {# {% include 'blu_benefits:page-footer' %} #}
+    {% include 'prosubastas:footer' with {
+      description: 'Ofrecemos soluciones digitales de extremo a extremo para subastas de vehículos en línea.',
+      copyright: '© 2024, ProSubastas, Inc. Todos los derechos reservados.',
+      webform: page.footer
+    } only %}
 	{% endblock %}
 </div>

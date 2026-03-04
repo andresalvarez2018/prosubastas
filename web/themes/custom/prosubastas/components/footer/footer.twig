@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Template for the footer component.
+ */
+#}
+{% set footer_attributes = attributes ?: create_attribute() %}
+{% set 
+  footer_classes = [
+    'footer',
+    'bg-black',
+    'text-white',
+    'pt-5',
+    'pb-4',
+  ]|merge(footer_utility_classes ?: []) 
+%}
+
+<footer {{ footer_attributes.addClass(footer_classes) }}>
+	<div class="container">
+		<div
+			class="row gy-5">
+			<!-- Brand and Description -->
+			<div class="col-lg-6">
+				<div class="footer__info">
+					<h2 class="footer__brand mb-3">
+						<span class="footer__brand-text">Elex</span>
+						<span class="footer__brand-highlight">rent</span>
+					</h2>
+					<p class="footer__description text-muted mb-0">
+						{{ description|default('We offer end-to-end digital solutions for car rental based in Germany') }}
+					</p>
+				</div>
+			</div>
+
+			<!-- Contact / Webform Column -->
+			<div class="col-lg-6">
+				<div class="footer__contact">
+					<h3 class="footer__title mb-4 h5 fw-bold text-uppercase tracking-wider">Contact Us</h3>
+					<div class="footer__webform-wrapper">
+						{% if webform %}
+							{{ webform }}
+						{% else %}
+							{% block webform %}
+								{# If no webform prop is passed, this block can be overridden #}
+								<div class="text-muted small">Please assign a webform here.</div>
+							{% endblock %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bottom Section -->
+		<div class="footer__bottom mt-5">
+			<hr class="footer__divider border-secondary opacity-10 mb-4">
+			<div class="footer__copyright text-center text-muted small">
+				<p class="mb-0">
+					{{ copyright|default('© 2023, by Elexrent, Inc. All Rights Reserved.') }}
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
