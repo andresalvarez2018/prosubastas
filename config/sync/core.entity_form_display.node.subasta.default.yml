@@ -3,6 +3,7 @@ langcode: es
 status: true
 dependencies:
   config:
+    - field.field.node.subasta.field_auction_item
     - field.field.node.subasta.field_fecha_fin
     - field.field.node.subasta.field_fecha_inicio
     - field.field.node.subasta.field_ganador
@@ -14,6 +15,7 @@ dependencies:
     - node.type.subasta
     - workflows.workflow.editorial
   module:
+    - auctions_core
     - content_moderation
     - datetime
     - field_layout
@@ -34,6 +36,23 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_auction_item:
+    type: inline_entity_form_auction
+    weight: 123
+    region: content
+    settings:
+      form_mode: default
+      revision: true
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      match_operator: CONTAINS
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
     third_party_settings: {  }
   field_fecha_fin:
     type: datetime_default

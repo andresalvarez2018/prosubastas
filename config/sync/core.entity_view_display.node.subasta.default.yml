@@ -3,6 +3,7 @@ langcode: es
 status: true
 dependencies:
   config:
+    - field.field.node.subasta.field_auction_item
     - field.field.node.subasta.field_fecha_fin
     - field.field.node.subasta.field_fecha_inicio
     - field.field.node.subasta.field_ganador
@@ -24,6 +25,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: -20
+    region: content
+  field_auction_item:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
     region: content
   field_fecha_fin:
     type: datetime_default

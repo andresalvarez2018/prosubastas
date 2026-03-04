@@ -1,0 +1,20 @@
+uuid: ef05ac50-580c-4d36-aa95-81f860fa69d6
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: Mg9MfViuc625xl36_QjaX54JI0HdlABymIX6WZXceMo
+name: Auction
+type: auction
+description: 'Content type for Auction Items and Bidding'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,24 @@
+uuid: c182b14b-5f27-4819-9442-6986b1c22163
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.auction
+_core:
+  default_config_hash: _6sWS3gqIZG1FDh2XpJBt4GZqXj48L2Eaa8IYH5ublg
+id: node.auction.promote
+field_name: promote
+entity_type: node
+bundle: auction
+label: 'Promocionado a la página principal'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Activado
+  off_label: Desactivado
+field_type: boolean

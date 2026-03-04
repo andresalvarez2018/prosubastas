@@ -1,0 +1,26 @@
+uuid: 17ded8e1-ded5-45c3-8910-5ad9c9fce00c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.auction
+  module:
+    - text
+_core:
+  default_config_hash: XrQCnNwpOj_4mbFhZ9LbkSOSvjBXQTf_Ey1-TxTip_0
+id: node.auction.body
+field_name: body
+entity_type: node
+bundle: auction
+label: Cuerpo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

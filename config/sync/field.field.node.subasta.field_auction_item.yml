@@ -1,0 +1,26 @@
+uuid: dd002828-ad22-4634-ad07-40e89aac2748
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_auction_item
+    - node.type.subasta
+id: node.subasta.field_auction_item
+field_name: field_auction_item
+entity_type: node
+bundle: subasta
+label: 'Auction Item'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:auction_item'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+field_type: entity_reference
