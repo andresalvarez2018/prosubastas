@@ -1,8 +1,9 @@
-uuid: 05222b4f-a875-46ff-af0d-c54f6296b09c
+uuid: a4b7c735-204f-4550-95aa-34f3167de4a8
 langcode: es
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.subasta.field_auction_item
     - field.field.node.subasta.field_ganador
     - field.field.node.subasta.field_precio_final
@@ -10,11 +11,16 @@ dependencies:
     - field.field.node.subasta.field_vehiculo
     - node.type.subasta
   module:
+    - layout_builder
     - user
-id: node.subasta.default
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.subasta.full
 targetEntityType: node
 bundle: subasta
-mode: default
+mode: full
 content:
   content_moderation_control:
     settings: {  }

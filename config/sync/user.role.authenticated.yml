@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - filter.format.basic_html
+    - filter.format.webform_default
   module:
     - auctions_core
     - comment
@@ -31,5 +32,6 @@ permissions:
   - 'see bidders names'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'use text format webform_default'
   - 'view media'
   - 'view published auction bids entities'

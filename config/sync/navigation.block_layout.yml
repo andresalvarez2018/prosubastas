@@ -46,7 +46,7 @@ sections:
         region: footer
         configuration:
           id: navigation_user
-          label: Usuario
+          label: User
           label_display: '0'
           provider: navigation
         weight: 0

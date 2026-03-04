@@ -4,20 +4,15 @@ status: true
 dependencies:
   config:
     - field.field.node.subasta.field_auction_item
-    - field.field.node.subasta.field_fecha_fin
-    - field.field.node.subasta.field_fecha_inicio
     - field.field.node.subasta.field_ganador
-    - field.field.node.subasta.field_incremento_minimo
     - field.field.node.subasta.field_precio_final
     - field.field.node.subasta.field_precio_inicial
-    - field.field.node.subasta.field_precio_reserva
     - field.field.node.subasta.field_vehiculo
     - node.type.subasta
     - workflows.workflow.editorial
   module:
     - auctions_core
     - content_moderation
-    - datetime
     - field_layout
     - layout_discovery
     - path
@@ -54,18 +49,6 @@ content:
       allow_existing: false
       allow_duplicate: false
     third_party_settings: {  }
-  field_fecha_fin:
-    type: datetime_default
-    weight: 124
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_fecha_inicio:
-    type: datetime_default
-    weight: 123
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_ganador:
     type: entity_reference_autocomplete
     weight: 127
@@ -74,14 +57,6 @@ content:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_incremento_minimo:
-    type: string_textarea
-    weight: 122
-    region: content
-    settings:
-      rows: 5
       placeholder: ''
     third_party_settings: {  }
   field_precio_final:
@@ -95,14 +70,6 @@ content:
   field_precio_inicial:
     type: string_textarea
     weight: 121
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-  field_precio_reserva:
-    type: string_textarea
-    weight: 126
     region: content
     settings:
       rows: 5
