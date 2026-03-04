@@ -1,8 +1,7 @@
 @import "../../src/scss/init";
 
 .c-vehiculo-full {
-    padding: 3rem 0 5rem;
-    background: linear-gradient(135deg, rgba($primary, 0.03) 0%, rgba($white, 1) 100%);
+    padding: 2rem 0 3rem;
 
     &__inner {
         max-width: 1200px;
@@ -18,12 +17,10 @@
         font-size: 13px;
         color: $gray-medium;
         margin-bottom: 1.5rem;
-        opacity: 0.8;
 
         a {
             color: $gray-medium;
             text-decoration: none;
-            transition: color 0.2s ease;
 
             &:hover {
                 color: $primary;
@@ -39,74 +36,63 @@
     &__heading {
         display: flex;
         align-items: center;
-        gap: 1.25rem;
-        margin-bottom: 2.5rem;
+        gap: 1rem;
+        margin-bottom: 2rem;
     }
 
     &__back {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 42px;
-        height: 42px;
-        border-radius: 12px;
-        background: $white;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
         border: 1px solid $gray-light;
-        color: $black-soft;
+        color: #111111;
         text-decoration: none;
         flex-shrink: 0;
-        transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: border-color 0.18s ease, color 0.18s ease;
 
         svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
         &:hover {
-            border-color: $primary-light;
+            border-color: $primary;
             color: $primary;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba($primary, 0.12);
         }
     }
 
     &__title {
         margin: 0;
-        font-size: 40px;
-        font-weight: 800;
-        color: $black-soft;
-        line-height: 1.1;
-        letter-spacing: -0.02em;
+        font-size: 32px;
+        font-weight: 700;
+        color: #111111;
+        line-height: 1.2;
     }
 
     // ─── Layout ────────────────────────────────────────────────────────
     &__layout {
         display: grid;
-        grid-template-columns: 1fr 380px;
-        gap: 3rem;
+        grid-template-columns: 1fr 360px;
+        gap: 2rem;
         align-items: start;
     }
 
     &__main {
         display: flex;
         flex-direction: column;
-        gap: 2.5rem;
+        gap: 2rem;
     }
 
     // ─── Image ─────────────────────────────────────────────────────────
     &__image {
         width: 100%;
-        border-radius: 20px;
+        border-radius: 12px;
         overflow: hidden;
         background: $gray-light;
         aspect-ratio: 16 / 10;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease;
-
-        &:hover {
-            transform: translateY(-4px);
-        }
 
         img {
             width: 100%;
@@ -118,35 +104,17 @@
 
     // ─── Description ───────────────────────────────────────────────────
     &__description {
-        background: rgba($white, 0.5);
-        padding: 2rem;
-        border-radius: 16px;
-        border: 1px solid rgba($gray-light, 0.5);
-
         h2 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 700;
-            color: $black-soft;
-            margin: 0 0 1.25rem;
-            position: relative;
-            padding-bottom: 0.75rem;
-
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 40px;
-                height: 3px;
-                background: $primary;
-                border-radius: 2px;
-            }
+            color: #111111;
+            margin: 0 0 1rem;
         }
 
         p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: rgba($black-soft, 0.8);
+            font-size: 15px;
+            line-height: 1.7;
+            color: $gray-medium;
             margin: 0;
         }
     }
@@ -158,104 +126,78 @@
     }
 
     &__specs-card {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 24px;
-        padding: 2.5rem;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        background: $white;
+        border: 1px solid $gray-light;
+        border-radius: 12px;
+        padding: 1.75rem;
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
     }
 
     &__specs-title {
-        margin: 0 0 1.5rem;
-        font-size: 20px;
-        font-weight: 800;
-        color: $black-soft;
-        padding-bottom: 1.25rem;
-        border-bottom: 2px solid rgba($gray-light, 0.5);
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-
-        &::before {
-            content: '';
-            display: block;
-            width: 4px;
-            height: 20px;
-            background: $primary;
-            border-radius: 4px;
-        }
+        margin: 0 0 1.25rem;
+        font-size: 17px;
+        font-weight: 700;
+        color: #111111;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $gray-light;
     }
 
     &__specs {
         list-style: none;
-        margin: 0 0 2rem;
+        margin: 0 0 1.5rem;
         padding: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
+        gap: 0;
     }
 
     &__spec {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem 0;
-        border-bottom: 1px solid rgba($gray-light, 0.5);
-        font-size: 15px;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid $gray-light;
+        font-size: 14px;
 
         &:last-child {
             border-bottom: none;
         }
-
-        &:hover {
-            .c-vehiculo-full__spec-label {
-                color: $primary;
-            }
-        }
     }
 
     &__spec-label {
-        color: rgba($black-soft, 0.6);
-        font-weight: 500;
-        transition: color 0.2s ease;
+        color: $gray-medium;
+        font-weight: 400;
     }
 
     &__spec-value {
-        font-weight: 700;
-        color: $black-soft;
+        font-weight: 600;
+        color: #111111;
         text-align: right;
     }
 
     // ─── CTA ───────────────────────────────────────────────────────────
     &__cta {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
     }
 
     .c-button--primary {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+        background: $primary;
         color: $white;
-        padding: 1.125rem 2rem;
-        border-radius: 14px;
+        padding: 0.875rem 1.5rem;
+        border-radius: 10px;
         border: none;
-        font-weight: 700;
-        font-size: 16px;
+        font-weight: 600;
+        font-size: 15px;
         text-decoration: none;
-        box-shadow: 0 8px 24px rgba($primary, 0.25);
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 6px 16px rgba(106, 13, 173, 0.18);
+        transition: background 0.18s ease, transform 0.12s ease;
 
         &:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba($primary, 0.35);
-            background: linear-gradient(135deg, $primary-dark 0%, $primary 100%);
-        }
-
-        &:active {
-            transform: translateY(0);
+            background: $primary-dark;
+            transform: translateY(-1px);
         }
 
         &.c-button--full {
@@ -269,15 +211,10 @@
     .c-vehiculo-full {
         &__layout {
             grid-template-columns: 1fr;
-            gap: 2rem;
         }
 
         &__sidebar {
             position: static;
-        }
-
-        &__title {
-            font-size: 32px;
         }
     }
 }
@@ -285,24 +222,14 @@
 // ─── Mobile ──────────────────────────────────────────────────────────
 @media (max-width: 767px) {
     .c-vehiculo-full {
-        padding: 2rem 0 4rem;
+        padding: 1.5rem 0 3rem;
 
         &__title {
-            font-size: 26px;
+            font-size: 22px;
         }
 
         &__specs-card {
-            padding: 1.75rem;
-            border-radius: 20px;
-        }
-
-        &__heading {
-            margin-bottom: 2rem;
-        }
-
-        &__back {
-            width: 38px;
-            height: 38px;
+            padding: 1.25rem;
         }
     }
 }

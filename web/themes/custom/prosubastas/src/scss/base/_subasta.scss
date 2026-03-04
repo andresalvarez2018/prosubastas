@@ -1,0 +1,358 @@
+@import "variables";
+
+.auction-full-wrapper {
+    background: $gray-very-light;
+    padding-bottom: 5rem;
+}
+
+// ─── Auction Top Bar ──────────────────────────────────────────────
+.auction-top-bar {
+    background: $white;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba($gray-light, 0.6);
+    margin-bottom: 0;
+
+    .auction-status {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .badge--active {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba($primary, 0.08);
+        color: $primary;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: $primary;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba($primary, 0.15);
+            animation: pulse 2s infinite;
+        }
+    }
+
+    .auction-stats {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            font-size: 11px;
+            color: $gray-medium;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+
+            strong {
+                font-size: 15px;
+                color: $black-soft;
+                text-transform: none;
+                letter-spacing: -0.01em;
+            }
+
+            &.separator {
+                width: 1px;
+                height: 30px;
+                background: $gray-light;
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba($primary, 0.4);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba($primary, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba($primary, 0);
+    }
+}
+
+// ─── Auction Dynamic Content (Countdown + Form) ────────────────────────
+.auction-dynamic-content {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+
+    .col-md-8 {
+        background: $white;
+        padding: 3rem;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba($gray-light, 0.5);
+    }
+}
+
+// ─── Countdown Overrides ───────────────────────────────────────────
+.auction-meta-info {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+
+    .auction-countdown {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+        display: block !important;
+        text-align: center;
+
+        .countdown {
+            gap: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+        }
+
+        .digit {
+            font-size: 48px !important;
+            padding: 0.5rem 0.75rem !important;
+            background: $black-soft !important;
+            color: $white !important;
+            border-radius: 12px !important;
+            min-width: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .countDiv {
+            font-size: 32px;
+            color: $gray-medium;
+            display: flex;
+            align-items: center;
+        }
+
+        time {
+            font-size: 1.1rem !important;
+            color: $gray-medium !important;
+            letter-spacing: 0.02em;
+        }
+
+        footer.interval {
+            margin-top: 1.5rem !important;
+            font-size: 1rem !important;
+            background: rgba($primary, 0.1);
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            color: $primary !important;
+        }
+    }
+}
+
+// ─── Bidding Section ──────────────────────────────────────────────
+.auction-bidding-section {
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    // Current Price
+    .current-price-wrapper {
+        text-align: center;
+        border-bottom: 2px solid $gray-very-light;
+        padding-bottom: 2rem;
+        margin-bottom: 1rem;
+
+        label {
+            font-size: 18px;
+            font-weight: 600;
+            color: $gray-medium;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .description {
+            font-size: 52px;
+            font-weight: 800;
+            color: $black-soft;
+            line-height: 1;
+
+            small {
+                font-size: 24px;
+                color: $gray-medium;
+                margin-left: 0.5rem;
+            }
+        }
+    }
+
+    // Standard Bid Input
+    .standard-bid {
+        background: $gray-very-light;
+        padding: 2rem;
+        border-radius: 20px;
+        display: flex;
+        align-items: flex-end;
+        gap: 1.5rem;
+
+        .form-item-amount {
+            flex: 1;
+            margin: 0;
+
+            label {
+                font-weight: 700;
+                margin-bottom: 0.75rem;
+                font-size: 16px;
+            }
+
+            .input-group-text {
+                background: transparent;
+                border: none;
+                font-weight: 700;
+                font-size: 20px;
+                color: $black-soft;
+                padding-right: 0.25rem;
+            }
+
+            input {
+                height: 60px;
+                border-radius: 12px;
+                border: 2px solid transparent;
+                font-size: 24px;
+                font-weight: 700;
+                padding: 0 1rem;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+                transition: all 0.2s ease;
+
+                &:focus {
+                    border-color: $primary-light;
+                    box-shadow: 0 0 0 4px rgba($primary, 0.1);
+                    outline: none;
+                }
+            }
+        }
+
+        .form-submit {
+            height: 60px;
+            padding: 0 2.5rem;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 12px;
+            background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+            border: none;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba($primary, 0.3);
+
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 25px rgba($primary, 0.4);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    // Autobid
+    .autobid-wrapper {
+        border: 1px solid $gray-light;
+        border-radius: 20px;
+        padding: 2rem;
+        margin-top: 1rem;
+
+        legend {
+            float: none;
+            width: auto;
+            padding: 0 1rem;
+            font-size: 16px;
+            font-weight: 700;
+            color: $primary;
+            margin-bottom: 0;
+        }
+
+        .form-type-checkbox {
+            margin-bottom: 1.5rem;
+
+            label {
+                font-weight: 600;
+                color: $black-soft;
+                cursor: pointer;
+            }
+        }
+
+        .form-item-amount-max {
+            margin-bottom: 1.5rem;
+
+            label {
+                display: block;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            input {
+                border-radius: 10px;
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+
+        .description {
+            font-size: 13px;
+            color: $gray-medium;
+            margin-top: 0.5rem;
+        }
+    }
+
+    // Refresh Button
+    .auctions-core-refresh-btn {
+        align-self: center;
+        background: transparent;
+        border: 1px solid $gray-light;
+        color: $gray-medium;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: $gray-light;
+            color: $black-soft;
+        }
+    }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────
+@media (max-width: 767px) {
+    .auction-dynamic-content {
+        .col-md-8 {
+            padding: 1.5rem;
+        }
+    }
+
+    .auction-bidding-section {
+        .current-price-wrapper .description {
+            font-size: 36px;
+        }
+
+        .standard-bid {
+            flex-direction: column;
+            align-items: stretch;
+
+            .form-submit {
+                width: 100%;
+            }
+        }
+    }
+}

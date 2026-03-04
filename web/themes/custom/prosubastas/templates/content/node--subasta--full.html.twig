@@ -9,8 +9,29 @@
 {% set image_uri = vehicle.field_galeria.entity.field_media_image.entity.uri.value %}
 {% set image_url = image_uri ? file_url(image_uri) : 'https://picsum.photos/800/500?random=99' %}
 
-<div
-	class="auction-full-wrapper">
+<div class="auction-full-wrapper">
+	<div class="auction-top-bar">
+		<div class="container">
+			<div class="auction-status">
+				<span class="badge badge--active">
+					<span class="dot"></span>
+					Subasta Activa
+				</span>
+				<div class="auction-stats">
+					<span class="stat">
+						<strong>{{ vehicle.field_ciudad.entity.label }}</strong>
+						Ubicación
+					</span>
+					<span class="stat separator"></span>
+					<span class="stat">
+						<strong>{{ content.field_auction_item[0]['#entity'].getBids()|length }}</strong>
+						Pujas
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	{# Render the vehicle details using the existing component #}
 	{% include 'prosubastas:card-vehiculo-full' with {
     title: vehicle.title.value,
@@ -31,10 +52,10 @@
   } only %}
 
 	{# Render the Auction Specifics (Countdown and Bidder Form) #}
-	<div class="auction-dynamic-content container mt-5" id="pujar">
+	<div class="auction-dynamic-content container" id="pujar">
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
-				<div class="auction-meta-info mb-4">
+				<div class="auction-meta-info">
 					{{ content['auction-countdown'] }}
 				</div>
 				<div class="auction-bidding-section">
