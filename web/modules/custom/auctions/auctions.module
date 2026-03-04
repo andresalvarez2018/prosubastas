@@ -87,7 +87,7 @@ function _auctions_ife_alter_build(array $element, FormStateInterface $form_stat
  * Implements hook_ENTITY_TYPE_view().
  */
 function auctions_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-  if ($entity->bundle() == 'auction') {
+  if ($entity->bundle() == 'auction' || $entity->bundle() == 'subasta') {
     $auctionItem = $entity->hasField('field_auction_item') && !$entity->get('field_auction_item')->isEmpty() ? $entity->field_auction_item->referencedEntities() : FALSE;
 
     // Disable caching.

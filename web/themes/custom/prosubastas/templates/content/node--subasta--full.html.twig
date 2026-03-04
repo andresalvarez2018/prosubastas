@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Template for subasta node full view.
+ */
+#}
+
+{% set vehicle = node.field_vehiculo.entity %}
+{% set image_uri = vehicle.field_galeria.entity.field_media_image.entity.uri.value %}
+{% set image_url = image_uri ? file_url(image_uri) : 'https://picsum.photos/800/500?random=99' %}
+
+<div
+	class="auction-full-wrapper">
+	{# Render the vehicle details using the existing component #}
+	{% include 'prosubastas:card-vehiculo-full' with {
+    title: vehicle.title.value,
+    image: image_url,
+    marca: vehicle.field_marca.entity.label,
+    modelo: vehicle.field_modelo.value,
+    version: vehicle.field_version.value,
+    ano: vehicle.field_ano.value,
+    kilometraje: vehicle.field_kilometraje.value,
+    combustible: vehicle.field_combustible.entity.label,
+    transmision: vehicle.field_transmision.entity.label,
+    traccion: vehicle.field_traccion.entity.label,
+    cilindraje: vehicle.field_cilindraje.value,
+    numero_puertas: vehicle.field_numero_puertas.value,
+    estado_fisico: vehicle.field_estado_fisico.entity.label,
+    ciudad: vehicle.field_ciudad.entity.label,
+    descripcion: vehicle.field_descripcion.value,
+  } only %}
+
+	{# Render the Auction Specifics (Countdown and Bidder Form) #}
+	<div class="auction-dynamic-content container mt-5" id="pujar">
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<div class="auction-meta-info mb-4">
+					{{ content['auction-countdown'] }}
+				</div>
+				<div class="auction-bidding-section">
+					{{ content['auction-bidder'] }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# Recurrent publications list #}
+	{% include 'prosubastas:list-card-publication' with {
+          title: 'Otras Subastas Recientes',
+          description: 'Vehículos adicionales disponibles para subasta. Puja ahora.',
+          items: [
+            {
+              image: 'https://picsum.photos/400/260?random=30',
+              title: 'Toyota Hilux 2019 – 4x4 Diesel',
+              description: 'Camioneta en excelente estado, 85,000 km. Un solo dueño, service al día. Base desde $18,000.',
+              link: '/subasta/toyota-hilux-2019'
+            },
+            {
+              image: 'https://picsum.photos/400/260?random=31',
+              title: 'Honda Civic 2020 – Sedán Automático',
+              description: '42,000 km, color gris metalizado, full equipo, pantalla táctil. Base desde $12,500.',
+              link: '/subasta/honda-civic-2020'
+            },
+            {
+              image: 'https://picsum.photos/400/260?random=32',
+              title: 'Mazda CX-5 2021 – SUV AWD',
+              description: 'SUV familiar, 30,000 km, techo solar, cuero genuino. Base desde $22,000.',
+              link: '/subasta/mazda-cx5-2021'
+            }
+          ]
+        } only %}
+</div>
