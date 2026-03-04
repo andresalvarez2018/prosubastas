@@ -111,7 +111,7 @@
                   var lastCommaIndex = message.lastIndexOf(', ');
                   message = message.substring(0, lastCommaIndex) + ' ' + Drupal.t('y') + ' ' + message.substring(lastCommaIndex + 2);
                 }
-                message = Drupal.t('quedan') + ' ' + message;
+                message = Drupal.t('Quedan') + ' ' + message;
               }
               $(countdown).find('.interval').html(message);
             }

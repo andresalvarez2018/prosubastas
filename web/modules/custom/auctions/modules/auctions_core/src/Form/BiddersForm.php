@@ -124,7 +124,7 @@ class BiddersForm extends FormBase {
         $form['permission-denied'] = [
           '#type' => 'inline_template',
           '#template' => '<p>{{ message }}</p>',
-            '#context' => [
+          '#context' => [
             'message' => $this->t('No puede pujar en este momento'),
           ],
         ];
@@ -158,12 +158,18 @@ class BiddersForm extends FormBase {
           // reminder: add a header for general display of related meta bubble:
           // - relist count.
           // - autobidders count.
-          $form['welcome'] = [
-            '#type' => 'item',
+          $form['current_price'] = [
+            '#type' => 'container',
             '#access' => !$instantOnly,
             '#attributes' => ['class' => ['current-price-wrapper']],
-            '#title' => $this->t('Precio actual'),
-            '#description' => $dollar . $this->showAsCents($minPrice, $dec, $thous) . ' ' . $currency,
+          ];
+
+          $form['current_price']['label'] = [
+            '#markup' => '<label>' . $this->t('Precio actual') . '</label>',
+          ];
+
+          $form['current_price']['price'] = [
+            '#markup' => '<div class="description">' . $this->showAsCents($minPrice, $dec, $thous) . ' <small>' . $currency . '</small></div>',
           ];
 
           $hasAutobid = $this->auctionTools->seekAutobid(
@@ -192,7 +198,7 @@ class BiddersForm extends FormBase {
           $showAutobidding = !$instantOnly && $auctionConf->get('autobid-mode') == 1;
           $form['autobid'] = [
             '#type' => 'fieldset',
-            '#access' => $this->currentUser->hasPermission('add auction autobid entities') && $showAutobidding,
+            '#access' => FALSE, // Disabled by user request
             '#title' => $this->t('Puja automática'),
             '#attributes' => [
               'class' => [
@@ -340,12 +346,57 @@ class BiddersForm extends FormBase {
             '#ajax' => [
               'callback' => '::ajaxSubmit',
               'wrapper' => 'auctions-core-bidders-wrapper',
+              'disable-refocus' => TRUE,
             ],
           ];
 
           if ($item->hasBids()) {
-            $form['current_bids'] = views_embed_view('bids_relist_group', 'embed_1', $item->getRelistCount(), $item->id());
-            $form['current_bids']['#weight'] = 100;
+            $latestBids = $item->getBids($item->getRelistCount(), 5);
+            $rows = [];
+            foreach ($latestBids as $bid) {
+              $bidOwner = $bid->getOwner();
+              $rows[] = [
+                'user' => [
+                  'data' => [
+                    '#type' => 'inline_template',
+                    '#template' => '<div class="bid-user"><span class="user-avatar">{{ initial }}</span><span class="user-name">{{ name }}</span></div>',
+                    '#context' => [
+                      'initial' => strtoupper(substr($bidOwner->getDisplayName(), 0, 1)),
+                      'name' => $bidOwner->getDisplayName(),
+                    ],
+                  ],
+                ],
+                'amount' => [
+                  'data' => [
+                    '#markup' => '<span class="bid-amount">' . $dollar . $this->showAsCents($bid->getAmount(), $dec, $thous) . '</span>',
+                  ],
+                ],
+                'time' => [
+                  'data' => [
+                    '#markup' => '<span class="bid-time">' . \Drupal::service('date.formatter')->format($bid->getCreatedTime(), 'custom', 'g:i a') . '</span>',
+                  ],
+                ],
+              ];
+            }
+
+            $form['current_bids_title'] = [
+              '#markup' => '<h4 class="bids-table-title">' . $this->t('Últimas pujas') . '</h4>',
+              '#weight' => 99,
+            ];
+
+            $form['current_bids'] = [
+              '#type' => 'table',
+              '#header' => [
+                $this->t('Usuario'),
+                $this->t('Monto'),
+                $this->t('Hora'),
+              ],
+              '#rows' => $rows,
+              '#weight' => 100,
+              '#attributes' => [
+                'class' => ['auction-bids-table'],
+              ],
+            ];
           }
         }
         else {
@@ -374,7 +425,13 @@ class BiddersForm extends FormBase {
   public function ajaxSubmit(array &$form, FormStateInterface $form_state) {
     $response = new \Drupal\Core\Ajax\AjaxResponse();
     $response->addCommand(new \Drupal\Core\Ajax\ReplaceCommand('#auctions-core-bidders-wrapper', $form));
-    $response->addCommand(new \Drupal\Core\Ajax\PrependCommand('#auctions-core-bidders-wrapper', ['#type' => 'status_messages']));
+
+    $trigger = $form_state->getTriggeringElement();
+    // Only prepend messages if it's not a background refresh, to avoid focus jumps.
+    if ($trigger && $trigger['#name'] !== 'refresh-btn') {
+      $response->addCommand(new \Drupal\Core\Ajax\PrependCommand('#auctions-core-bidders-wrapper', ['#type' => 'status_messages']));
+    }
+
     return $response;
   }
 

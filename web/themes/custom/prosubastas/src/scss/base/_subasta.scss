@@ -87,10 +87,24 @@
     }
 }
 
+@keyframes blink {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
 // ─── Auction Dynamic Content (Countdown + Form) ────────────────────────
 .auction-dynamic-content {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 
     .col-md-8 {
         background: $white;
@@ -105,7 +119,7 @@
 .auction-meta-info {
     display: flex;
     justify-content: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 
     .auction-countdown {
         background: transparent !important;
@@ -117,25 +131,55 @@
         text-align: center;
 
         .countdown {
+            display: none !important; // Hidden as requested, keeping only the purple text interval
             gap: 1.5rem !important;
-            margin-bottom: 1.5rem !important;
+            margin-bottom: 2rem !important;
+            display: flex;
+            justify-content: center;
+            font-size: 40px; // Sets the base for em units
+        }
+
+        .position {
+            display: inline-block;
+            height: 1.25em;
+            width: 0.9em;
+            position: relative;
+            overflow: hidden;
+            margin: 0 4px;
+            vertical-align: middle;
         }
 
         .digit {
-            font-size: 48px !important;
-            padding: 0.5rem 0.75rem !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: $black-soft !important;
             color: $white !important;
-            border-radius: 12px !important;
-            min-width: 50px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 8px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-family: inherit;
+            line-height: inherit;
         }
 
         .countDiv {
             font-size: 32px;
             color: $gray-medium;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            height: 1.25em;
+            vertical-align: middle;
+
+            &::before,
+            &::after {
+                content: ':';
+                display: block;
+            }
         }
 
         time {
@@ -145,13 +189,22 @@
         }
 
         footer.interval {
-            margin-top: 1.5rem !important;
-            font-size: 1rem !important;
-            background: rgba($primary, 0.1);
+            margin-top: 1rem !important;
+            font-size: 0.9rem !important;
+            background: rgba($primary, 0.08); // Softer purple
             display: inline-block;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            border-radius: 100px;
             color: $primary !important;
+            font-weight: 700;
+            border: 1px solid rgba($primary, 0.1);
+            box-shadow: 0 4px 15px rgba($primary, 0.05);
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba($primary, 0.12);
+                transform: translateY(-2px);
+            }
         }
     }
 }
@@ -167,168 +220,400 @@
     // Current Price
     .current-price-wrapper {
         text-align: center;
-        border-bottom: 2px solid $gray-very-light;
-        padding-bottom: 2rem;
-        margin-bottom: 1rem;
+        background: rgba($primary, 0.03);
+        border-radius: 20px;
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba($primary, 0.05);
 
         label {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 14px;
+            font-weight: 800;
             color: $gray-medium;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
             display: block;
         }
 
         .description {
-            font-size: 52px;
-            font-weight: 800;
+            font-size: 58px;
+            font-weight: 900;
             color: $black-soft;
             line-height: 1;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
 
             small {
-                font-size: 24px;
+                font-size: 20px;
                 color: $gray-medium;
-                margin-left: 0.5rem;
+                margin-left: 0.75rem;
+                font-weight: 600;
             }
         }
     }
-
+    .tableresponsive-toggle-columns{
+        display: none;
+    }
     // Standard Bid Input
     .standard-bid {
-        background: $gray-very-light;
-        padding: 2rem;
-        border-radius: 20px;
-        display: flex;
-        align-items: flex-end;
+        background: $white;
+        padding: 0;
+        border-radius: 0;
+        display: flex !important;
+        align-items: center;
+        justify-content: center !important;
         gap: 1.5rem;
+        margin: 0 auto 1rem auto;
+        max-width: 600px;
 
         .form-item-amount {
             flex: 1;
             margin: 0;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            background: $gray-very-light;
+            border-radius: 16px;
+            padding: 0 1.25rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            height: 70px; // Match button height
 
-            label {
-                font-weight: 700;
-                margin-bottom: 0.75rem;
-                font-size: 16px;
+            &:focus-within {
+                background: $white;
+                border-color: $primary;
+                box-shadow: 0 8px 30px rgba($primary, 0.1);
             }
 
+            label {
+                display: none !important;
+            }
+
+            // Target prefix and suffix more genericly if needed
+            span.field-prefix,
+            span.field-suffix,
             .input-group-text {
-                background: transparent;
-                border: none;
-                font-weight: 700;
+                font-weight: 800;
                 font-size: 20px;
-                color: $black-soft;
-                padding-right: 0.25rem;
+                color: $primary;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                height: 100%;
+            }
+
+            .field-suffix {
+                font-size: 14px;
+                color: $gray-medium;
+                margin-left: 0.5rem;
             }
 
             input {
-                height: 60px;
-                border-radius: 12px;
-                border: 2px solid transparent;
+                flex: 1;
+                min-width: 0;
+                height: 100% !important;
+                border: none !important;
+                background: transparent !important;
                 font-size: 24px;
-                font-weight: 700;
-                padding: 0 1rem;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-                transition: all 0.2s ease;
+                font-weight: 800;
+                padding: 0 0.5rem !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                color: $black-soft;
+                text-align: center;
 
                 &:focus {
-                    border-color: $primary-light;
-                    box-shadow: 0 0 0 4px rgba($primary, 0.1);
-                    outline: none;
+                    outline: none !important;
+                    box-shadow: none !important;
+                }
+
+                &::placeholder {
+                    color: $gray-light;
+                    font-weight: 600;
                 }
             }
         }
 
         .form-submit {
-            height: 60px;
+            height: 70px;
             padding: 0 2.5rem;
             font-size: 18px;
-            font-weight: 700;
-            border-radius: 12px;
+            font-weight: 800;
+            border-radius: 16px;
             background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
             border: none;
             color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 20px rgba($primary, 0.3);
+            box-shadow: 0 10px 25px rgba($primary, 0.3);
 
             &:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 12px 25px rgba($primary, 0.4);
+                transform: translateY(-4px);
+                box-shadow: 0 15px 30px rgba($primary, 0.4);
             }
 
             &:active {
-                transform: translateY(0);
+                transform: translateY(-1px);
+            }
+        }
+    }
+
+    // Winning message
+    .form-item-self-bid {
+        background: rgba(#28a745, 0.08); // Success green
+        border: 1px solid rgba(#28a745, 0.2);
+        border-radius: 15px;
+        padding: 1rem;
+        text-align: center;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+
+        p {
+            margin: 0;
+            color: #1e7e34;
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+
+            &::before {
+                content: '✓';
+                background: #28a745;
+                color: white;
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                flex-shrink: 0;
             }
         }
     }
 
     // Autobid
     .autobid-wrapper {
-        border: 1px solid $gray-light;
-        border-radius: 20px;
-        padding: 2rem;
-        margin-top: 1rem;
+        background: $gray-very-light;
+        border: 2px dashed rgba($primary, 0.2);
+        border-radius: 24px;
+        padding: 2.5rem;
+        margin-top: 1.5rem;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border-color: rgba($primary, 0.4);
+            background: rgba($primary, 0.02);
+        }
 
         legend {
             float: none;
             width: auto;
-            padding: 0 1rem;
-            font-size: 16px;
-            font-weight: 700;
-            color: $primary;
+            padding: 0.5rem 1.25rem;
+            font-size: 14px;
+            font-weight: 800;
+            color: $white;
+            background: $primary;
+            border-radius: 10px;
             margin-bottom: 0;
+            position: absolute;
+            top: -18px;
+            left: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 10px rgba($primary, 0.3);
         }
 
         .form-type-checkbox {
             margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+
+            .form-check-input {
+                width: 22px;
+                height: 22px;
+                border-radius: 6px;
+                border: 2px solid $gray-light;
+                cursor: pointer;
+                margin-top: 0;
+
+                &:checked {
+                    background-color: $primary;
+                    border-color: $primary;
+                }
+            }
 
             label {
-                font-weight: 600;
+                font-weight: 700;
                 color: $black-soft;
                 cursor: pointer;
+                font-size: 16px;
+                padding-left: 0.5rem;
+                vertical-align: middle;
             }
         }
 
         .form-item-amount-max {
-            margin-bottom: 1.5rem;
+            margin-bottom: 0;
+            background: $white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 
             label {
                 display: block;
-                font-weight: 600;
-                margin-bottom: 0.5rem;
+                font-weight: 700;
+                margin-bottom: 0.75rem;
+                color: $gray-medium;
+                font-size: 13px;
+                text-transform: uppercase;
             }
 
             input {
                 border-radius: 10px;
-                height: 50px;
-                font-size: 18px;
+                height: 55px;
+                font-size: 20px;
+                font-weight: 700;
+                border: 2px solid $gray-very-light;
+                background: $gray-very-light;
+                transition: all 0.2s ease;
+
+                &:focus {
+                    background: $white;
+                    border-color: $primary-light;
+                    box-shadow: 0 0 0 4px rgba($primary, 0.1);
+                }
             }
         }
 
         .description {
             font-size: 13px;
             color: $gray-medium;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
+            line-height: 1.5;
+            font-style: italic;
         }
     }
 
-    // Refresh Button
+    // Refresh Button (Technical) - Hidden from UI
     .auctions-core-refresh-btn {
-        align-self: center;
-        background: transparent;
-        border: 1px solid $gray-light;
-        color: $gray-medium;
-        padding: 0.5rem 1.5rem;
-        border-radius: 50px;
-        font-size: 13px;
-        font-weight: 600;
-        transition: all 0.2s ease;
+        display: none !important;
+    }
 
-        &:hover {
-            background: $gray-light;
+    // Bids Table
+    .auction-bids-table {
+        margin-top: 1rem;
+        border: none;
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+
+        .bids-table-title {
+            font-size: 18px;
+            font-weight: 800;
             color: $black-soft;
+            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &::after {
+                content: '• En vivo';
+                font-size: 12px;
+                color: #28a745;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                background: rgba(40, 167, 69, 0.1);
+                padding: 4px 12px;
+                border-radius: 20px;
+                animation: blink 2s infinite;
+            }
+        }
+
+        thead {
+            th {
+                background: $gray-very-light;
+                color: $gray-medium;
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                padding: 1rem 1.5rem;
+                border: none;
+                font-weight: 700;
+
+                &:first-child {
+                    border-radius: 12px 0 0 12px;
+                }
+
+                &:last-child {
+                    border-radius: 0 12px 12px 0;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                transition: background 0.2s ease;
+
+                &:hover {
+                    background: rgba($primary, 0.02);
+                }
+
+                td {
+                    padding: 0.85rem 1.5rem;
+                    border-bottom: 1px solid rgba($gray-light, 0.5);
+                    vertical-align: middle;
+                }
+
+                &:last-child td {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        .bid-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+
+            .user-avatar {
+                width: 32px;
+                height: 32px;
+                background: $primary-light;
+                color: $white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 13px;
+            }
+
+            .user-name {
+                font-weight: 600;
+                color: $black-soft;
+            }
+        }
+
+        .bid-amount {
+            font-weight: 700;
+            color: $primary;
+            font-size: 16px;
+        }
+
+        .bid-time {
+            color: $gray-medium;
+            font-size: 13px;
         }
     }
 }
@@ -355,4 +640,11 @@
             }
         }
     }
+}
+
+.auctions-core-bidders .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
 }

@@ -11,8 +11,8 @@
 
             if ($wrapper.length && once('auctions-core-refresh-init', 'body', context).length) {
                 // Set an interval to refresh the form.
-                // Default to 15 seconds for relatively real-time feeling.
-                var refreshInterval = 5000;
+                // 10 seconds for a good balance between real-time and performance.
+                var refreshInterval = 10000;
 
                 setInterval(function () {
                     var $btn = $('.auctions-core-refresh-btn');
