@@ -4,7 +4,19 @@ status: experimental
 description: Header component for the Pro Subastas theme
 props:
   type: object
-  properties: {}
+  properties:
+    logged_in:
+      type: boolean
+      title: Logged in
+    user_name:
+      type: string
+      title: User name
+    cta_url:
+      type: string
+      title: CTA URL
+    cta_text:
+      type: string
+      title: CTA Text
 slots:
   branding:
     title: Branding

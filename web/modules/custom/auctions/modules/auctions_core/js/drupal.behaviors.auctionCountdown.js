@@ -1,26 +1,26 @@
-(function($, Drupal) {
+(function ($, Drupal) {
   'use strict';
   /**
    * Attaches the JS countdown behavior
    */
   Drupal.behaviors.auctionCountdown = {
-    attach: function(context) {
-      $(once('auction-countdown-active', '.auction-countdown', context)).each(function() {
+    attach: function (context) {
+      $(once('auction-countdown-active', '.auction-countdown', context)).each(function () {
         var countdown = this;
         $(countdown).find('.countdown').auctionCountdown({
           timestamp: $(this).data('unix') * 1000,
           font_size: $(this).data('font-size'),
-          callback: function(weeks, days, hours, minutes, seconds) {
+          callback: function (weeks, days, hours, minutes, seconds) {
             var dateStrings = new Array();
-            var weekStr = Drupal.formatPlural(weeks, '1 week', '@count weeks');
+            var weekStr = Drupal.formatPlural(weeks, '1 semana', '@count semanas');
             dateStrings['@weeks'] = weekStr;
-            var daysStr = Drupal.formatPlural(days, '1 day', '@count days');
+            var daysStr = Drupal.formatPlural(days, '1 día', '@count días');
             dateStrings['@days'] = daysStr;
-            var hoursStr = Drupal.formatPlural(hours, '1 hour', '@count hours');
+            var hoursStr = Drupal.formatPlural(hours, '1 hora', '@count horas');
             dateStrings['@hours'] = hoursStr;
-            var minutesStr = Drupal.formatPlural(minutes, '1 minute', '@count minutes');
+            var minutesStr = Drupal.formatPlural(minutes, '1 minuto', '@count minutos');
             dateStrings['@minutes'] = minutesStr;
-            var secondsStr = Drupal.formatPlural(seconds, '1 second', '@count seconds');
+            var secondsStr = Drupal.formatPlural(seconds, '1 segundo', '@count segundos');
             dateStrings['@seconds'] = secondsStr;
 
             // Countdown: if unit is zero and fade it, keep visual blocking.
@@ -43,7 +43,7 @@
               $(countdown).find('.countWeeks').attr({
                 'title': ''
               });
-           } else {
+            } else {
               $(countdown).find('.countDays').attr({
                 'title': daysStr
               });
@@ -107,14 +107,15 @@
               if (messageParts.length > 0) {
                 var message = messageParts.join(', ');
                 if (messageParts.length > 1) {
-                  // Add "and" before the last item if there are more than one item.
+                  // Add "y" before the last item if there are more than one item.
                   var lastCommaIndex = message.lastIndexOf(', ');
-                  message = message.substring(0, lastCommaIndex) + ' ' + Drupal.t('and') + ' ' + message.substring(lastCommaIndex + 2);
+                  message = message.substring(0, lastCommaIndex) + ' ' + Drupal.t('y') + ' ' + message.substring(lastCommaIndex + 2);
                 }
-                message += ' ' + Drupal.t('left');
+                message = Drupal.t('quedan') + ' ' + message;
               }
               $(countdown).find('.interval').html(message);
             }
+
           }
 
         });

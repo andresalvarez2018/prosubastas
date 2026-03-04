@@ -83,9 +83,9 @@ trait AuctionToolsTrait {
    */
   public static function bidTypeList() {
     return [
-      'standard' => t("Standard Bid"),
-      'instant' => t("Instant Bid"),
-      'auto' => t("Autobid"),
+      'standard' => t("Puja Estándar"),
+      'instant' => t("Puja Inmediata"),
+      'auto' => t("Puja Automática"),
     ];
   }
 
@@ -95,9 +95,9 @@ trait AuctionToolsTrait {
   public static function bidPurchaseOffer() {
     return [
       '0' => t("n/a"),
-      '2' => t("Offered | Acceptance Pending"),
-      '-1' => t("Rejected Offer to Purchase"),
-      '3' => t("Purchesed Item"),
+      '2' => t("Ofertado | Pendiente de Aceptación"),
+      '-1' => t("Oferta de Compra Rechazada"),
+      '3' => t("Artículo Comprado"),
     ];
   }
 
@@ -106,11 +106,11 @@ trait AuctionToolsTrait {
    */
   public static function itemWorkflows() {
     return [
-      '-1' => t("Deleted"),
-      '0' => t("Not yet started"),
-      '1' => t("Active"),
-      '2' => t("Relisted"),
-      '3' => t("Finished"),
+      '-1' => t("Eliminado"),
+      '0' => t("No comenzado"),
+      '1' => t("Activo"),
+      '2' => t("Republicado"),
+      '3' => t("Finalizado"),
     ];
   }
 

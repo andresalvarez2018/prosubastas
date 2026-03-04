@@ -1,47 +1,70 @@
-.view-bids-relist-group.view-id-bids_relist_group .view-filters {
-  margin-top: 1rem;
-  margin-bottom: 0;
-  text-align: right;
+.view-bids-relist-group.view-id-bids_relist_group {
+  margin-top: 2rem;
+  background: #ffffff;
+  border: 1px solid #e5e5ea;
+  border-radius: 8px;
+  overflow: hidden;
 }
-.view-bids-relist-group.view-id-bids_relist_group .view-filters,
-.view-bids-relist-group.view-id-bids_relist_group .view-filters label,
-.view-bids-relist-group.view-id-bids_relist_group .view-filters select,
-.view-bids-relist-group.view-id-bids_relist_group .view-filters .form-actions,
-.view-bids-relist-group.view-id-bids_relist_group .view-filters input {
-  font-size: 12px;
-  margin-top: 0 !important;
-}
-.view-bids-relist-group.view-id-bids_relist_group .view-filters .form-item,
-.view-bids-relist-group.view-id-bids_relist_group .view-filters .form-actions,
-.view-bids-relist-group.view-id-bids_relist_group .view-filters label {
-  display: inline;
-  float: inherit;
-}
-.view-bids-relist-group.view-id-bids_relist_group .view-filters select,
-.view-bids-relist-group.view-id-bids_relist_group .view-filters .button {
-  height: 2rem;
-}
-.view-bids-relist-group.view-id-bids_relist_group .view-content {
-  margin: 0 0 0.5rem 0;
-}
+
 .view-bids-relist-group.view-id-bids_relist_group .view-content table {
   width: 100%;
-  margin: 0 0 0 0;
+  border-collapse: collapse;
 }
-.view-bids-relist-group.view-id-bids_relist_group .view-content .views-table td {
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem !important;
-  font-size: 12px;
+
+.view-bids-relist-group.view-id-bids_relist_group thead th {
+  background: #f5f5f7;
+  color: #6c757d;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  text-align: left;
 }
-.view-bids-relist-group.view-id-bids_relist_group .view-content tr {
+
+.view-bids-relist-group.view-id-bids_relist_group tbody td {
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #f5f5f7;
+}
+
+.view-bids-relist-group.view-id-bids_relist_group tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.view-bids-relist-group.view-id-bids_relist_group .views-field-amount {
+  font-weight: 700;
+  color: #1c1c1e;
+}
+
+.view-bids-relist-group.view-id-bids_relist_group .views-field-user-id {
+  color: #6c757d;
+}
+
+.view-bids-relist-group.view-id-bids_relist_group .view-filters {
+  padding: 1rem;
+  background: #fbfafb;
+  border-bottom: 1px solid #e5e5ea;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
 }
-.view-bids-relist-group.view-id-bids_relist_group .view-content .views-field-amount {
-  flex-shrink: 0;
+
+.view-bids-relist-group.view-id-bids_relist_group .view-filters .form-item {
+  margin: 0;
 }
-.view-bids-relist-group.view-id-bids_relist_group .view-content .views-field-user-id {
-  flex: 2;
+
+.view-bids-relist-group.view-id-bids_relist_group .view-filters label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  font-weight: 600;
+  margin-right: 0.5rem;
 }
-.view-bids-relist-group.view-id-bids_relist_group .view-content .views-field-type {
-  flex-shrink: 1;
+
+.view-bids-relist-group.view-id-bids_relist_group .view-filters select {
+  height: 2rem;
+  border-radius: 4px;
+  border: 1px solid #e5e5ea;
+  padding: 0 0.5rem;
+  font-size: 0.85rem;
 }

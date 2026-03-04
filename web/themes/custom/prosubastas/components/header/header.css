@@ -505,6 +505,31 @@
     order: 3;
   }
 }
+.header-cta__user {
+  color: #000000;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.header-cta__user .user-icon {
+  font-size: 1.2rem;
+}
+.header-cta__user .user-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+.header-cta__user .btn-outline-secondary {
+  border-color: #6A0DAD;
+  color: #6A0DAD;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+.header-cta__user .btn-outline-secondary:hover {
+  background-color: #6A0DAD;
+  color: #fbfafb;
+}
 .header-cta__button {
   background-color: #6A0DAD;
   color: #fbfafb;
@@ -703,6 +728,17 @@
 }
 .component--auction-header.is-scrolled .mobile-menu-toggle {
   color: #fbfafb;
+}
+.component--auction-header.is-scrolled .header-cta__user {
+  color: #fbfafb !important;
+}
+.component--auction-header.is-scrolled .header-cta__user .btn-outline-secondary {
+  border-color: #fbfafb;
+  color: #fbfafb;
+}
+.component--auction-header.is-scrolled .header-cta__user .btn-outline-secondary:hover {
+  background-color: #fbfafb;
+  color: #4B0082;
 }
 .component--auction-header.is-scrolled .header-cta__button {
   background-color: #fbfafb;

@@ -93,7 +93,7 @@ class AuctionItemCountdown extends BlockBase implements ContainerFactoryPluginIn
     $build = [];
     $auctionItem = FALSE;
     $routedItems = $this->routeMatch;
-    if (!empty($this->configuration['auction_item']) && $this->configuration['auction_item'][0] instanceof AuctionItem) {
+    if ( !empty($this->configuration['auction_item']) && $this->configuration['auction_item'][0] instanceof AuctionItem) {
       $auctionItem = $this->configuration['auction_item'][0];
     }
     else {
@@ -112,15 +112,15 @@ class AuctionItemCountdown extends BlockBase implements ContainerFactoryPluginIn
     if ($auctionItem) {
       $dates = $auctionItem->getDateStatus();
       $countdown = [];
-      if (!$auctionItem->isClosed()) {
+      if ( !$auctionItem->isClosed()) {
         $countdown['datetime'] = $dates['date_formatted'][$dates['status'] . '_time'];
         $countdown['unix'] = $dates['date_formatted'][$dates['status'] . '_unix'];
         $countdown['formatted'] = $dates['date_formatted'][$dates['status'] . '_human'];
       }
-      if (!empty($countdown)) {
-        $introPhrase = $this->t('Auction Starts:  @formatted.', ['@formatted' => $countdown['formatted']]);
+      if ( !empty($countdown)) {
+        $introPhrase = $this->t('La subasta comienza: @formatted.', ['@formatted' => $countdown['formatted']]);
         if ($dates['status'] == 'end') {
-          $introPhrase = $this->t('Auction Ends:  @formatted.', ['@formatted' => $countdown['formatted']]);
+          $introPhrase = $this->t('La subasta finaliza: @formatted.', ['@formatted' => $countdown['formatted']]);
         }
         $build['content'] = [
           '#theme' => 'auction_time',
@@ -134,7 +134,7 @@ class AuctionItemCountdown extends BlockBase implements ContainerFactoryPluginIn
       else {
         $build['content'] = [
           '#item' => 'auction_time',
-          '#markup' => $this->t('This Auction is over.'),
+          '#markup' => $this->t('Esta subasta ha terminado.'),
         ];
       }
     }

@@ -398,7 +398,7 @@ class BiddersForm extends FormBase {
     }
     $verify = $form_state->getValues()['buy_now_verify'];
     if ($verify == 0) {
-      $form_state->setErrorByName('buy_now_verify', $this->t('You must pre-verify <q>Buy Now</q> submission.'));
+      $form_state->setErrorByName('buy_now_verify', $this->t('Debe pre-verificar el envío de <q>Compra inmediata</q>.'));
     }
   }
 
@@ -435,13 +435,13 @@ class BiddersForm extends FormBase {
     );
 
     if ($bid->id()) {
-      $this->messenger()->addMessage($this->t('Congratulations! You have placed an Instant Buy! $%price.', [
+      $this->messenger()->addMessage($this->t('¡Felicitaciones! ¡Ha realizado una compra inmediata por $%price!', [
         '%price' => $this->showAsCents($item->getPriceBuyNow(), '.', ','),
       ]));
     }
     else {
       $this->messenger()->addError($this->t(
-        'Something went wrong, please contact an Administrator.'
+        'Algo salió mal, por favor contacte a un administrador.'
       ));
     }
   }
@@ -510,7 +510,7 @@ class BiddersForm extends FormBase {
         && ($currentAutobid && $amountMax != 0)
         && $amountMax < $highestCurrent['minPrice']
       ) {
-        $form_state->setErrorByName('amount_max', $this->t('Your Max autobid has to be higher than current highest bid. Try a higher amount or click <q>Opt Out</q> .'));
+        $form_state->setErrorByName('amount_max', $this->t('Su puja automática máxima debe ser superior a la puja más alta actual. Intente con un monto mayor o haga clic en <q>Desactivar</q>.'));
       }
       parent::validateForm($form, $form_state);
     }
@@ -543,12 +543,12 @@ class BiddersForm extends FormBase {
     );
 
     if ($bid->id()) {
-      $this->messenger()->addMessage($this->t('Congratulations! You have placed your bid! $%price.', [
+      $this->messenger()->addMessage($this->t('¡Felicitaciones! ¡Ha realizado su puja por $%price!', [
         '%price' => $this->showAsCents($amount, '.', ','),
       ]));
     }
     else {
-      $this->messenger()->addError($this->t('Bidding failed.'));
+      $this->messenger()->addError($this->t('La puja falló.'));
     }
   }
 

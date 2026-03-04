@@ -12,7 +12,10 @@
 %}
 
 <div {{ page_attributes.addClass(page_classes) }}>
-	{% embed 'prosubastas:header' %}
+	{% embed 'prosubastas:header' with {
+    logged_in: logged_in,
+    user_name: user.displayname
+  } %}
 		{% block branding %}
 			{{ page.header }}
 		{% endblock %}
@@ -30,6 +33,7 @@
 
 	{% block page_footer %}
 		{% include 'prosubastas:footer' with {
+      site_name: 'ProSubastas',
       description: 'Ofrecemos soluciones digitales de extremo a extremo para subastas de vehículos en línea.',
       copyright: '© 2024, ProSubastas, Inc. Todos los derechos reservados.',
       webform: page.footer

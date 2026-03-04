@@ -23,11 +23,11 @@
 			<div class="col-lg-6">
 				<div class="footer__info">
 					<h2 class="footer__brand mb-3">
-						<span class="footer__brand-text">Elex</span>
-						<span class="footer__brand-highlight">rent</span>
+						<span class="footer__brand-text">{{ site_name|default('Pro') }}</span>
+						<span class="footer__brand-highlight">{{ site_name ? '' : 'Subastas' }}</span>
 					</h2>
 					<p class="footer__description text-muted mb-0">
-						{{ description|default('We offer end-to-end digital solutions for car rental based in Germany') }}
+						{{ description|default('Ofrecemos soluciones digitales de extremo a extremo para subastas de vehículos en línea.') }}
 					</p>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 			<!-- Contact / Webform Column -->
 			<div class="col-lg-6">
 				<div class="footer__contact">
-					<h3 class="footer__title mb-4 h5 fw-bold text-uppercase tracking-wider">Contact Us</h3>
+					<h3 class="footer__title mb-4 h5 fw-bold text-uppercase tracking-wider">Contáctenos</h3>
 					<div class="footer__webform-wrapper">
 						{% if webform %}
 							{{ webform }}
@@ -55,7 +55,7 @@
 			<hr class="footer__divider border-secondary opacity-10 mb-4">
 			<div class="footer__copyright text-center text-muted small">
 				<p class="mb-0">
-					{{ copyright|default('© 2023, by Elexrent, Inc. All Rights Reserved.') }}
+					{{ copyright|default('© 2024, ProSubastas, Inc. Todos los derechos reservados.') }}
 				</p>
 			</div>
 		</div>

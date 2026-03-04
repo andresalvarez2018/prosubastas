@@ -20,49 +20,50 @@ class CurbBids extends CompositeConstraintBase {
    *
    * @var string
    */
-  public $auctionFinished = "This auction has been closed!";
+  public $auctionFinished = "¡Esta subasta ha sido cerrada!";
 
   /**
    * The message for when the auction is not yet open.
    *
    * @var string
    */
-  public $auctionNew = "This auction is not yet open!";
+  public $auctionNew = "¡Esta subasta aún no está abierta!";
 
   /**
    * The message for when the last bid is by the same user.
    *
    * @var string
    */
-  public $lastBidIsYours = "You are the last bidder. Self outbidding is not allowed.";
+  public $lastBidIsYours = "Usted es el último postor. No se permite superarse a sí mismo.";
 
   /**
    * The message for when the auction has closed.
    *
    * @var string
    */
-  public $auctionHasClosed = "Auction has closed!";
+  public $auctionHasClosed = "¡La subasta ha cerrado!";
 
   /**
    * The message for when the auction has expired.
    *
    * @var string
    */
-  public $auctionHasExpired = "Auction has expired! %value";
+  public $auctionHasExpired = "¡La subasta ha expirado! %value";
 
   /**
    * The message for when the bid is not high enough.
    *
    * @var string
    */
-  public $higherThanLastBid = "This bid is not high enough…";
+  public $higherThanLastBid = "Esta puja no es lo suficientemente alta...";
 
   /**
    * The message for when the amount is higher than the allowed bid threshold.
    *
    * @var string
    */
-  public $higherThanThreshold = "Amount is higher than the allowed bid threshold. %value";
+  public $higherThanThreshold = "El monto es superior al umbral de puja permitido. %value";
+
 
   /**
    * Defines the fields to validate against.

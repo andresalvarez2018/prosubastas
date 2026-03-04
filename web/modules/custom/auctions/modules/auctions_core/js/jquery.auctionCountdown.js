@@ -5,13 +5,13 @@
  * @url         http://tutorialzine.com/2011/12/countdown-jquery/
  * @license     MIT License
  */
-(function($) {
+(function ($) {
   'use strict';
 
   // Creating the plugin
-  $.fn.auctionCountdown = function(prop) {
+  $.fn.auctionCountdown = function (prop) {
     var options = $.extend({
-      callback: function() {},
+      callback: function () { },
       timestamp: 0,
       font_size: 12,
       img_path: '/modules/contrib/auctions/modules/auctions_core/assets/'
@@ -63,7 +63,7 @@
     });
 
     // Creating the markup inside the container
-    $.each(['Weeks', 'Days', 'Hrs', 'Mins', 'Secs'], function(i) {
+    $.each(['Weeks', 'Days', 'Hrs', 'Mins', 'Secs'], function (i) {
 
       let digit = '<span class="count' + this + '">' +
         '<span class="position">' +
@@ -116,7 +116,7 @@
       .animate({
         top: '2.5em',
         opacity: 0
-      }, 'fast', function() {
+      }, 'fast', function () {
         digit.remove();
       });
 
@@ -125,7 +125,7 @@
       .animate({
         top: 0,
         opacity: 1
-      }, 'fast', function() {
+      }, 'fast', function () {
         replacement.addClass('static');
       });
   };

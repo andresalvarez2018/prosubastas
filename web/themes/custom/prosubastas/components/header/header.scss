@@ -350,6 +350,36 @@
         order: 3;
     }
 
+    &__user {
+        color: #000000;
+        font-weight: 500;
+        font-size: 0.95rem;
+
+        .user-icon {
+            font-size: 1.2rem;
+        }
+
+        .user-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+
+        .btn-outline-secondary {
+            border-color: #6A0DAD;
+            color: #6A0DAD;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: #6A0DAD;
+                color: $white;
+            }
+        }
+    }
+
     &__button {
         background-color: #6A0DAD;
         color: $white;
@@ -555,6 +585,20 @@
 
     .mobile-menu-toggle {
         color: $white;
+    }
+
+    .header-cta__user {
+        color: $white !important;
+
+        .btn-outline-secondary {
+            border-color: $white;
+            color: $white;
+
+            &:hover {
+                background-color: $white;
+                color: #4B0082;
+            }
+        }
     }
 
     .header-cta__button {
