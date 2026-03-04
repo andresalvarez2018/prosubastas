@@ -56,6 +56,12 @@ type_settings:
         - published
       to: cerrada
       weight: 6
+    archivar_a_borrador:
+      label: 'archivar a borrador'
+      from:
+        - archivar
+      to: draft
+      weight: 9
     borrador_a_cancelada:
       label: 'Borrador a Cancelada'
       from:
