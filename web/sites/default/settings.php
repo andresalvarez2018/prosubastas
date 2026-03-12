@@ -856,7 +856,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
-$host = "db";
+$host = "localhost";
 $port = 3306;
 $driver = "mysql";
 
