@@ -891,3 +891,4 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 # }
 
 $settings['config_sync_directory'] = '../config/sync';
+$config['system.logging']['error_level'] = 'verbose';
