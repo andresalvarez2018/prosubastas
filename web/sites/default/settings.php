@@ -856,6 +856,17 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
+$host = "db";
+$port = 3306;
+$driver = "mysql";
+
+$databases['default']['default']['database'] = "u536804755_prosubastas";
+$databases['default']['default']['username'] = "u536804755_prosubastas";
+$databases['default']['default']['password'] = "u536804755_prosubastaS";
+$databases['default']['default']['host'] = $host;
+$databases['default']['default']['port'] = $port;
+$databases['default']['default']['driver'] = $driver;
+
 // Automatically generated include for settings managed by ddev.
 if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev.php')) {
   include __DIR__ . '/settings.ddev.php';
