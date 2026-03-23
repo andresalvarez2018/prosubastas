@@ -11,9 +11,11 @@
 #}
 
 {% set item_count = items|length %}
+{% set use_marquee = item_count > 6 %}
 
-<div class="c-list-card-icons {% if item_count > 3 %}c-list-card-icons--marquee{% endif %}">
+<div class="c-list-card-icons {{ use_marquee ? 'c-list-card-icons--marquee' : '' }}">
 	<div class="c-list-card-icons__track">
+
 		{% for item in items %}
 			<div class="c-list-card-icons__item">
 				{% if item.image is iterable %}
@@ -24,8 +26,8 @@
 			</div>
 		{% endfor %}
 
-		{# Duplicate items for seamless marquee loop when > 6 #}
-		{% if item_count > 6 %}
+		{# Duplicar siempre que haya marquee para el loop seamless #}
+		{% if use_marquee %}
 			{% for item in items %}
 				<div class="c-list-card-icons__item c-list-card-icons__item--clone" aria-hidden="true">
 					{% if item.image is iterable %}
@@ -36,5 +38,6 @@
 				</div>
 			{% endfor %}
 		{% endif %}
+
 	</div>
 </div>

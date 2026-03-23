@@ -1,0 +1,55 @@
+uuid: ff695b16-ca9e-481c-bec5-1b879b7557e6
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_list_comments
+    - field.field.block_content.card_list_comments.field_card_comment
+  module:
+    - field_layout
+    - layout_discovery
+    - paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: block_content.card_list_comments.default
+targetEntityType: block_content
+bundle: card_list_comments
+mode: default
+content:
+  field_card_comment:
+    type: paragraphs
+    weight: 26
+    region: content
+    settings:
+      title: Párrafo
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

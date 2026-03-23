@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.banner_principal
     - field.field.block_content.banner_principal.body
+    - field.field.block_content.banner_principal.field_filtro_anexo
     - field.field.block_content.banner_principal.field_image
     - field.field.block_content.banner_principal.field_image_mobile
     - field.field.block_content.banner_principal.field_tittle
@@ -32,6 +33,13 @@ content:
       summary_rows: 3
       placeholder: ''
       show_summary: false
+    third_party_settings: {  }
+  field_filtro_anexo:
+    type: boolean_checkbox
+    weight: 26
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_image:
     type: media_library_widget

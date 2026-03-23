@@ -1,0 +1,44 @@
+uuid: dcc12846-3052-410b-8946-21d42b79dbf0
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_list_logos
+    - field.field.block_content.card_list_logos.field_logos
+  module:
+    - field_layout
+    - layout_discovery
+    - media_library
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: block_content.card_list_logos.default
+targetEntityType: block_content
+bundle: card_list_logos
+mode: default
+content:
+  field_logos:
+    type: media_library_widget
+    weight: 26
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,142 @@
+{#
+/**
+ * @file
+ * views-view--buscador--page-1.html.twig
+ * Ubicación: templates/views/views-view--buscador--page-1.html.twig
+ */
+#}
+
+{# Cargar assets del componente search #}
+<div style="display:none" aria-hidden="true">
+  {% include 'prosubastas:search' with { title: '', results: [] } only %}
+</div>
+
+<div class="v-buscador">
+
+  {# ── Breadcrumb ───────────────────────────────────────────────────── #}
+  <nav class="v-buscador__breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Inicio</a>
+    <span>/</span>
+    <span>Buscador</span>
+  </nav>
+
+  {# ── Page header: título + controles ─────────────────────────────── #}
+  <div class="v-buscador__header">
+    <h1 class="v-buscador__title">
+      {% if title %}{{ title }}{% else %}Nuestras subastas{% endif %}
+    </h1>
+
+    <div class="v-buscador__controls">
+
+      {# Sort: solo Asc/Desc, ocultamos "Fecha de autoría" con CSS #}
+      <div class="v-buscador__sort">
+        <span class="v-buscador__sort-label">Ordenar por:</span>
+        <div class="v-buscador__sort-fields" id="sort-placeholder"></div>
+      </div>
+
+      {# Toggle grid / lista #}
+      <div class="v-buscador__view-toggle" role="group" aria-label="Vista">
+        <button class="v-buscador__toggle-btn v-buscador__toggle-btn--grid is-active"
+                id="toggle-grid" aria-pressed="true" title="Vista cuadrícula">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+          </svg>
+        </button>
+        <button class="v-buscador__toggle-btn v-buscador__toggle-btn--list"
+                id="toggle-list" aria-pressed="false" title="Vista lista">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  {# ── Layout: sidebar + main ───────────────────────────────────────── #}
+  <div class="v-buscador__layout">
+
+    {# Sidebar filtros #}
+    {% if exposed %}
+      <aside class="v-buscador__sidebar">
+        {{ exposed }}
+      </aside>
+    {% endif %}
+
+    {# Main resultados #}
+    <main class="v-buscador__main" id="v-buscador-main">
+      {% if rows %}
+        <div class="v-buscador__results">
+          {{ rows }}
+        </div>
+      {% elseif empty %}
+        <div class="v-buscador__empty">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <p>No se encontraron subastas con los filtros seleccionados.</p>
+          <a href="/buscador">Limpiar filtros</a>
+        </div>
+      {% endif %}
+
+      {% if pager %}
+        <div class="v-buscador__pager">{{ pager }}</div>
+      {% endif %}
+    </main>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // ── Mover sort fields al header ──────────────────────────────────
+  var sortBy    = document.querySelector('.js-form-item-sort-by');
+  var sortOrder = document.querySelector('.js-form-item-sort-order');
+  var target    = document.getElementById('sort-placeholder');
+  if (target && sortBy)    target.appendChild(sortBy);
+  if (target && sortOrder) target.appendChild(sortOrder);
+
+  // ── Toggle grid / lista ──────────────────────────────────────────
+  var btnGrid  = document.getElementById('toggle-grid');
+  var btnList  = document.getElementById('toggle-list');
+  var main     = document.getElementById('v-buscador-main');
+
+  function setView(mode) {
+    if (mode === 'list') {
+      main.classList.add('is-list-view');
+      main.classList.remove('is-grid-view');
+      btnGrid.classList.remove('is-active');
+      btnGrid.setAttribute('aria-pressed', 'false');
+      btnList.classList.add('is-active');
+      btnList.setAttribute('aria-pressed', 'true');
+    } else {
+      main.classList.add('is-grid-view');
+      main.classList.remove('is-list-view');
+      btnList.classList.remove('is-active');
+      btnList.setAttribute('aria-pressed', 'false');
+      btnGrid.classList.add('is-active');
+      btnGrid.setAttribute('aria-pressed', 'true');
+    }
+    try { localStorage.setItem('buscador-view', mode); } catch(e) {}
+  }
+
+  // Restaurar preferencia guardada
+  try {
+    var saved = localStorage.getItem('buscador-view');
+    if (saved === 'list') setView('list');
+  } catch(e) {}
+
+  if (btnGrid) btnGrid.addEventListener('click', function() { setView('grid'); });
+  if (btnList) btnList.addEventListener('click', function() { setView('list'); });
+});
+</script>

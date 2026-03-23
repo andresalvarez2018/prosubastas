@@ -1,0 +1,32 @@
+uuid: e7478ff1-a545-4789-a6eb-b56c820dfea9
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.tipo_de_vehiculo.field_image
+    - taxonomy.vocabulary.tipo_de_vehiculo
+  module:
+    - text
+id: taxonomy_term.tipo_de_vehiculo.default
+targetEntityType: taxonomy_term
+bundle: tipo_de_vehiculo
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true

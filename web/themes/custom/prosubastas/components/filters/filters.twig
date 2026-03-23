@@ -1,101 +1,171 @@
 {#
-  Filters component
-  Sends query params to /buscador via GET
+/**
+ * @file
+ * filters.twig
+ *
+ * Parámetros:
+ * - overlap: boolean
+ * - tipo_de_vehiculo_terms: [{id, label, image_url}]
+ * - marca_terms:            [{id, label}]
+ * - ciudad_terms:           [{id, label}]
+ * - combustible_terms:      [{id, label}]
+ */
 #}
-<form class="c-filters {{ overlap ? 'c-filters--overlap' : '' }}" action="/buscador" method="get" role="search" aria-label="Buscador">
-	<div class="container">
-		<nav class="c-filters__tabs" role="tablist" aria-label="Vehicle type">
-			<button type="button" class="c-filters__tab c-filters__tab--active" data-value="auto" aria-pressed="true">
-				<svg width="24" height="24" viewbox="0 0 40 40" class="c-filters__icon" xmlns="http://www.w3.org/2000/svg">
-					<g fill="currentColor">
-						<path d="M4.802 19.9328L5.58726 19.4093L7.15776 20.3254L6.37251 20.8489L4.802 19.9328Z"/>
-						<path d="M3.88574 23.5973V28.3088L13.7014 34.3291V29.4867L9.25164 26.7383L8.46639 26.2148L3.88574 23.5973Z"/>
-						<path d="M13.7014 34.3291L36.3429 21.3724V15.483L35.4268 14.9595V10.7715L18.4129 20.718L16.0572 26.4766L13.7014 29.4867V34.3291Z"/>
-					</g>
-				</svg>
-				Autos
-			</button>
-			<button type="button" class="c-filters__tab" data-value="truck" aria-pressed="false">
-				<svg width="24" height="24" viewbox="0 0 33 28" class="c-filters__icon" xmlns="http://www.w3.org/2000/svg">
-					<g fill="currentColor">
-						<path d="M32.4877 10.2667L21.9397 3.79729L19.8301 3.37537L30.6593 9.84479L32.4877 10.2667Z"/>
-						<path d="M1.40649 14.4859L6.18824 11.6731L16.7362 17.7206L11.8138 20.5334L1.40649 14.4859Z"/>
-						<path d="M30.6596 9.84479L28.128 5.76624L18.7052 11.3918L16.7362 17.7206L11.8138 20.5334L10.6887 23.0649V27.1435L32.4879 14.2046V10.2667L30.6596 9.84479Z"/>
-					</g>
-				</svg>
-				Truck
-			</button>
-		</nav>
 
-		<div class="c-filters__inner">
-			<div class="c-filters__row">
-				<div class="c-filters__group">
-					<label class="c-filters__label" for="q_product">Search for Car</label>
-					<input id="q_product" name="product" class="c-filters__input" type="search" placeholder="Select your product">
-				</div>
+{# SVG genérico de fallback cuando el término no tiene imagen #}
+{% set svg_fallback %}
+<svg viewBox="0 0 40 40" class="c-filters__icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <g fill="currentColor">
+    <path d="M4.802 19.9328L5.58726 19.4093L7.15776 20.3254L6.37251 20.8489L4.802 19.9328Z"/>
+    <path d="M3.88574 23.5973V28.3088L13.7014 34.3291V29.4867L9.25164 26.7383L8.46639 26.2148L3.88574 23.5973Z"/>
+    <path d="M13.7014 34.3291L36.3429 21.3724V15.483L35.4268 14.9595V10.7715L18.4129 20.718L16.0572 26.4766L13.7014 29.4867V34.3291Z"/>
+  </g>
+</svg>
+{% endset %}
 
-				<div class="c-filters__group">
-					<label class="c-filters__label" for="q_location">Pick Location</label>
-					<input id="q_location" name="location" class="c-filters__input" type="search" placeholder="Select your Location">
-				</div>
+<form
+  class="c-filters {{ overlap ? 'c-filters--overlap' : '' }}"
+  action="/buscador"
+  method="get"
+  role="search"
+  aria-label="Buscador de subastas">
 
-				<div class="c-filters__group">
-					<label class="c-filters__label" for="q_date">Picking Date</label>
-					<input id="q_date" name="date" class="c-filters__input" type="date">
-				</div>
+  <div class="c-filters__container">
 
-				<div class="c-filters__actions">
-					<input type="hidden" id="q_tipo" name="tipo" value="auto">
-					<button type="submit" class="c-button c-button--primary">Search</button>
-				</div>
-			</div>
-		</div>
-	</div>
+    {# ── Tabs dinámicos desde tipo_de_vehiculo ───────────────────── #}
+    {% if tipo_de_vehiculo_terms is defined and tipo_de_vehiculo_terms is not empty %}
+      <nav class="c-filters__tabs" role="tablist" aria-label="Tipo de vehículo">
+        {% for term in tipo_de_vehiculo_terms %}
+          <button
+            type="button"
+            class="c-filters__tab {{ loop.first ? 'c-filters__tab--active' : '' }}"
+            data-tid="{{ term.id }}"
+            aria-pressed="{{ loop.first ? 'true' : 'false' }}">
+
+            {% if term.image_url %}
+              <img
+                src="{{ term.image_url }}"
+                alt="{{ term.label }}"
+                class="c-filters__icon c-filters__icon--img"
+                aria-hidden="true">
+            {% else %}
+              {{ svg_fallback }}
+            {% endif %}
+
+            {{ term.label }}
+          </button>
+        {% endfor %}
+      </nav>
+    {% endif %}
+
+    {# ── Panel de filtros ─────────────────────────────────────────── #}
+    <div class="c-filters__inner">
+      <div class="c-filters__row">
+
+        {# Marca #}
+        <div class="c-filters__group">
+          <label class="c-filters__label" for="f_marca">Marca</label>
+          <div class="c-filters__select-wrap">
+            <select id="f_marca" name="field_marca_target_id" class="c-filters__select">
+              <option value="">Todas las marcas</option>
+              {% for term in marca_terms %}
+                <option value="{{ term.id }}">{{ term.label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        {# Ciudad #}
+        <div class="c-filters__group">
+          <label class="c-filters__label" for="f_ciudad">Ciudad</label>
+          <div class="c-filters__select-wrap">
+            <select id="f_ciudad" name="field_ciudad_target_id" class="c-filters__select">
+              <option value="">Todas las ciudades</option>
+              {% for term in ciudad_terms %}
+                <option value="{{ term.id }}">{{ term.label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        {# Combustible #}
+        <div class="c-filters__group">
+          <label class="c-filters__label" for="f_combustible">Combustible</label>
+          <div class="c-filters__select-wrap">
+            <select id="f_combustible" name="field_combustible_target_id" class="c-filters__select">
+              <option value="">Todos</option>
+              {% for term in combustible_terms %}
+                <option value="{{ term.id }}">{{ term.label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        {# Hidden: tipo de vehículo — se setea por el tab activo #}
+        <input
+          type="hidden"
+          id="f_tipo"
+          name="field_tipo_de_vehiculo_target_id"
+          value="{{ tipo_de_vehiculo_terms[0].id ?? '' }}">
+
+        {# Submit #}
+        <div class="c-filters__actions">
+          <button type="submit" class="c-button c-button--primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            Buscar
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </form>
 
 <script>
-	(function () {
-var form = document.querySelector('.c-filters');
-if (! form) 
-return;
+(function () {
+  var form   = document.querySelector('.c-filters');
+  if (!form) return;
 
+  var tabs   = form.querySelectorAll('.c-filters__tab');
+  var hidden = form.querySelector('#f_tipo');
 
+  function setActive(btn) {
+    tabs.forEach(function (t) {
+      t.classList.remove('c-filters__tab--active');
+      t.setAttribute('aria-pressed', 'false');
+    });
+    btn.classList.add('c-filters__tab--active');
+    btn.setAttribute('aria-pressed', 'true');
+    if (hidden) hidden.value = btn.getAttribute('data-tid') || '';
+  }
 
-var tabs = form.querySelectorAll('.c-filters__tab');
-var hidden = form.querySelector('#q_tipo');
+  // Restaurar desde URL si venimos del buscador
+  try {
+    var params  = new URLSearchParams(window.location.search);
+    var tidFromUrl = params.get('field_tipo_de_vehiculo_target_id');
+    if (tidFromUrl) {
+      tabs.forEach(function (t) {
+        if (t.getAttribute('data-tid') === tidFromUrl) setActive(t);
+      });
+    }
+  } catch (e) {}
 
-function setActive(value) {
-tabs.forEach(function (btn) {
-var v = btn.getAttribute('data-value');
-var active = v === value;
-btn.classList.toggle('c-filters__tab--active', active);
-btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-});
-if (hidden) 
-hidden.value = value;
+  // Click en tab
+  tabs.forEach(function (btn) {
+    btn.addEventListener('click', function () { setActive(btn); });
+  });
 
-
-
-}
-
-// Initialize from query param if present
-try {
-var params = new URLSearchParams(window.location.search);
-var tipo = params.get('tipo') || params.get('type') || null;
-if (tipo) 
-setActive(tipo);
-
-
-
-} catch (e) { /* ignore */
-}
-
-// Click handlers
-tabs.forEach(function (btn) {
-btn.addEventListener('click', function () {
-var val = btn.getAttribute('data-value');
-setActive(val);
-});
-});
+  // No enviar params vacíos en la URL
+  form.addEventListener('submit', function () {
+    form.querySelectorAll('select, input[type="hidden"]').forEach(function (el) {
+      if (!el.value) el.disabled = true;
+    });
+  });
 })();
 </script>

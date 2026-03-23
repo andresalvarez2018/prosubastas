@@ -13,6 +13,8 @@
     "/components/banner/banner.css.map": "/components/banner/banner.css.map",
     "/build/css/main.style.css": "/build/css/main.style.css",
     "/build/css/main.style.css.map": "/build/css/main.style.css.map",
+    "/components/search/search.css": "/components/search/search.css",
+    "/components/search/search.css.map": "/components/search/search.css.map",
     "/components/page-content/page-content.css": "/components/page-content/page-content.css",
     "/components/list-card-publication/list-card-publication.css": "/components/list-card-publication/list-card-publication.css",
     "/components/list-card-publication/list-card-publication.css.map": "/components/list-card-publication/list-card-publication.css.map",

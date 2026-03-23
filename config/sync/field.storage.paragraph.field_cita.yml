@@ -1,0 +1,19 @@
+uuid: dd9a9046-7613-4d10-b6a5-b3399058dcf8
+langcode: es
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_cita
+field_name: field_cita
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

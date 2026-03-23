@@ -1,0 +1,11 @@
+uuid: ca26e3f3-0994-4e0f-a0f6-3fb80e3189ee
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_list_comments
+id: block_content.card_list_comments
+target_entity_type_id: block_content
+target_bundle: card_list_comments
+default_langcode: site_default
+language_alterable: false

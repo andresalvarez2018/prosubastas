@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * block--block-content--type--card-link.html.twig
+ */
+#}
+
+{{ title_prefix }}
+{{ title_suffix }}
+
+{% set card_items = [] %}
+
+{% for key, item in content.field_card_link %}
+	{% if key is not same as('#theme')
+    and key is not same as('#title')
+    and key is not same as('#label_display')
+    and key is not same as('#view_mode')
+    and key is not same as('#language')
+    and key is not same as('#field_name')
+    and key is not same as('#field_type')
+    and key is not same as('#field_translatable')
+    and key is not same as('#entity_type')
+    and key is not same as('#bundle')
+    and key is not same as('#object')
+    and key is not same as('#items')
+    and key is not same as('#formatter')
+    and key is not same as('#is_multiple')
+    and key is not same as('#third_party_settings')
+    and key is not same as('#cache')
+    and key is not same as('#weight')
+    and item['#paragraph'] is defined %}
+
+		{% set paragraph = item['#paragraph'] %}
+		{% set title     = paragraph.field_tittle.value %}
+		{% set link      = paragraph.field_link.0.url %}
+		{% set link_text = paragraph.field_link.0.title ?: 'Ver catálogo' %}
+		{% set image_uri = paragraph.field_image.entity.field_media_image.entity.uri.value %}
+		{% set image_url = image_uri ? file_url(image_uri) : null %}
+
+		{% set card_items = card_items|merge([{
+      image:     image_url,
+      title:     title,
+      link:      link,
+      link_text: link_text,
+    }]) %}
+
+	{% endif %}
+{% endfor %}
+
+<div class="container">
+	{% include 'prosubastas:list-card-link' with {
+    items: card_items
+  } only %}
+</div>
+

@@ -1,0 +1,10 @@
+uuid: 13284351-a887-4cc5-840b-4923b9363720
+langcode: es
+status: true
+dependencies: {  }
+id: card_comment
+label: 'Card comment'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * block--block-content--type--card-list-comments.html.twig
+ * Ubicación: templates/block/block--block-content--type--card-list-comments.html.twig
+ */
+#}
+
+{{ title_prefix }}
+{{ title_suffix }}
+
+{% set comment_items = [] %}
+
+{% for key, item in content.field_card_comment %}
+	{% if item['#paragraph'] is defined %}
+
+		{% set paragraph = item['#paragraph'] %}
+
+		{% set quote       = paragraph.field_cita.value %}
+		{% set author_name = paragraph.field_tittle.value %}
+		{% set author_company = paragraph.field_producto.value %}
+
+		{% set image_uri = paragraph.field_image.entity.field_media_image.entity.uri.value %}
+		{% set avatar    = image_uri ? file_url(image_uri) : null %}
+
+		{% set comment_items = comment_items|merge([{
+      avatar:          avatar,
+      quote:           quote,
+      author_name:     author_name,
+      author_company:  author_company,
+    }]) %}
+
+	{% endif %}
+{% endfor %}
+
+<div class="container">
+	{% include 'prosubastas:list-card-comment' with {
+    title:       block_content.field_tittle.value ?? '',
+    description: block_content.field_description.value ?? '',
+    items:       comment_items,
+  } only %}
+</div>
