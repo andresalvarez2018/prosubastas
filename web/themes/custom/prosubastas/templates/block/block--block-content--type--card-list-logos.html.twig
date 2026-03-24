@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * block--block-content--type--card-list-logos.html.twig
+ * Ubicación: templates/block/block--block-content--type--card-list-logos.html.twig
+ */
+#}
+
+{{ title_prefix }}
+{{ title_suffix }}
+
+{% set logo_items = [] %}
+
+{% for key, item in content.field_logos %}
+	{% if item['#media'] is defined %}
+
+		{% set media    = item['#media'] %}
+		{% set image_uri = media.field_media_image.entity.uri.value %}
+		{% set image_url = image_uri ? file_url(image_uri) : null %}
+		{% set alt       = media.field_media_image.alt ?: media.name.value %}
+
+		{% set logo_items = logo_items|merge([{
+      image: image_url,
+      alt:   alt,
+    }]) %}
+
+	{% endif %}
+{% endfor %}
+
+{% include 'prosubastas:list-card-icons' with {
+  items: logo_items
+} only %}

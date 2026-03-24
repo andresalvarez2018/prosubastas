@@ -1,0 +1,23 @@
+uuid: 24cde84a-9139-4328-b4cc-7fe43960f8d6
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_list_logos
+    - field.field.block_content.card_list_logos.field_logos
+id: block_content.card_list_logos.default
+targetEntityType: block_content
+bundle: card_list_logos
+mode: default
+content:
+  field_logos:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

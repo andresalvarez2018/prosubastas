@@ -1,0 +1,134 @@
+{#
+/**
+ * @file
+ * views-view-fields--buscador--page-1.html.twig
+ *
+ * Renderiza cada card de subasta individualmente.
+ * Ubicación: templates/views/views-view-fields--buscador--page-1.html.twig
+ *
+ * Clases CSS de Drupal disponibles por campo:
+ * .views-field-title
+ * .views-field-field-galeria
+ * .views-field-field-marca
+ * .views-field-field-modelo
+ * .views-field-field-kilometraje
+ * .views-field-field-combustible
+ * .views-field-field-ciudad
+ * .views-field-price-starting
+ * .views-field-price-buy-now
+ * .views-field-workflow
+ */
+#}
+
+{# Link al nodo — lo sacamos del campo title que ya trae el <a> #}
+{% set node_url = fields.title.wrapper_attributes is defined ? '#' : '#' %}
+
+<article class="c-search-card">
+
+  {# ── Imagen ─────────────────────────────────────────────────────── #}
+  <div class="c-search-card__image-wrap">
+    {{ fields.field_galeria.content }}
+
+    {# Badge En vivo si workflow = Activo #}
+    {% set estado = fields.workflow.content|render|striptags|trim|lower %}
+    {% if estado == 'activo' or estado == 'active' %}
+      <span class="c-search-card__badge">
+        <span class="c-search-card__badge-dot"></span>En vivo
+      </span>
+    {% endif %}
+  </div>
+
+  {# ── Body ───────────────────────────────────────────────────────── #}
+  <div class="c-search-card__body">
+
+    {# Chips: combustible + ciudad #}
+    <div class="c-search-card__meta">
+      {% if fields.field_combustible.content is not empty %}
+        <span class="c-search-card__chip">
+          {{ fields.field_combustible.content|render|striptags|trim }}
+        </span>
+      {% endif %}
+      {% if fields.field_ciudad.content is not empty %}
+        <span class="c-search-card__chip c-search-card__chip--location">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          {{ fields.field_ciudad.content|render|striptags|trim }}
+        </span>
+      {% endif %}
+    </div>
+
+    {# Título con link (el campo ya incluye el <a>) #}
+    <h2 class="c-search-card__title">
+      {{ fields.title.content }}
+    </h2>
+
+    {# Specs: marca / modelo / km #}
+    <ul class="c-search-card__specs">
+      {% if fields.field_marca.content is not empty %}
+        <li>
+          <span class="c-search-card__spec-label">Marca</span>
+          <span class="c-search-card__spec-value">
+            {{ fields.field_marca.content|render|striptags|trim }}
+          </span>
+        </li>
+      {% endif %}
+      {% if fields.field_modelo.content is not empty %}
+        <li>
+          <span class="c-search-card__spec-label">Modelo</span>
+          <span class="c-search-card__spec-value">
+            {{ fields.field_modelo.content|render|striptags|trim }}
+          </span>
+        </li>
+      {% endif %}
+      {% if fields.field_kilometraje.content is not empty %}
+        <li>
+          <span class="c-search-card__spec-label">Km</span>
+          <span class="c-search-card__spec-value">
+            {{ fields.field_kilometraje.content|render|striptags|trim }}
+          </span>
+        </li>
+      {% endif %}
+    </ul>
+
+    {# Precios + CTA #}
+    <div class="c-search-card__footer">
+      <div class="c-search-card__prices">
+        {% if fields.price_starting.content is not empty %}
+          <div class="c-search-card__price-block">
+            <span class="c-search-card__price-label">Base</span>
+            <span class="c-search-card__price-value c-search-card__price-value--base">
+              {{ fields.price_starting.content|render|striptags|trim }}
+            </span>
+          </div>
+        {% endif %}
+        {% set precio_actual = fields.price_buy_now.content|render|striptags|trim %}
+        {% if precio_actual is not empty and precio_actual != '0' %}
+          <div class="c-search-card__price-block">
+            <span class="c-search-card__price-label">Puja actual</span>
+            <span class="c-search-card__price-value c-search-card__price-value--current">
+              {{ precio_actual }}
+            </span>
+          </div>
+        {% endif %}
+      </div>
+
+      {# CTA — reutilizamos el link del título #}
+      <a href="{{ fields.title.content|render|striptags|trim }}"
+         class="c-search-card__cta"
+         onclick="window.location=this.closest('article').querySelector('.c-search-card__title a').href; return false;">
+        Ver subasta
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</article>

@@ -1,0 +1,21 @@
+uuid: d87d0f63-3009-402a-b602-91870686736d
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_principal
+    - field.storage.block_content.field_filtro_anexo
+id: block_content.banner_principal.field_filtro_anexo
+field_name: field_filtro_anexo
+entity_type: block_content
+bundle: banner_principal
+label: 'Filtro anexo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Activado
+  off_label: Desactivado
+field_type: boolean

@@ -1,0 +1,8 @@
+uuid: e78e9568-aad1-4301-a00f-f89115ea57c7
+langcode: es
+status: true
+dependencies: {  }
+id: card_list_comments
+label: 'Card list Comments'
+revision: false
+description: null

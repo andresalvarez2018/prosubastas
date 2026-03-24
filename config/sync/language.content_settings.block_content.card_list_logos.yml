@@ -1,0 +1,11 @@
+uuid: 8e7cd540-5c77-4b42-b193-f7806f9750e9
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_list_logos
+id: block_content.card_list_logos
+target_entity_type_id: block_content
+target_bundle: card_list_logos
+default_langcode: site_default
+language_alterable: false

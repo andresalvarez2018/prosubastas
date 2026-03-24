@@ -1,0 +1,19 @@
+uuid: 0726afd0-5e8d-449c-a8ae-0244245ad273
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cita
+    - paragraphs.paragraphs_type.card_comment
+id: paragraph.card_comment.field_cita
+field_name: field_cita
+entity_type: paragraph
+bundle: card_comment
+label: Cita
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

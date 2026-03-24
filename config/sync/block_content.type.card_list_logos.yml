@@ -1,0 +1,8 @@
+uuid: 93f115b4-572c-4d23-bb6a-e7c237e01947
+langcode: es
+status: true
+dependencies: {  }
+id: card_list_logos
+label: 'Card list Logos'
+revision: false
+description: null

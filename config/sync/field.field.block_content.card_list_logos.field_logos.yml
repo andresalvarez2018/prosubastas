@@ -1,0 +1,29 @@
+uuid: f0615223-f66f-4fb5-b8e7-41af09e8c3ce
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_list_logos
+    - field.storage.block_content.field_logos
+    - media.type.image
+id: block_content.card_list_logos.field_logos
+field_name: field_logos
+entity_type: block_content
+bundle: card_list_logos
+label: Logos
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

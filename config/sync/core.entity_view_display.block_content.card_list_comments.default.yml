@@ -1,0 +1,25 @@
+uuid: 60316996-43f1-421e-b244-d177e64ccc24
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.card_list_comments
+    - field.field.block_content.card_list_comments.field_card_comment
+  module:
+    - entity_reference_revisions
+id: block_content.card_list_comments.default
+targetEntityType: block_content
+bundle: card_list_comments
+mode: default
+content:
+  field_card_comment:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,47 @@
+uuid: cb31bb3f-9982-4819-98ff-118b9a4267a3
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card_comment.field_cita
+    - field.field.paragraph.card_comment.field_image
+    - field.field.paragraph.card_comment.field_producto
+    - field.field.paragraph.card_comment.field_tittle
+    - paragraphs.paragraphs_type.card_comment
+id: paragraph.card_comment.default
+targetEntityType: paragraph
+bundle: card_comment
+mode: default
+content:
+  field_cita:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_producto:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_tittle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }
