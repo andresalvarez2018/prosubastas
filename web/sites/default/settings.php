@@ -288,7 +288,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'c5fb53ba1108352fc322813212f5979445992e1dadb4168e66a45806b4717830';
 
 /**
  * Deployment identifier.
@@ -764,7 +764,10 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
  *
  * @see https://www.drupal.org/docs/installing-drupal/trusted-host-settings
  */
-# $settings['trusted_host_patterns'] = [];
+$settings['trusted_host_patterns'] = [
+  '^prosubastas\.ec$',
+  '^www\.prosubastas\.ec$',
+];
 
 /**
  * The default list of directories that will be ignored by Drupal's file API.
@@ -892,3 +895,4 @@ if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev
 
 $settings['config_sync_directory'] = '../config/sync';
 $config['system.logging']['error_level'] = 'verbose';
+$base_url = 'https://prosubastas.ec';
