@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * views-view-unformatted--ultimas-publicaciones--block-1.html.twig
+ *
+ * Los items vienen preparados desde hook_preprocess_views_view_unformatted()
+ * en prosubastas.theme como variable 'pub_items'.
+ */
+#}
+
+{% include 'prosubastas:list-card-publication' with {
+  title:       'Últimas Publicaciones',
+  description: 'Vehículos recién ingresados a subasta. Puja ahora y consigue el mejor precio.',
+  items:       pub_items ?? [],
+} only %}
+

@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * views-view-fields--ultimas-publicaciones--block-1.html.twig
+ * Ubicación: templates/views/views-view-fields--ultimas-publicaciones--block-1.html.twig
+ *
+ * Se ejecuta una vez por fila — renderiza cada card individualmente.
+ *
+ * Campos:
+ * - fields.title             → título del vehículo con link
+ * - fields.field_galeria     → galería (media entity)
+ * - fields.field_descripcion → descripción truncada
+ * - fields.nid               → nid del nodo subasta para el link
+ *
+ * NOTA: field_galeria está como entity_reference_label en la vista.
+ * Para mostrar la imagen real cambia el formatter a "Entity view" → Default.
+ * Con el formatter actual solo se muestra el label con link.
+ */
+#}
+
+{% set nid  = fields.nid.content|render|striptags|trim %}
+{% set link = '/node/' ~ nid %}
+
+<div class="c-pub-card">
+
+  {# Imagen #}
+  <a href="{{ link }}" class="c-pub-card__image-wrap" tabindex="-1" aria-hidden="true">
+    {{ fields.field_galeria.content }}
+  </a>
+
+  {# Body #}
+  <div class="c-pub-card__body">
+    <h3 class="c-pub-card__title">
+      {{ fields.title.content }}
+    </h3>
+    {% if fields.field_descripcion.content is not empty %}
+      <p class="c-pub-card__description">
+        {{ fields.field_descripcion.content|render|striptags|trim }}
+      </p>
+    {% endif %}
+    <a href="{{ link }}" class="c-pub-card__link">Ver subasta →</a>
+  </div>
+
+</div>

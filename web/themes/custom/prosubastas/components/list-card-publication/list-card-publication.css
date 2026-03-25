@@ -211,8 +211,8 @@
 }
 .c-list-card-publication__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
 }
 
 @media (max-width: 1024px) {

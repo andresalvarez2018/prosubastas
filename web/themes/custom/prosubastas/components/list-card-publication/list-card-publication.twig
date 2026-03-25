@@ -28,13 +28,19 @@
 
 		<div class="c-list-card-publication__grid">
 			{% for item in items %}
-				{% include 'prosubastas:card-publication' with {
-          image: item.image,
-          title: item.title,
-          description: item.description,
-          link: item.link,
-          link_text: item.link_text|default('Detalles')
-        } only %}
+				   {% include 'prosubastas:card-publication' with {
+					   image: item.image,
+					   title: item.title,
+					   description: item.description,
+					   link: item.link,
+					   link_text: item.link_text|default('Detalles'),
+					   auction_end: item.auction_end,
+					   current_bid: item.current_bid,
+					   current_user: item.current_user,
+					   combustible: item.combustible,
+					   ciudad: item.ciudad,
+					   kilometraje: item.kilometraje
+				   } only %}
 			{% endfor %}
 		</div>
 	</div>

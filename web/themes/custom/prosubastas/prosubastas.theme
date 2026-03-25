@@ -2,14 +2,8 @@
 
 /**
  * @file
- * Theme functions.
+ * Fragmento para agregar en prosubastas.theme.
  */
-
-// Include all files from the includes directory.
-$includes_path = __DIR__ . '/includes/*.theme';
-foreach (glob($includes_path) as $file) {
-  require_once __DIR__ . '/includes/' . basename($file);
-}
 
 /**
  * Implements hook_preprocess_block().
@@ -91,4 +85,219 @@ function prosubastas_preprocess_block(&$variables) {
   }
 
   $variables['tipo_de_vehiculo_terms'] = $tipo_options;
+}
+
+/**
+ * Implements hook_preprocess_block__block_content__card_link().
+ *
+ * Extrae los paragraphs de field_card_link y los pasa como array
+ * al componente list-card-link.
+ *
+ * Agrega este hook al archivo prosubastas.theme existente.
+ */
+function prosubastas_preprocess_block__block_content__card_link(&$variables) {
+  if (!isset($variables['elements']['content']['#block_content'])) {
+    return;
+  }
+
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['elements']['content']['#block_content'];
+
+  if ($block->bundle() !== 'card_link') {
+    return;
+  }
+
+  if (!$block->hasField('field_card_link') || $block->get('field_card_link')->isEmpty()) {
+    return;
+  }
+
+  $card_items = [];
+
+  foreach ($block->get('field_card_link') as $item) {
+    /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $paragraph = $item->entity;
+    if (!$paragraph) {
+      continue;
+    }
+
+    // ── Título ───────────────────────────────────────────────────
+    $title = '';
+    if ($paragraph->hasField('field_tittle') && !$paragraph->get('field_tittle')->isEmpty()) {
+      $title = $paragraph->get('field_tittle')->value;
+    }
+
+    // ── Link ─────────────────────────────────────────────────────
+    $link      = '#';
+    $link_text = 'Ver catálogo';
+    if ($paragraph->hasField('field_link') && !$paragraph->get('field_link')->isEmpty()) {
+      $link_field = $paragraph->get('field_link')->first();
+      $link       = $link_field->getUrl()->toString();
+      $link_text  = $link_field->title ?: 'Ver catálogo';
+    }
+
+    // ── Imagen desde media ────────────────────────────────────────
+    $image_url = NULL;
+    if ($paragraph->hasField('field_image') && !$paragraph->get('field_image')->isEmpty()) {
+      /** @var \Drupal\media\Entity\Media $media */
+      $media = $paragraph->get('field_image')->entity;
+      if ($media) {
+        $fid = $media->getSource()->getSourceFieldValue($media);
+        if ($fid) {
+          /** @var \Drupal\file\Entity\File $file */
+          $file = \Drupal::entityTypeManager()->getStorage('file')->load($fid);
+          if ($file) {
+            $image_url = \Drupal::service('file_url_generator')
+              ->generateAbsoluteString($file->getFileUri());
+          }
+        }
+      }
+    }
+
+    $card_items[] = [
+      'image'     => $image_url,
+      'title'     => $title,
+      'link'      => $link,
+      'link_text' => $link_text,
+    ];
+  }
+
+  $variables['card_items'] = $card_items;
+}
+
+/**
+ * Implements hook_preprocess_views_view_unformatted().
+ *
+ * Prepara el array pub_items para la vista ultimas_publicaciones.
+ */
+function prosubastas_preprocess_views_view_unformatted(&$variables) {
+  $view = $variables['view'];
+
+  if ($view->id() !== 'ultimas_publicaciones') {
+    return;
+  }
+
+  $pub_items = [];
+
+  foreach ($view->result as $row) {
+    /** @var \Drupal\node\Entity\Node $subasta */
+    $subasta = $row->_entity;
+
+    // Nodo de vehículo via relación field_vehiculo.
+    $vehiculo = NULL;
+    if ($subasta->hasField('field_vehiculo') && !$subasta->get('field_vehiculo')->isEmpty()) {
+      $vehiculo = $subasta->get('field_vehiculo')->entity;
+    }
+    if (!$vehiculo) {
+      continue;
+    }
+
+    $title = $vehiculo->label();
+    $link = $subasta->toUrl()->toString();
+    $description = '';
+    if ($vehiculo->hasField('field_descripcion') && !$vehiculo->get('field_descripcion')->isEmpty()) {
+      $description = text_summary($vehiculo->get('field_descripcion')->value, NULL, 200);
+    }
+    $image_url = NULL;
+    if ($vehiculo->hasField('field_galeria') && !$vehiculo->get('field_galeria')->isEmpty()) {
+      /** @var \Drupal\media\Entity\Media $media */
+      $media = $vehiculo->get('field_galeria')->entity;
+      if ($media) {
+        $fid = $media->getSource()->getSourceFieldValue($media);
+        if ($fid) {
+          $file = \Drupal::entityTypeManager()->getStorage('file')->load($fid);
+          if ($file) {
+            $image_url = \Drupal::service('file_url_generator')
+              ->generateAbsoluteString($file->getFileUri());
+          }
+        }
+      }
+    }
+
+    $auction_item = NULL;
+    if ($subasta->hasField('field_auction_item') && !$subasta->get('field_auction_item')->isEmpty()) {
+      $auction_item = $subasta->get('field_auction_item')->entity;
+    }
+
+    $auction_end = NULL;
+    if ($auction_item && method_exists($auction_item, 'getDate')) {
+      $date = $auction_item->getDate();
+      if (!empty($date['end'])) {
+        $auction_end = $date['end'];
+      }
+    }
+
+    $current_bid = NULL;
+    $current_user = NULL;
+    if ($auction_item && method_exists($auction_item, 'seekCurrentHightest')) {
+      $highest = $auction_item->seekCurrentHightest();
+      $current_bid = $highest['minPrice'];
+      if (!empty($highest['leadBid']) && method_exists($highest['leadBid'], 'getOwner')) {
+        $user = $highest['leadBid']->getOwner();
+        if ($user) {
+          $current_user = $user->getDisplayName();
+        }
+      }
+    }
+
+    $combustible = '';
+    if ($vehiculo->hasField('field_combustible') && !$vehiculo->get('field_combustible')->isEmpty()) {
+      $combustible_field = $vehiculo->get('field_combustible');
+      if ($combustible_field->entity) {
+        $combustible = $combustible_field->entity->label();
+      }
+      else {
+        $combustible = $combustible_field->value;
+      }
+    }
+
+    $ciudad = '';
+    if ($vehiculo->hasField('field_ciudad') && !$vehiculo->get('field_ciudad')->isEmpty()) {
+      $ciudad_field = $vehiculo->get('field_ciudad');
+      if ($ciudad_field->entity) {
+        $ciudad = $ciudad_field->entity->label();
+      }
+      else {
+        $ciudad = $ciudad_field->value;
+      }
+    }
+
+    $kilometraje = '';
+    if ($vehiculo->hasField('field_kilometraje') && !$vehiculo->get('field_kilometraje')->isEmpty()) {
+      $km = $vehiculo->get('field_kilometraje')->value;
+      if (is_numeric($km)) {
+        $kilometraje = number_format($km, 0, '.', '.') . ' km';
+      }
+      elseif (!empty($km)) {
+        $kilometraje = $km;
+      }
+    }
+
+    $current_user_masked = NULL;
+    if ($current_user) {
+      $len = strlen($current_user);
+      if ($len > 4) {
+        $current_user_masked = substr($current_user, 0, 1)
+        . str_repeat('*', $len - 3)
+        . substr($current_user, -2);
+      }
+      else {
+        $current_user_masked = $current_user;
+      }
+    }
+
+    $pub_items[] = [
+      'image'       => $image_url,
+      'title'       => $title,
+      'description' => $description,
+      'link'        => $link,
+      'auction_end' => $auction_end,
+      'current_bid' => $current_bid,
+      'current_user' => $current_user_masked,
+      'combustible' => $combustible,
+      'kilometraje' => $kilometraje ?? '',
+      'ciudad'      => $ciudad,
+    ];
+  }
+
+  $variables['pub_items'] = $pub_items;
 }

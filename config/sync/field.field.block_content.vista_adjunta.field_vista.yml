@@ -1,0 +1,23 @@
+uuid: 327a42f9-a64b-4bc5-8448-8ad470159605
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.vista_adjunta
+    - field.storage.block_content.field_vista
+id: block_content.vista_adjunta.field_vista
+field_name: field_vista
+entity_type: block_content
+bundle: vista_adjunta
+label: Vista
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

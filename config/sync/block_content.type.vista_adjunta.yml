@@ -1,0 +1,8 @@
+uuid: 7ff2dc56-929f-42b2-a854-dc43c267a22e
+langcode: es
+status: true
+dependencies: {  }
+id: vista_adjunta
+label: 'Vista adjunta'
+revision: false
+description: null

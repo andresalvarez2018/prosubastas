@@ -18,16 +18,23 @@ dependencies:
     - taxonomy.vocabulary.marca
     - taxonomy.vocabulary.tipo_de_vehiculo
   content:
-    - 'taxonomy_term:ciudad:a1dfe00b-a79c-4091-9c81-bdb0ddbca38f'
-    - 'taxonomy_term:ciudad:dc7908a5-fd2e-4323-91e5-4688500a5df2'
-    - 'taxonomy_term:combustible:47b52a97-8dc6-4a4e-a22d-f3cff15b134e'
-    - 'taxonomy_term:combustible:77ef1ed4-7d75-482d-bc92-fbd444a983ac'
-    - 'taxonomy_term:combustible:beffd932-bdd7-4064-8047-8727324e5177'
-    - 'taxonomy_term:combustible:d3bc27e8-f60a-43d9-8aa0-84520aeaf404'
-    - 'taxonomy_term:marca:ab026fcb-6f59-43a0-a6be-74c48063c243'
-    - 'taxonomy_term:marca:baf5ba34-a83c-4a4c-869b-00fe07090b45'
-    - 'taxonomy_term:marca:d0f0b1aa-6161-4e8e-8777-88198f5edaaf'
-    - 'taxonomy_term:marca:f75b3b59-e4aa-4683-a42c-51627c18be46'
+    - 'taxonomy_term:ciudad:0fc46868-fd0a-4d22-bb2f-9308ca11d232'
+    - 'taxonomy_term:ciudad:3b5d5ac1-dc0d-4cd1-9ea1-2f39503e698f'
+    - 'taxonomy_term:ciudad:7c67e22b-5e61-4ec9-b296-e94c6c60d13b'
+    - 'taxonomy_term:ciudad:bd7823ca-edb7-44a3-8820-248c92279ee3'
+    - 'taxonomy_term:ciudad:cffba646-8504-41e7-bb98-6e793eb76f42'
+    - 'taxonomy_term:ciudad:fe60a9b1-d0a8-4885-a48e-06bdae164839'
+    - 'taxonomy_term:combustible:37d5a3af-2a3e-4324-aba0-2c8bdb37ac38'
+    - 'taxonomy_term:combustible:5ff82bb9-7208-47af-bf09-3a73b6756e16'
+    - 'taxonomy_term:combustible:674122d7-0d57-4cbc-ab86-d5a1580bd468'
+    - 'taxonomy_term:combustible:f0c21b37-1cc4-495f-8c41-8aa614af61de'
+    - 'taxonomy_term:marca:1ea85b35-0d88-4d6d-8231-00109c4d0cd4'
+    - 'taxonomy_term:marca:38708153-d756-4a20-a76f-7e613e1f6c24'
+    - 'taxonomy_term:marca:4e663c6f-6085-452a-9b7d-e46dc6f1bf07'
+    - 'taxonomy_term:marca:77709978-1e04-4deb-b754-825f6d31e46e'
+    - 'taxonomy_term:marca:c0cecf49-90ed-47b8-91c9-7f14ee3a51ae'
+    - 'taxonomy_term:marca:ec19677c-7af0-4c5a-ab2a-bff7c38d01f3'
+    - 'taxonomy_term:tipo_de_vehiculo:159bf5c8-1cc3-4115-9249-c54683f31263'
     - 'taxonomy_term:tipo_de_vehiculo:2f216587-d69c-4d7e-b1fd-3ede333c4a7f'
     - 'taxonomy_term:tipo_de_vehiculo:58ae53c4-54d3-467e-a68c-864394e34f8f'
     - 'taxonomy_term:tipo_de_vehiculo:a2dfa843-b846-4b40-9705-07d2ee203937'
@@ -1188,8 +1195,12 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            16: 16
-            15: 15
+            37: 37
+            35: 35
+            36: 36
+            39: 39
+            38: 38
+            34: 34
           group: 1
           exposed: true
           expose:
@@ -1235,10 +1246,12 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            24: 24
-            23: 23
-            25: 25
-            26: 26
+            54: 54
+            44: 44
+            46: 46
+            45: 45
+            47: 47
+            48: 48
           group: 1
           exposed: true
           expose:
@@ -1286,6 +1299,7 @@ display:
           value:
             31: 31
             32: 32
+            49: 49
             33: 33
           group: 1
           exposed: true
@@ -1332,10 +1346,10 @@ display:
           plugin_id: taxonomy_index_tid
           operator: or
           value:
-            18: 18
-            20: 20
-            17: 17
-            19: 19
+            41: 41
+            42: 42
+            40: 40
+            43: 43
           group: 1
           exposed: true
           expose:

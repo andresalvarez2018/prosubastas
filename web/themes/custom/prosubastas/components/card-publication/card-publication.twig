@@ -13,26 +13,60 @@
 #}
 
 <article class="c-card-publication">
-	<div class="c-card-publication__image">
-		{% if image is iterable %}
-			{{ image }}
-		{% else %}
-			<img src="{{ image }}" alt="{{ title }}"/>
-		{% endif %}
-	</div>
-	<div class="c-card-publication__body">
-		<h3 class="c-card-publication__title">{{ title }}</h3>
-		{% if description %}
-			<p class="c-card-publication__description">{{ description }}</p>
-		{% endif %}
-		{% if link %}
-			<a href="{{ link }}" class="c-card-publication__link">
-				<span>{{ link_text|default('Detalles') }}</span>
-				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-					<line x1="5" y1="12" x2="19" y2="12"/>
-					<polyline points="12 5 19 12 12 19"/>
-				</svg>
-			</a>
-		{% endif %}
-	</div>
+   <div class="c-card-publication__image">
+	   {% if image is iterable %}
+		   {{ image }}
+	   {% else %}
+		   <img src="{{ image }}" alt="{{ title }}"/>
+	   {% endif %}
+   </div>
+   <div class="c-card-publication__body">
+	   <div class="c-card-publication__meta-row">
+		   <div class="c-card-publication__meta c-card-publication__meta--left">
+			   {% if ciudad %}
+				   <span class="c-card-publication__chip">
+					   <svg width="14" height="14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2C7 2 4 6 4 10c0 5.25 8 12 8 12s8-6.75 8-12c0-4-3-8-8-8z"/></svg>
+					   {{ ciudad }}</span>
+			   {% endif %}
+			   {% if combustible %}
+				   <span class="c-card-publication__chip"> {{ combustible }}</span>
+			   {% endif %}
+		   </div>
+	   </div>
+	   {% if auction_end %}
+		   <div class="c-card-publication__dateblock">
+			   <span class="c-card-publication__date-label">Finaliza en</span>
+			   <div class="c-card-publication__date c-card-publication__date--left">
+				   <svg width="14" height="14" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+				   <span>{{ auction_end|date('d/m/Y H:i') }}</span>
+			   </div>
+		   </div>
+	   {% endif %}
+	   <h3 class="c-card-publication__title">{{ title }}</h3>
+	   <div class="c-card-publication__quickinfo c-card-publication__quickinfo--between">
+		   <div class="c-card-publication__quickinfo-item">
+			   <span class="c-card-publication__spec-label">KM</span>
+			   <span class="c-card-publication__spec-value">{{ kilometraje ? kilometraje : '-' }}</span>
+		   </div>
+		   {% if current_user %}
+			   <div class="c-card-publication__quickinfo-item">
+				   <span class="c-card-publication__spec-label">Mayor Oferta</span>
+				   <span class="c-card-publication__spec-value">{{ current_user }}</span>
+			   </div>
+		   {% endif %}
+	   </div>
+   </div>
+	   <div class="c-card-publication__footer">
+		   <div class="c-card-publication__footer-row c-card-publication__footer-row--between">
+			   <div class="c-card-publication__footer-valueblock">
+				   <span class="c-card-publication__price-label">Valor</span>
+				   {% if current_bid is not null %}
+					   <span class="c-card-publication__price-value c-card-publication__price-value--current">${{ current_bid|number_format(0, '.', ',') }}</span>
+				   {% endif %}
+			   </div>
+			   {% if link %}
+				   <a href="{{ link }}" class="c-card-publication__cta">Ver subasta →</a>
+			   {% endif %}
+		   </div>
+	   </div>
 </article>
