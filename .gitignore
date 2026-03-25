@@ -3,18 +3,11 @@
 #
 # We allow settings.php to be committed since Acquia's filesystem is read-only
 # @see https://www.drupal.org/project/drupal/issues/3257119
-/web/core
-/vendor/
+
 /web/sites/*/settings.*.php
 /web/sites/*/files
 /web/sites/*/private
 /web/sites/simpletest
-
-# Directories specific to this template
-/web/libraries
-/web/modules/contrib
-/web/profiles/contrib
-/web/themes/contrib
 
 
 # Files and directories for common development environments, loosely inherited from BLT Project
