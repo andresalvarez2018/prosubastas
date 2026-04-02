@@ -19,7 +19,8 @@
 #}
 
 {% set nid  = fields.nid.content|render|striptags|trim %}
-{% set link = '/node/' ~ nid %}
+{% set row_nid = row._entity is defined and row._entity.nid is defined ? row._entity.nid.value : '' %}
+{% set link = row_nid ? '/node/' ~ row_nid : '/node/' ~ nid %}
 
 <div class="c-pub-card">
 
@@ -31,7 +32,9 @@
   {# Body #}
   <div class="c-pub-card__body">
     <h3 class="c-pub-card__title">
-      {{ fields.title.content }}
+      <a href="{{ link }}">
+        {{ fields.title.content|render|striptags|trim }}
+      </a>
     </h3>
     {% if fields.field_descripcion.content is not empty %}
       <p class="c-pub-card__description">

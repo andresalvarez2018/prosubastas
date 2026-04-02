@@ -20,8 +20,11 @@
  */
 #}
 
-{# Link al nodo — lo sacamos del campo title que ya trae el <a> #}
-{% set node_url = fields.title.wrapper_attributes is defined ? '#' : '#' %}
+{# Link al nodo de subasta sin llamar metodos (Twig sandbox en Views). #}
+{% set subasta_nid = fields.nid is defined
+  ? fields.nid.content|render|striptags|trim
+  : (row._entity is defined and row._entity.nid is defined ? row._entity.nid.value : '') %}
+{% set subasta_url = subasta_nid ? '/node/' ~ subasta_nid : '#' %}
 
 <article class="c-search-card">
 
@@ -67,9 +70,11 @@
       {% endif %}
     </div>
 
-    {# Título con link (el campo ya incluye el <a>) #}
+    {# Título enlazado al nodo de subasta (no al vehiculo relacionado). #}
     <h2 class="c-search-card__title">
-      {{ fields.title.content }}
+      <a href="{{ subasta_url }}">
+        {{ fields.title.content|render|striptags|trim }}
+      </a>
     </h2>
 
     {# Specs: marca / modelo / km #}
@@ -122,10 +127,8 @@
         {% endif %}
       </div>
 
-      {# CTA — reutilizamos el link del título #}
-      <a href="{{ fields.title.content|render|striptags|trim }}"
-         class="c-search-card__cta"
-         onclick="window.location=this.closest('article').querySelector('.c-search-card__title a').href; return false;">
+      {# CTA hacia el nodo de subasta. #}
+      <a href="{{ subasta_url }}" class="c-search-card__cta">
         Ver subasta
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
              fill="none" stroke="currentColor" stroke-width="2.5"
