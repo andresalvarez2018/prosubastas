@@ -253,10 +253,13 @@
 }
 .c-vehiculo-full__image {
   width: 100%;
+  max-width: 660px;
+  height: 440px;
+  margin: 0 auto;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
   background: #E5E5EA;
-  aspect-ratio: 16/10;
+  position: relative;
 }
 .c-vehiculo-full__image img {
   width: 100%;
@@ -264,6 +267,61 @@
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
+}
+.c-vehiculo-full__image .carousel,
+.c-vehiculo-full__image .carousel-inner,
+.c-vehiculo-full__image .carousel-item {
+  height: 100%;
+  width: 100%;
+}
+.c-vehiculo-full__image .carousel-item img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  background: #111;
+}
+.c-vehiculo-full__image .carousel {
+  border-radius: 12px;
+  overflow: visible;
+}
+.c-vehiculo-full__image .carousel-inner {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.c-vehiculo-full__image .carousel-control-prev,
+.c-vehiculo-full__image .carousel-control-next {
+  width: 44px;
+  height: 44px;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  border-radius: 999px;
+  background: rgba(28, 28, 30, 0.65);
+  opacity: 1;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.c-vehiculo-full__image .carousel-control-prev:hover,
+.c-vehiculo-full__image .carousel-control-next:hover {
+  background: rgba(28, 28, 30, 0.85);
+}
+.c-vehiculo-full__image .carousel-control-prev {
+  left: -56px;
+}
+.c-vehiculo-full__image .carousel-control-next {
+  right: -56px;
+}
+.c-vehiculo-full__image .c-vehiculo-full__carousel-arrow {
+  display: block;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
 }
 .c-vehiculo-full__description h2 {
   font-size: 20px;
@@ -368,6 +426,17 @@
   }
   .c-vehiculo-full__title {
     font-size: 22px;
+  }
+  .c-vehiculo-full__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/10;
+  }
+  .c-vehiculo-full__image .carousel-control-prev {
+    left: 0.75rem;
+  }
+  .c-vehiculo-full__image .carousel-control-next {
+    right: 0.75rem;
   }
   .c-vehiculo-full__specs-card {
     padding: 1.25rem;

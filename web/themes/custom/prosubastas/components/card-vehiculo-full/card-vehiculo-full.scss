@@ -89,16 +89,80 @@
     // ─── Image ─────────────────────────────────────────────────────────
     &__image {
         width: 100%;
+        max-width: 660px;
+        height: 440px;
+        margin: 0 auto;
         border-radius: 12px;
-        overflow: hidden;
+        overflow: visible;
         background: $gray-light;
-        aspect-ratio: 16 / 10;
+        position: relative;
 
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        .carousel,
+        .carousel-inner,
+        .carousel-item {
+            height: 100%;
+            width: 100%;
+        }
+
+        .carousel-item img {
+            object-fit: contain;
+            background: #111;
+        }
+
+        .carousel {
+            border-radius: 12px;
+            overflow: visible;
+        }
+
+        .carousel-inner {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 44px;
+            height: 44px;
+            top: 50%;
+            bottom: auto;
+            transform: translateY(-50%);
+            border-radius: 999px;
+            background: rgba(28, 28, 30, 0.65);
+            opacity: 1;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+            &:hover {
+                background: rgba(28, 28, 30, 0.85);
+            }
+        }
+
+        .carousel-control-prev {
+            left: -56px;
+        }
+
+        .carousel-control-next {
+            right: -56px;
+        }
+
+        .c-vehiculo-full__carousel-arrow {
+            display: block;
+            color: #fff;
+            font-size: 2rem;
+            line-height: 1;
+            font-weight: 700;
+            pointer-events: none;
         }
     }
 
@@ -226,6 +290,20 @@
 
         &__title {
             font-size: 22px;
+        }
+
+        &__image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 10;
+
+            .carousel-control-prev {
+                left: 0.75rem;
+            }
+
+            .carousel-control-next {
+                right: 0.75rem;
+            }
         }
 
         &__specs-card {

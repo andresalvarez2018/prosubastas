@@ -26,11 +26,10 @@
  * @see template_preprocess_block()
  */
 #}
-{{ title_prefix }}
-{{ title_suffix }}
+<div{{ attributes.addClass('container') }}>
+	{{ title_prefix }}
+	{{ title_suffix }}
 
-
-<div class="container">
 	{% include 'prosubastas:card-info-general' with {
         image: content.field_image,
         title: title,

@@ -47,7 +47,7 @@
 	{% endif %}
 {% endfor %}
 
-<div class="container">
+<div{{ attributes.addClass('container') }}>
 	{% include 'prosubastas:list-card-link' with {
     items: card_items
   } only %}

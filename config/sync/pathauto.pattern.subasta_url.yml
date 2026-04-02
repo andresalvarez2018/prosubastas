@@ -1,0 +1,22 @@
+uuid: d6ab7cd8-0b4d-4440-be8e-354a7d9219d1
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: subasta_url
+label: 'Subasta url'
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  0fe9b803-ecff-42f2-9d3a-ccf6033c8db3:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 0fe9b803-ecff-42f2-9d3a-ccf6033c8db3
+    context_mapping:
+      node: node
+    bundles:
+      subasta: subasta
+selection_logic: and
+weight: -5
+relationships: {  }

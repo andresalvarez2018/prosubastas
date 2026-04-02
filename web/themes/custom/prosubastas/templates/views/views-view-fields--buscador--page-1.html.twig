@@ -29,9 +29,15 @@
   <div class="c-search-card__image-wrap">
     {{ fields.field_galeria.content }}
 
-    {# Badge En vivo si workflow = Activo #}
-    {% set estado = fields.workflow.content|render|striptags|trim|lower %}
-    {% if estado == 'activo' or estado == 'active' %}
+    {# Badge En vivo solo si el estado de moderacion esta en activo/publicado. #}
+    {% set estado_moderacion_texto = fields.moderation_state is defined
+      ? fields.moderation_state.content|render|striptags|trim|lower
+      : '' %}
+    {% set estado_moderacion_id = row._entity is defined and row._entity.moderation_state is defined
+      ? row._entity.moderation_state.value|lower
+      : '' %}
+    {% if estado_moderacion_id in ['editorial-published', 'active']
+      or estado_moderacion_texto in ['activo', 'activa', 'active', 'publicado', 'publicada'] %}
       <span class="c-search-card__badge">
         <span class="c-search-card__badge-dot"></span>En vivo
       </span>

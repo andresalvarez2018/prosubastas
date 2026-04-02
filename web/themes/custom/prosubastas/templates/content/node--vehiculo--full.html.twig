@@ -5,12 +5,27 @@
  */
 #}
 
-{% set image_uri = node.field_galeria.entity.field_media_image.entity.uri.value %}
-{% set image_url = image_uri ? file_url(image_uri) : 'https://picsum.photos/800/500?random=99' %}
+{% set gallery_images = [] %}
+{% for item in node.field_galeria %}
+  {% if item.entity is defined
+    and item.entity
+    and item.entity.field_media_image is defined
+    and item.entity.field_media_image.entity is defined
+    and item.entity.field_media_image.entity %}
+    {% set media_image = item.entity.field_media_image.entity %}
+    {% set gallery_images = gallery_images|merge([{
+      src: file_url(media_image.uri.value),
+      alt: item.entity.field_media_image.alt ?: node.title.value,
+    }]) %}
+  {% endif %}
+{% endfor %}
+
+{% set image_url = gallery_images|length ? gallery_images[0].src : 'https://picsum.photos/800/500?random=99' %}
 
 {% include 'prosubastas:card-vehiculo-full' with {
   title: node.title.value,
   image: image_url,
+  images: gallery_images,
   marca: node.field_marca.entity.label,
   modelo: node.field_modelo.value,
   version: node.field_version.value,
