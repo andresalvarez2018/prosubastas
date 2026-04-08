@@ -311,3 +311,88 @@
         }
     }
 }
+
+.vehiculo-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.vehiculo-modal-content {
+    width: min(640px, 100%);
+    background: $white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+
+    h2 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: #111111;
+        font-size: 1.5rem;
+        line-height: 1.25;
+    }
+
+    p {
+        margin: 0;
+        color: $gray-medium;
+    }
+}
+
+.vehiculo-modal-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    .c-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 0.78rem 1.15rem;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1;
+        border: 1px solid transparent;
+        transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+
+        &:focus,
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba($primary, 0.2);
+        }
+    }
+
+    .c-button--primary {
+        background: $primary;
+        border-color: $primary;
+        color: $white;
+        box-shadow: 0 6px 16px rgba(106, 13, 173, 0.18);
+
+        &:hover {
+            background: $primary-dark;
+            border-color: $primary-dark;
+            color: $white;
+            transform: translateY(-1px);
+        }
+    }
+
+    .c-button--secondary {
+        background: $white;
+        border-color: $gray-light;
+        color: #111111;
+
+        &:hover {
+            border-color: $primary;
+            color: $primary;
+            transform: translateY(-1px);
+        }
+    }
+}

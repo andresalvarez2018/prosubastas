@@ -301,3 +301,80 @@ function prosubastas_preprocess_views_view_unformatted(&$variables) {
 
   $variables['pub_items'] = $pub_items;
 }
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * For vehiculo full pages, expose the first related subasta URL.
+ */
+function prosubastas_preprocess_node(&$variables) {
+  if (empty($variables['node']) || !$variables['node'] instanceof \Drupal\node\NodeInterface) {
+    return;
+  }
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $is_full = ($variables['view_mode'] ?? '') === 'full';
+
+  if (!$is_full) {
+    return;
+  }
+
+  if ($node->bundle() === 'subasta') {
+    return;
+  }
+
+  if ($node->bundle() !== 'vehiculo') {
+    return;
+  }
+
+  $variables['related_subasta_url'] = NULL;
+
+  $query = \Drupal::entityQuery('node')
+    ->accessCheck(TRUE)
+    ->condition('type', 'subasta')
+    ->condition('status', 1)
+    ->condition('field_vehiculo.target_id', $node->id())
+    ->sort('created', 'DESC')
+    ->range(0, 1);
+
+  $subasta_ids = $query->execute();
+  if (empty($subasta_ids)) {
+    return;
+  }
+
+  $subasta_id = reset($subasta_ids);
+  /** @var \Drupal\node\NodeInterface|null $subasta */
+  $subasta = \Drupal::entityTypeManager()->getStorage('node')->load($subasta_id);
+  if (!$subasta) {
+    return;
+  }
+
+  $variables['related_subasta_url'] = $subasta->toUrl()->toString();
+}
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Renders ultimas publicaciones outside the page main container for subasta pages.
+ */
+function prosubastas_preprocess_page(&$variables) {
+  $variables['subasta_bottom_full_width_block'] = [];
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!$node instanceof \Drupal\node\NodeInterface || $node->bundle() !== 'subasta') {
+    return;
+  }
+
+  try {
+    $block_manager = \Drupal::service('plugin.manager.block');
+    $block = $block_manager->createInstance('views_block:ultimas_publicaciones-block_1', []);
+
+    if ($block && $block->access(\Drupal::currentUser(), TRUE)->isAllowed()) {
+      $variables['subasta_bottom_full_width_block'] = $block->build();
+    }
+  }
+  catch (\Exception $e) {
+    // Keep empty block variable if the Views block is unavailable.
+  }
+}

@@ -5,62 +5,26 @@
  */
 #}
 
-{% set gallery_images = [] %}
-{% for item in node.field_galeria %}
-  {% if item.entity is defined
-    and item.entity
-    and item.entity.field_media_image is defined
-    and item.entity.field_media_image.entity is defined
-    and item.entity.field_media_image.entity %}
-    {% set media_image = item.entity.field_media_image.entity %}
-    {% set gallery_images = gallery_images|merge([{
-      src: file_url(media_image.uri.value),
-      alt: item.entity.field_media_image.alt ?: node.title.value,
-    }]) %}
-  {% endif %}
-{% endfor %}
-
-{% set image_url = gallery_images|length ? gallery_images[0].src : 'https://picsum.photos/800/500?random=99' %}
-
-{% include 'prosubastas:card-vehiculo-full' with {
-  title: node.title.value,
-  image: image_url,
-  images: gallery_images,
-  marca: node.field_marca.entity.label,
-  modelo: node.field_modelo.value,
-  version: node.field_version.value,
-  ano: node.field_ano.value,
-  kilometraje: node.field_kilometraje.value,
-  combustible: node.field_combustible.entity.label,
-  transmision: node.field_transmision.entity.label,
-  traccion: node.field_traccion.entity.label,
-  cilindraje: node.field_cilindraje.value,
-  numero_puertas: node.field_numero_puertas.value,
-  estado_fisico: node.field_estado_fisico.entity.label,
-  ciudad: node.field_ciudad.entity.label,
-  descripcion: node.field_descripcion.value,
-} only %}
-{% include 'prosubastas:list-card-publication' with {
-        title: 'Publicaciones Recientes',
-        description: 'Vehículos recién ingresados a subasta. Puja ahora y consigue el mejor precio.',
-        items: [
-          {
-            image: 'https://picsum.photos/400/260?random=20',
-            title: 'Toyota Hilux 2019 – 4x4 Diesel',
-            description: 'Camioneta en excelente estado, 85,000 km. Un solo dueño, service al día. Base desde $18,000.',
-            link: '/subasta/toyota-hilux-2019'
-          },
-          {
-            image: 'https://picsum.photos/400/260?random=21',
-            title: 'Honda Civic 2020 – Sedán Automático',
-            description: '42,000 km, color gris metalizado, full equipo, pantalla táctil. Base desde $12,500.',
-            link: '/subasta/honda-civic-2020'
-          },
-          {
-            image: 'https://picsum.photos/400/260?random=22',
-            title: 'Mazda CX-5 2021 – SUV AWD',
-            description: 'SUV familiar, 30,000 km, techo solar, cuero genuino. Base desde $22,000.',
-            link: '/subasta/mazda-cx5-2021'
-          }
-        ]
-      } only %}
+{% if related_subasta_url %}
+  <script>
+    window.location.replace('{{ related_subasta_url|e('js') }}');
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url={{ related_subasta_url }}">
+    <p>
+      Esta publicacion tiene una subasta relacionada.
+      <a href="{{ related_subasta_url }}">Ir a la subasta</a>
+    </p>
+  </noscript>
+{% else %}
+  <div class="vehiculo-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="vehiculo-modal-title">
+    <div class="vehiculo-modal-content">
+      <h2 id="vehiculo-modal-title">Este vehiculo no tiene subasta relacionada</h2>
+      <p>En este momento no hay una subasta activa asociada para este vehiculo.</p>
+      <div class="vehiculo-modal-actions">
+        <a href="/subastas" class="c-button c-button--primary">Ver subastas</a>
+        <a href="/" class="c-button c-button--secondary">Ir al inicio</a>
+      </div>
+    </div>
+  </div>
+{% endif %}

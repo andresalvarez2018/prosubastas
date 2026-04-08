@@ -31,6 +31,10 @@
     }%}
 	{% endblock %}
 
+	{% if subasta_bottom_full_width_block %}
+		{{ subasta_bottom_full_width_block }}
+	{% endif %}
+
 	{% block page_footer %}
 		{% include 'prosubastas:footer' with {
       site_name: 'ProSubastas',

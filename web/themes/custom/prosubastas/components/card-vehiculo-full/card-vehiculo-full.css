@@ -442,5 +442,84 @@
     padding: 1.25rem;
   }
 }
+.vehiculo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.vehiculo-modal-content {
+  width: min(640px, 100%);
+  background: #fbfafb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+.vehiculo-modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #111111;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+.vehiculo-modal-content p {
+  margin: 0;
+  color: #6C757D;
+}
+
+.vehiculo-modal-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.vehiculo-modal-actions .c-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 0.78rem 1.15rem;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, -webkit-transform 0.12s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, -webkit-transform 0.12s ease;
+}
+.vehiculo-modal-actions .c-button:focus, .vehiculo-modal-actions .c-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+}
+.vehiculo-modal-actions .c-button--primary {
+  background: #6A0DAD;
+  border-color: #6A0DAD;
+  color: #fbfafb;
+  box-shadow: 0 6px 16px rgba(106, 13, 173, 0.18);
+}
+.vehiculo-modal-actions .c-button--primary:hover {
+  background: #4B0082;
+  border-color: #4B0082;
+  color: #fbfafb;
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+.vehiculo-modal-actions .c-button--secondary {
+  background: #fbfafb;
+  border-color: #E5E5EA;
+  color: #111111;
+}
+.vehiculo-modal-actions .c-button--secondary:hover {
+  border-color: #6A0DAD;
+  color: #6A0DAD;
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
 
 /*# sourceMappingURL=card-vehiculo-full.css.map*/

@@ -7,6 +7,7 @@
  * - title: (optional) Section title.
  * - description: (optional) Section description.
  * - items: (required) Array of publication items.
+ * - full_width: (optional) When true, removes Bootstrap container wrapper.
  *   - image: Image src or renderable.
  *   - title: Publication title.
  *   - description: Short description.
@@ -15,8 +16,10 @@
  */
 #}
 
-<div class="c-list-card-publication">
-	<div class="container">
+{% set is_full_width = full_width|default(false) %}
+
+<div class="c-list-card-publication{{ is_full_width ? ' c-list-card-publication--full-width' : '' }}">
+	<div class="{{ is_full_width ? 'c-list-card-publication__content' : 'container' }}">
 		{% if title %}
 			<div class="c-list-card-publication__header">
 				<h2 class="c-list-card-publication__title">{{ title }}</h2>

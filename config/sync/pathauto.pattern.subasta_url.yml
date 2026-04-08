@@ -7,12 +7,12 @@ dependencies:
 id: subasta_url
 label: 'Subasta url'
 type: 'canonical_entities:node'
-pattern: '/[node:title]'
+pattern: '/[node:vehiculo_categoria]/[node:title]'
 selection_criteria:
-  0fe9b803-ecff-42f2-9d3a-ccf6033c8db3:
+  ad343db7-d475-470e-acad-b57ca064e2b3:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 0fe9b803-ecff-42f2-9d3a-ccf6033c8db3
+    uuid: ad343db7-d475-470e-acad-b57ca064e2b3
     context_mapping:
       node: node
     bundles:
