@@ -1,0 +1,29 @@
+uuid: ba9e03ed-612a-415e-a7ca-5f59f617804e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card_acordeon.field_cita
+    - field.field.paragraph.card_acordeon.field_tittle
+    - paragraphs.paragraphs_type.card_acordeon
+id: paragraph.card_acordeon.default
+targetEntityType: paragraph
+bundle: card_acordeon
+mode: default
+content:
+  field_cita:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_tittle:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

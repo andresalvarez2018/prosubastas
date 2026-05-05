@@ -1,0 +1,68 @@
+
+
+@import "../../src/scss/init";
+
+.c-acordeon {
+    padding: 1rem 0;
+}
+
+
+/* Margen solo al último container del listado de acordeones */
+.container:last-of-type {
+    margin-bottom: 2.5rem;
+}
+
+.c-acordeon__item + .c-acordeon__item {
+    margin-top: 1.5rem;
+}
+
+
+.c-acordeon__title {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border: none;
+    outline: none;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: background 0.2s, border-radius 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    color: #6A0DAD;
+    position: relative;
+    z-index: 2;
+}
+
+.c-acordeon__title[aria-expanded="true"] {
+    background: #f9f5ff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.c-acordeon__content {
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    margin-top: 0;
+    animation: acordeon-fade-in 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes acordeon-fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 767px) {
+    .c-acordeon__title {
+        font-size: 1rem;
+        padding: 1rem 1rem;
+    }
+    .c-acordeon__content {
+        padding: 1rem 1rem;
+    }
+}
