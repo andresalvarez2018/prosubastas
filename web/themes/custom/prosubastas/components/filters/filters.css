@@ -229,8 +229,8 @@
   flex-shrink: 0;
 }
 .c-filters__icon--img {
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 33px;
   -o-object-fit: contain;
      object-fit: contain;
   fill: unset;
