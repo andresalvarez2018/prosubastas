@@ -1,0 +1,20 @@
+uuid: 29a62095-2e63-48ef-a54e-0d4f0887ee58
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_correo_electronico
+  module:
+    - user
+id: user.user.field_correo_electronico
+field_name: field_correo_electronico
+entity_type: user
+bundle: user
+label: 'Correo electrónico'
+description: 'Por favor ingrese su correo'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

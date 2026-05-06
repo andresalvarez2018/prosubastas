@@ -1,0 +1,20 @@
+uuid: bdc74080-5f2c-4835-b7e9-30383b79e7e9
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_nombres
+  module:
+    - user
+id: user.user.field_nombres
+field_name: field_nombres
+entity_type: user
+bundle: user
+label: Nombres
+description: 'Por favor ingrese su nombre'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

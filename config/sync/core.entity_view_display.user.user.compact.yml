@@ -4,6 +4,13 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_acepto_los_terminos_y_cond
+    - field.field.user.user.field_apellidos
+    - field.field.user.user.field_ciudad_de_residencia
+    - field.field.user.user.field_correo_electronico
+    - field.field.user.user.field_nombres
+    - field.field.user.user.field_numero_de_identificacion
+    - field.field.user.user.field_tipo_de_identificacion
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
@@ -20,13 +27,20 @@ content:
     type: image
     label: hidden
     settings:
-      image_style: thumbnail
       image_link: content
+      image_style: thumbnail
       image_loading:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
+  field_acepto_los_terminos_y_cond: true
+  field_apellidos: true
+  field_ciudad_de_residencia: true
+  field_correo_electronico: true
+  field_nombres: true
+  field_numero_de_identificacion: true
+  field_tipo_de_identificacion: true
   langcode: true
   member_for: true

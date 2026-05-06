@@ -1,0 +1,27 @@
+uuid: 6923b92f-5de8-41ec-8d70-4b5cd4ef129e
+langcode: es
+status: true
+dependencies:
+  module:
+    - options
+    - user
+id: user.field_tipo_de_identificacion
+field_name: field_tipo_de_identificacion
+entity_type: user
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: cedula_de_ciudadania
+      label: 'Cedula de ciudadania'
+    -
+      value: pasaporte
+      label: Pasaporte
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

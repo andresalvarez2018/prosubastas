@@ -1,0 +1,22 @@
+uuid: 293c3cdc-dca6-43f1-9a66-1fadde247fd7
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_acepto_los_terminos_y_cond
+  module:
+    - user
+id: user.user.field_acepto_los_terminos_y_cond
+field_name: field_acepto_los_terminos_y_cond
+entity_type: user
+bundle: user
+label: 'Acepto la política de tratamiento de datos y los <a target="_blank" href="https://prosubastas.ec/web/terminos-y-condiciones">términos y condiciones.</a>'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Activado
+  off_label: Desactivado
+field_type: boolean
