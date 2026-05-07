@@ -1,0 +1,11 @@
+name: Field Menu
+type: module
+description: Allows display of a menu tree from a selected menu item in a field. Useful for a custom sitemap
+package: Fields
+
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2025-04-24
+version: '2.2.0'
+project: 'field_menu'
+datestamp: 1745493374

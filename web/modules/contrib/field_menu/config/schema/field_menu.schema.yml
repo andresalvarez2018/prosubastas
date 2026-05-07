@@ -1,0 +1,12 @@
+field_menu.settings:
+  type: mapping
+  label: 'Field Menu settings'
+  mapping:
+    menu_type_checkbox:
+      type: sequence
+      label: 'Available menus'
+      sequence:
+       type: string
+    menu_type_checkbox_negate:
+      type: string
+      label: 'Negate the condition'
