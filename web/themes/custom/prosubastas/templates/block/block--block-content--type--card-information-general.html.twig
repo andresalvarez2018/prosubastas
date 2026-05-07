@@ -30,11 +30,15 @@
 	{{ title_prefix }}
 	{{ title_suffix }}
 
+	{% set block_entity = content['#block_content'] %}
+	{% set button_url = block_entity.field_button.0.url|render %}
+	{% set button_text = block_entity.field_button.0.title %}
+
 	{% include 'prosubastas:card-info-general' with {
         image: content.field_image,
         title: title,
-        description: content.body|raw,
-        button_text: 'Registrarse Ahora',
-        button_url: '/registro'
+        description: content.body,
+        button_text: button_text,
+        button_url: button_url
     } only %}
 </div>
