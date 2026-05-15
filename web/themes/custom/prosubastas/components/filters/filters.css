@@ -229,8 +229,8 @@
   flex-shrink: 0;
 }
 .c-filters__icon--img {
-  width: 24px;
-  height: 24px;
+  width: 44px;
+  height: 33px;
   -o-object-fit: contain;
      object-fit: contain;
   fill: unset;
@@ -241,6 +241,7 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
   padding: 1.25rem 1.5rem;
   border-radius: 0 6px 6px 6px;
+  margin-bottom: 4rem;
 }
 .c-filters__row {
   display: flex;

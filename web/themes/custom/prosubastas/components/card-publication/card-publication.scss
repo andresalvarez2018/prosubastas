@@ -1,52 +1,168 @@
 @import "../../src/scss/init";
 
 .c-card-publication {
+    background: $white;
+    border: 1px solid $gray-light;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
     display: flex;
     flex-direction: column;
-    background: $white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    height: 100%;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
 
     &:hover {
+        box-shadow: 0 8px 28px rgba(106, 13, 173, 0.13);
         transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(106, 13, 173, 0.12);
+        border-color: darken($gray-light, 6%);
     }
 
     &__image {
         width: 100%;
         aspect-ratio: 16 / 10;
         overflow: hidden;
-        background: $gray-light;
+        background: #f0f0f2;
+        flex-shrink: 0;
 
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
-        &:hover img {
-            transform: scale(1.03);
+        .c-card-publication:hover & img {
+            transform: scale(1.04);
         }
     }
 
     &__body {
+        padding: 0.7rem 0.7rem 0.6rem 0.7rem;
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
-        padding: 1.5rem;
-        flex-grow: 1;
+        gap: 0.5rem;
+        flex: 1;
+    }
+
+    &__meta-row {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 0.1rem;
+    }
+
+    &__meta--left {
+        display: flex;
+        gap: 0.35rem;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    &__dateblock {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 0.2rem;
+    }
+
+    &__date-label {
+        font-size: 11px;
+        color: $gray-medium;
+        font-weight: 600;
+        margin-bottom: 0.1rem;
+        margin-left: 0.2rem;
+    }
+
+    &__date--left {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 11px;
+        color: $gray-medium;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        margin-left: 0;
+    }
+
+    &__quickinfo--between {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+
+    &__footer-row {
+        display: flex;
+        align-items: flex-end;
+        gap: 0;
+    }
+
+    &__footer-row--between {
+        justify-content: space-between;
+        gap: 0;
+    }
+
+    &__footer-valueblock {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1rem;
+    }
+
+    &__date {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 11px;
+        color: $gray-medium;
+        font-weight: 600;
+    }
+
+    &__quickinfo {
+        display: flex;
+        gap: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+
+    &__quickinfo-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 12px;
+    }
+
+    &__footer-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    &__chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.2rem 0.55rem;
+        background: #f4f4f6;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        color: $gray-medium;
     }
 
     &__title {
         margin: 0;
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 700;
-        color: #111111;
-        line-height: 1.3;
+        line-height: 1.35;
+        color: #111;
     }
 
     &__description {
@@ -57,31 +173,148 @@
         flex-grow: 1;
     }
 
-    &__link {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 0.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid $gray-light;
-        font-size: 15px;
-        font-weight: 700;
-        color: #111111;
-        text-decoration: none;
-        transition: color 0.18s ease;
+    &__specs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid $gray-light;
+        border-radius: 8px;
+        overflow: hidden;
 
-        svg {
-            width: 20px;
-            height: 20px;
-            transition: transform 0.18s ease;
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.45rem 0.25rem;
+            text-align: center;
+            border-right: 1px solid $gray-light;
+
+            &:last-child {
+                border-right: none;
+            }
         }
+    }
+
+    &__spec-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: $gray-medium;
+    }
+
+    &__spec-value {
+        font-size: 12px;
+        font-weight: 700;
+        color: #111;
+        margin-top: 0.1rem;
+    }
+
+    &__footer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 0.5rem 1.2rem;
+        margin-top: auto;
+        padding: 1rem 1.1rem 1.1rem 1.1rem;
+        border-top: 1px solid $gray-light;
+    }
+
+    &__prices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.2rem 1.2rem;
+        align-items: end;
+    }
+
+    &__price-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1rem;
+    }
+
+    &__auction-user {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: $primary;
+        margin-left: 0;
+        white-space: nowrap;
+        text-align: right;
+    }
+
+    &__cta {
+        grid-column: 2;
+        grid-row: 2;
+        margin-top: 0.5rem;
+        justify-self: end;
+    }
+
+    &__prices {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+    }
+
+    &__price-block {
+        display: flex;
+        align-items: baseline;
+        gap: 0.3rem;
+    }
+
+    &__price-label {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: $gray-medium;
+    }
+
+    &__price-value {
+        font-size: 14px;
+        font-weight: 800;
+        color: #111;
+
+        &--current {
+            color: $primary;
+            font-size: 15px;
+        }
+    }
+
+    &__auction-user {
+        font-size: 12px;
+        font-weight: 700;
+        color: $primary;
+        margin-left: 1rem;
+        white-space: nowrap;
+    }
+
+    &__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.5rem 0.875rem;
+        background: #111;
+        color: $white;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+        cursor: pointer;
+        border: none;
+        transition: background 0.2s, transform 0.12s;
 
         &:hover {
-            color: $primary;
-
-            svg {
-                transform: translateX(4px);
-            }
+            background: $primary;
+            transform: translateY(-1px);
+            color: $white;
         }
     }
 }

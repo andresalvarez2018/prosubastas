@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * block--block-content--banner-principal.html.twig
+ *
+ * Ubicación: templates/block/block--block-content--banner-principal.html.twig
+ *
+ * Variables disponibles gracias al preprocess_block:
+ * - tipo_de_vehiculo_terms, marca_terms, ciudad_terms, combustible_terms
+ *   Solo existen si field_filtro_anexo = TRUE.
+ */
+#}
+
+<div{{attributes}}>
+	{{ title_prefix }}
+	{{ title_suffix }}
+
+	{% if content.field_item_acordeon is defined %}
+		{% for item in content.field_item_acordeon %}
+			{% set acordeon_title = item['#paragraph'].field_tittle.value ?? '' %}
+			{% set acordeon_cita = item['#paragraph'].field_cita.value ?? '' %}
+			{% if acordeon_title|trim or acordeon_cita|trim %}
+				{% include 'prosubastas:list-acordeon' with {
+					title: acordeon_title,
+					body: acordeon_cita
+				} only %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+</div>
+

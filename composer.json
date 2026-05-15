@@ -27,11 +27,16 @@
         "drupal/core-recipe-unpack": "^11.3",
         "drupal/core-recommended": "^11.3",
         "drupal/devel": "^5.5",
+        "drupal/field_menu": "^2.2",
         "drupal/inline_entity_form": "^3.0@RC",
+        "drupal/metatag": "^2.2",
         "drupal/paragraphs": "^1.20",
+        "drupal/pathauto": "^1.14",
         "drupal/radix": "^6.0",
+        "drupal/recaptcha": "^3.4",
         "drupal/single_content_sync": "^1.4",
         "drupal/webform": "^6.3@beta",
+        "drupal/xmlsitemap": "^2.0",
         "drush/drush": "^13.7"
     },
     "conflict": {

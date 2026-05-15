@@ -1,0 +1,35 @@
+uuid: 5a46536b-3fc6-41a6-bd53-5733f90ee560
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.acordeon
+    - field.storage.block_content.field_item_acordeon
+  module:
+    - entity_reference_revisions
+id: block_content.acordeon.field_item_acordeon
+field_name: field_item_acordeon
+entity_type: block_content
+bundle: acordeon
+label: 'Item acordeon'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+    target_bundles_drag_drop:
+      card_acordeon:
+        weight: 4
+        enabled: false
+      card_comment:
+        weight: 5
+        enabled: false
+      card_link:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

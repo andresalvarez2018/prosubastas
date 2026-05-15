@@ -1,0 +1,11 @@
+uuid: f70a1885-b33c-4543-829a-c8e87d4397ca
+langcode: es
+status: true
+dependencies:
+  module:
+    - auctions_core
+id: auction_item.token
+label: Comodín
+description: null
+targetEntityType: auction_item
+cache: true

@@ -1,0 +1,22 @@
+uuid: d6ab7cd8-0b4d-4440-be8e-354a7d9219d1
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: subasta_url
+label: 'Subasta url'
+type: 'canonical_entities:node'
+pattern: '/[node:vehiculo_categoria]/[node:title]'
+selection_criteria:
+  ad343db7-d475-470e-acad-b57ca064e2b3:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: ad343db7-d475-470e-acad-b57ca064e2b3
+    context_mapping:
+      node: node
+    bundles:
+      subasta: subasta
+selection_logic: and
+weight: -5
+relationships: {  }

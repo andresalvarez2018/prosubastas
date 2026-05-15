@@ -11,24 +11,27 @@
  */
 #}
 
-{{ title_prefix }}
-{{ title_suffix }}
+<div{{ attributes }}>
+	{{ title_prefix }}
+	{{ title_suffix }}
 
-{% include 'prosubastas:banner' with {
+	{% set block_entity = content['#block_content'] %}
+	{% set show_filters = block_entity.field_filtro_anexo.value %}
+
+	{% include 'prosubastas:banner' with {
   image:        content.field_image,
   image_mobile: content.field_image_mobile,
   title:        content.field_tittle,
   body:         content.body,
 } only %}
 
-{% if content.field_filtro_anexo[0]['#markup'] == '1' or
-      content.field_filtro_anexo[0] is not empty %}
-	{% include 'prosubastas:filters' with {
-    overlap:               true,
-    tipo_de_vehiculo_terms: tipo_de_vehiculo_terms,
-    marca_terms:            marca_terms,
-    ciudad_terms:           ciudad_terms,
-    combustible_terms:      combustible_terms,
-  } only %}
-{% endif %}
-
+{% if show_filters %}
+		{% include 'prosubastas:filters' with {
+      overlap:               true,
+      tipo_de_vehiculo_terms: tipo_de_vehiculo_terms,
+      marca_terms:            marca_terms,
+      ciudad_terms:           ciudad_terms,
+      combustible_terms:      combustible_terms,
+    } only %}
+	{% endif %}
+</div>

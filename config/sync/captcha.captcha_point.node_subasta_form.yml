@@ -1,0 +1,7 @@
+uuid: 9c83cb91-a254-4dcb-9193-1fb920e654d3
+langcode: es
+status: false
+dependencies: {  }
+formId: node_subasta_form
+captchaType: default
+label: node_subasta_form

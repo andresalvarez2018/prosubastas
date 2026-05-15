@@ -253,10 +253,13 @@
 }
 .c-vehiculo-full__image {
   width: 100%;
+  max-width: 660px;
+  height: 440px;
+  margin: 0 auto;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
   background: #E5E5EA;
-  aspect-ratio: 16/10;
+  position: relative;
 }
 .c-vehiculo-full__image img {
   width: 100%;
@@ -264,6 +267,61 @@
   -o-object-fit: cover;
      object-fit: cover;
   display: block;
+}
+.c-vehiculo-full__image .carousel,
+.c-vehiculo-full__image .carousel-inner,
+.c-vehiculo-full__image .carousel-item {
+  height: 100%;
+  width: 100%;
+}
+.c-vehiculo-full__image .carousel-item img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  background: #111;
+}
+.c-vehiculo-full__image .carousel {
+  border-radius: 12px;
+  overflow: visible;
+}
+.c-vehiculo-full__image .carousel-inner {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.c-vehiculo-full__image .carousel-control-prev,
+.c-vehiculo-full__image .carousel-control-next {
+  width: 44px;
+  height: 44px;
+  top: 50%;
+  bottom: auto;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  border-radius: 999px;
+  background: rgba(28, 28, 30, 0.65);
+  opacity: 1;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.c-vehiculo-full__image .carousel-control-prev:hover,
+.c-vehiculo-full__image .carousel-control-next:hover {
+  background: rgba(28, 28, 30, 0.85);
+}
+.c-vehiculo-full__image .carousel-control-prev {
+  left: -56px;
+}
+.c-vehiculo-full__image .carousel-control-next {
+  right: -56px;
+}
+.c-vehiculo-full__image .c-vehiculo-full__carousel-arrow {
+  display: block;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 700;
+  pointer-events: none;
 }
 .c-vehiculo-full__description h2 {
   font-size: 20px;
@@ -369,9 +427,99 @@
   .c-vehiculo-full__title {
     font-size: 22px;
   }
+  .c-vehiculo-full__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/10;
+  }
+  .c-vehiculo-full__image .carousel-control-prev {
+    left: 0.75rem;
+  }
+  .c-vehiculo-full__image .carousel-control-next {
+    right: 0.75rem;
+  }
   .c-vehiculo-full__specs-card {
     padding: 1.25rem;
   }
+}
+.vehiculo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.vehiculo-modal-content {
+  width: min(640px, 100%);
+  background: #fbfafb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+.vehiculo-modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #111111;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+.vehiculo-modal-content p {
+  margin: 0;
+  color: #6C757D;
+}
+
+.vehiculo-modal-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.vehiculo-modal-actions .c-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 0.78rem 1.15rem;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, -webkit-transform 0.12s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease, -webkit-transform 0.12s ease;
+}
+.vehiculo-modal-actions .c-button:focus, .vehiculo-modal-actions .c-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.2);
+}
+.vehiculo-modal-actions .c-button--primary {
+  background: #6A0DAD;
+  border-color: #6A0DAD;
+  color: #fbfafb;
+  box-shadow: 0 6px 16px rgba(106, 13, 173, 0.18);
+}
+.vehiculo-modal-actions .c-button--primary:hover {
+  background: #4B0082;
+  border-color: #4B0082;
+  color: #fbfafb;
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+.vehiculo-modal-actions .c-button--secondary {
+  background: #fbfafb;
+  border-color: #E5E5EA;
+  color: #111111;
+}
+.vehiculo-modal-actions .c-button--secondary:hover {
+  border-color: #6A0DAD;
+  color: #6A0DAD;
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
 }
 
 /*# sourceMappingURL=card-vehiculo-full.css.map*/

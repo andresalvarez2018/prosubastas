@@ -12791,4 +12791,520 @@ textarea.form-control-lg {
   width: 100%;
 }
 
+/**
+ * Variables
+ * Variables should follow the $component-state-property-size formula for
+ * consistent naming. Examples:
+ * $nav-link-disabled-color
+ * $modal-content-box-shadow-xs 
+ *
+ * Customization:
+ * To customize Bootstrap variables:
+ * Copy the desired variable from node_modules/bootstrap/scss/_variables.scss
+ * @see https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
+ * Change the value and remove the !default flag.
+ */
+.register-page {
+  min-height: 100vh;
+  background: #F5F5F7;
+  display: flex;
+  align-items: stretch;
+}
+.register-page__inner {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+.register-page__left {
+  flex: 0 0 42%;
+  background: linear-gradient(145deg, #4B0082 0%, #6A0DAD 60%, #A881E6 100%);
+  display: flex;
+  align-items: center;
+  padding: 4rem 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.register-page__left::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.register-page__left::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.register-page__left-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.register-page__logo {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  color: #fbfafb;
+}
+.register-page__logo-text {
+  color: rgba(251, 250, 251, 0.75);
+  font-weight: 400;
+}
+.register-page__logo-highlight {
+  color: #fbfafb;
+  font-weight: 800;
+}
+.register-page__heading {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fbfafb;
+  margin-bottom: 1rem;
+}
+.register-page__subheading {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(251, 250, 251, 0.75);
+  margin-bottom: 2.5rem;
+}
+.register-page__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.register-page__benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(251, 250, 251, 0.08);
+  border: 1px solid rgba(251, 250, 251, 0.12);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  transition: background 0.3s ease;
+}
+.register-page__benefit:hover {
+  background: rgba(251, 250, 251, 0.13);
+}
+.register-page__benefit div strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fbfafb;
+  margin-bottom: 0.2rem;
+}
+.register-page__benefit div p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(251, 250, 251, 0.7);
+  line-height: 1.4;
+}
+.register-page__benefit-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.register-page__login-prompt {
+  font-size: 0.9rem;
+  color: rgba(251, 250, 251, 0.65);
+  margin: 0;
+}
+.register-page__login-prompt a {
+  color: #fbfafb;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.register-page__login-prompt a:hover {
+  color: rgba(251, 250, 251, 0.85);
+}
+.register-page__right {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  background: #F5F5F7;
+  overflow-y: auto;
+}
+.register-page__right .layout--onecol,
+.register-page__right .layout__region {
+  min-width: 0 !important;
+  width: 100%;
+}
+.register-page__form-card {
+  width: 100%;
+  max-width: 680px;
+  background: #fbfafb;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(229, 229, 234, 0.6);
+  overflow: hidden;
+}
+.register-page__form-header {
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid #E5E5EA;
+}
+.register-page__form-header h2, .register-page__form-header .h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1C1C1E;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+.register-page__form-header p {
+  font-size: 0.9rem;
+  color: #6C757D;
+  margin: 0;
+  line-height: 1.5;
+}
+.register-page__form-body {
+  padding: 2rem 2.5rem 2.5rem;
+}
+
+.required-star {
+  color: #6A0DAD;
+  font-weight: 700;
+}
+
+.register-page form > .js-form-item,
+.register-page form > .form-item {
+  margin-bottom: 1.5rem;
+}
+.register-page form {
+  display: grid;
+  gap: 0 1.5rem;
+}
+.register-page form > .form-item-mail,
+.register-page form > .form-item-name,
+.register-page form > .form-item-field-ciudad,
+.register-page form > .form-item-field-image,
+.register-page form > .field--name-field-image,
+.register-page form > .js-form-item-field-image,
+.register-page form > .form-type-managed-file,
+.register-page form > .form-item-terms-accepted,
+.register-page form > .js-form-item-terms-accepted,
+.register-page form > .form-type-checkbox,
+.register-page form > .form-actions {
+  grid-column: 1/-1;
+}
+.register-page form .js-form-item {
+  padding: 20px 0;
+}
+.register-page form > .js-form-item-mail:first-of-type {
+  grid-column: 1/-1;
+}
+.register-page .js-form-item label,
+.register-page .form-item label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1C1C1E;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.45rem;
+}
+.register-page .js-form-item label .form-required,
+.register-page .form-item label .form-required {
+  color: #6A0DAD;
+  margin-left: 2px;
+}
+.register-page .js-form-item .description,
+.register-page .form-item .description {
+  font-size: 0.78rem;
+  color: #6C757D;
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+.register-page input[type=text],
+.register-page input[type=email],
+.register-page input[type=password],
+.register-page input.form-text,
+.register-page input.form-email,
+.register-page select,
+.register-page textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #1C1C1E;
+  background: #F5F5F7;
+  border: 1.5px solid #E5E5EA;
+  border-radius: 10px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.register-page input[type=text]::-webkit-input-placeholder, .register-page input[type=email]::-webkit-input-placeholder, .register-page input[type=password]::-webkit-input-placeholder, .register-page input.form-text::-webkit-input-placeholder, .register-page input.form-email::-webkit-input-placeholder, .register-page select::-webkit-input-placeholder, .register-page textarea::-webkit-input-placeholder {
+  color: rgba(108, 117, 125, 0.6);
+}
+.register-page input[type=text]::-moz-placeholder, .register-page input[type=email]::-moz-placeholder, .register-page input[type=password]::-moz-placeholder, .register-page input.form-text::-moz-placeholder, .register-page input.form-email::-moz-placeholder, .register-page select::-moz-placeholder, .register-page textarea::-moz-placeholder {
+  color: rgba(108, 117, 125, 0.6);
+}
+.register-page input[type=text]::-ms-input-placeholder, .register-page input[type=email]::-ms-input-placeholder, .register-page input[type=password]::-ms-input-placeholder, .register-page input.form-text::-ms-input-placeholder, .register-page input.form-email::-ms-input-placeholder, .register-page select::-ms-input-placeholder, .register-page textarea::-ms-input-placeholder {
+  color: rgba(108, 117, 125, 0.6);
+}
+.register-page input[type=text]::placeholder,
+.register-page input[type=email]::placeholder,
+.register-page input[type=password]::placeholder,
+.register-page input.form-text::placeholder,
+.register-page input.form-email::placeholder,
+.register-page select::placeholder,
+.register-page textarea::placeholder {
+  color: rgba(108, 117, 125, 0.6);
+}
+.register-page input[type=text]:focus,
+.register-page input[type=email]:focus,
+.register-page input[type=password]:focus,
+.register-page input.form-text:focus,
+.register-page input.form-email:focus,
+.register-page select:focus,
+.register-page textarea:focus {
+  outline: none;
+  background: #fbfafb;
+  border-color: #6A0DAD;
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.1);
+}
+.register-page select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236C757D' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+.register-page textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.register-page .form-type-managed-file input[type=file],
+.register-page .js-form-type-managed-file input[type=file] {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.88rem;
+  color: #6C757D;
+  background: #F5F5F7;
+  border: 1.5px dashed #E5E5EA;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.register-page .form-type-managed-file input[type=file]:hover,
+.register-page .js-form-type-managed-file input[type=file]:hover {
+  border-color: #6A0DAD;
+}
+.register-page .form-type-managed-file input[type=file]::-webkit-file-upload-button, .register-page .js-form-type-managed-file input[type=file]::-webkit-file-upload-button {
+  background: #fbfafb;
+  border: 1.5px solid #E5E5EA;
+  border-radius: 6px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1C1C1E;
+  cursor: pointer;
+  margin-right: 0.75rem;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.register-page .form-type-managed-file input[type=file]::file-selector-button,
+.register-page .js-form-type-managed-file input[type=file]::file-selector-button {
+  background: #fbfafb;
+  border: 1.5px solid #E5E5EA;
+  border-radius: 6px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1C1C1E;
+  cursor: pointer;
+  margin-right: 0.75rem;
+  transition: all 0.2s ease;
+}
+.register-page .form-type-managed-file input[type=file]::-webkit-file-upload-button:hover, .register-page .js-form-type-managed-file input[type=file]::-webkit-file-upload-button:hover {
+  border-color: #6A0DAD;
+  color: #6A0DAD;
+}
+.register-page .form-type-managed-file input[type=file]::file-selector-button:hover,
+.register-page .js-form-type-managed-file input[type=file]::file-selector-button:hover {
+  border-color: #6A0DAD;
+  color: #6A0DAD;
+}
+.register-page .form-type-managed-file .form-file,
+.register-page .js-form-type-managed-file .form-file {
+  display: none;
+}
+.register-page .form-type-managed-file .button--small,
+.register-page .form-type-managed-file input[type=submit].button--small,
+.register-page .js-form-type-managed-file .button--small,
+.register-page .js-form-type-managed-file input[type=submit].button--small {
+  margin-top: 0.5rem;
+  background: #F5F5F7 !important;
+  color: #1C1C1E !important;
+  border: 1.5px solid #E5E5EA !important;
+  border-radius: 8px !important;
+  font-size: 0.85rem !important;
+  padding: 0.5rem 1rem !important;
+  cursor: pointer;
+  font-weight: 600 !important;
+  transition: all 0.2s ease;
+  display: inline-block !important;
+}
+.register-page .form-type-managed-file .button--small:hover,
+.register-page .form-type-managed-file input[type=submit].button--small:hover,
+.register-page .js-form-type-managed-file .button--small:hover,
+.register-page .js-form-type-managed-file input[type=submit].button--small:hover {
+  border-color: #6A0DAD !important;
+  color: #6A0DAD !important;
+  background: rgba(106, 13, 173, 0.04) !important;
+}
+.register-page .form-type-managed-file .description,
+.register-page .js-form-type-managed-file .description {
+  margin-top: 0.5rem;
+}
+.register-page .form-type-checkbox {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(106, 13, 173, 0.04);
+  border: 1px solid rgba(106, 13, 173, 0.12);
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+.register-page .form-type-checkbox input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid #E5E5EA;
+  border-radius: 6px;
+  cursor: pointer;
+  accent-color: #6A0DAD;
+  align-self: start;
+  margin-top: 2px;
+}
+.register-page .form-type-checkbox label {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1C1C1E;
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+  line-height: 1.5;
+  margin: 0;
+}
+.register-page .form-type-checkbox label a {
+  color: #6A0DAD;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.register-page .form-actions {
+  margin-top: 1.5rem;
+}
+.register-page .form-actions input[type=submit],
+.register-page .form-actions button[type=submit],
+.register-page .form-actions .button--primary {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fbfafb !important;
+  background: linear-gradient(135deg, #6A0DAD 0%, #4B0082 100%) !important;
+  border: none !important;
+  border-radius: 12px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 20px rgba(106, 13, 173, 0.3);
+}
+.register-page .form-actions input[type=submit]:hover,
+.register-page .form-actions button[type=submit]:hover,
+.register-page .form-actions .button--primary:hover {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(106, 13, 173, 0.4);
+}
+.register-page .form-actions input[type=submit]:active,
+.register-page .form-actions button[type=submit]:active,
+.register-page .form-actions .button--primary:active {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+.register-page .messages--error {
+  grid-column: 1/-1;
+  background: rgba(220, 53, 69, 0.06);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  border-radius: 10px;
+  color: #b02a37;
+  padding: 0.85rem 1.1rem;
+  font-size: 0.88rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 991px) {
+  .register-page__inner {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .register-page__left {
+    flex: none;
+    padding: 3rem 2rem;
+  }
+  .register-page__left::before, .register-page__left::after {
+    display: none;
+  }
+  .register-page__heading {
+    font-size: 1.6rem;
+  }
+  .register-page__benefits {
+    display: none;
+  }
+  .register-page__right {
+    padding: 2rem 1rem;
+  }
+  .register-page__form-card {
+    border-radius: 16px;
+  }
+  .register-page__form-header, .register-page__form-body {
+    padding: 1.5rem;
+  }
+  .register-page form {
+    grid-template-columns: 1fr;
+  }
+  .register-page form > * {
+    grid-column: 1/-1 !important;
+  }
+}
+@media (max-width: 575px) {
+  .register-page__left {
+    padding: 2rem 1.5rem;
+  }
+  .register-page__logo {
+    font-size: 1.5rem;
+  }
+  .register-page__heading {
+    font-size: 1.35rem;
+  }
+}
+
 /*# sourceMappingURL=main.style.css.map*/

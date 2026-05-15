@@ -1,0 +1,560 @@
+@import "variables";
+
+// ─── Register Page Layout ─────────────────────────────────────────────────────
+.register-page {
+  min-height: 100vh;
+  background: $gray-very-light;
+  display: flex;
+  align-items: stretch;
+
+  &__inner {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  // ── Left Panel ────────────────────────────────────────────────────────────
+  &__left {
+    flex: 0 0 42%;
+    background: linear-gradient(145deg, $primary-dark 0%, $primary 60%, $primary-light 100%);
+    display: flex;
+    align-items: center;
+    padding: 4rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+
+    // Decorative background circles
+    &::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+  }
+
+  &__left-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  // ── Logo ──────────────────────────────────────────────────────────────────
+  &__logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+    color: $white;
+  }
+
+  &__logo-text {
+    color: rgba($white, 0.75);
+    font-weight: 400;
+  }
+
+  &__logo-highlight {
+    color: $white;
+    font-weight: 800;
+  }
+
+  // ── Headings ──────────────────────────────────────────────────────────────
+  &__heading {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: $white;
+    margin-bottom: 1rem;
+  }
+
+  &__subheading {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: rgba($white, 0.75);
+    margin-bottom: 2.5rem;
+  }
+
+  // ── Benefits List ─────────────────────────────────────────────────────────
+  &__benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgba($white, 0.08);
+    border: 1px solid rgba($white, 0.12);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    backdrop-filter: blur(6px);
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: rgba($white, 0.13);
+    }
+
+    div {
+      strong {
+        display: block;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: $white;
+        margin-bottom: 0.2rem;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: rgba($white, 0.7);
+        line-height: 1.4;
+      }
+    }
+  }
+
+  &__benefit-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  // ── Login Prompt ──────────────────────────────────────────────────────────
+  &__login-prompt {
+    font-size: 0.9rem;
+    color: rgba($white, 0.65);
+    margin: 0;
+
+    a {
+      color: $white;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+
+      &:hover {
+        color: rgba($white, 0.85);
+      }
+    }
+  }
+
+  // ── Right Panel ───────────────────────────────────────────────────────────
+  &__right {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3rem 2.5rem;
+    background: $gray-very-light;
+    overflow-y: auto;
+
+    // Fix: override any layout min-width that squeezes the column
+    .layout--onecol,
+    .layout__region {
+      min-width: 0 !important;
+      width: 100%;
+    }
+  }
+
+  &__form-card {
+    width: 100%;
+    max-width: 680px; // wider card so fields have room to breathe
+    background: $white;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
+    border: 1px solid rgba($gray-light, 0.6);
+    overflow: hidden;
+  }
+
+  &__form-header {
+    padding: 2rem 2.5rem 1.5rem;
+    border-bottom: 1px solid $gray-light;
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: $black-soft;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: $gray-medium;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  &__form-body {
+    padding: 2rem 2.5rem 2.5rem;
+  }
+}
+
+// Required star
+.required-star {
+  color: $primary;
+  font-weight: 700;
+}
+
+// ─── Drupal Form Fields inside Register Page ──────────────────────────────────
+.register-page {
+
+  // Two-column grid for form items
+  form>.js-form-item,
+  form>.form-item {
+    margin-bottom: 1.5rem; // FIX 2: more vertical breathing room
+  }
+
+  // Group form fields into a responsive two-column grid
+  form {
+    display: grid;
+    // grid-template-columns: 1fr 1fr;
+    gap: 0 1.5rem; // FIX 2: wider horizontal gap too
+
+    // Full-width elements
+    >.form-item-mail,
+    // Dirección de correo (Drupal default)
+    >.form-item-name,
+    // Nombre de usuario
+    >.form-item-field-ciudad,
+    // Ciudad
+    >.form-item-field-image,
+    // Imagen
+    >.field--name-field-image,
+    >.js-form-item-field-image,
+    >.form-type-managed-file,
+    >.form-item-terms-accepted,
+    >.js-form-item-terms-accepted,
+    >.form-type-checkbox,
+    >.form-actions {
+      grid-column: 1 / -1;
+    }
+
+    .js-form-item {
+      padding: 20px 0;
+    }
+
+    // Hide the system mail field (duplicate shown below as custom field)
+    >.js-form-item-mail:first-of-type {
+      grid-column: 1 / -1;
+    }
+  }
+
+  // ── Labels ────────────────────────────────────────────────────────────────
+  .js-form-item,
+  .form-item {
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: $black-soft;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.45rem;
+
+      .form-required {
+        color: $primary;
+        margin-left: 2px;
+      }
+    }
+
+    // Description / help text
+    .description {
+      font-size: 0.78rem;
+      color: $gray-medium;
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+  }
+
+  // ── Text Inputs & Selects ─────────────────────────────────────────────────
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input.form-text,
+  input.form-email,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: $black-soft;
+    background: $gray-very-light;
+    border: 1.5px solid $gray-light;
+    border-radius: 10px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    appearance: none;
+
+    &::placeholder {
+      color: rgba($gray-medium, 0.6);
+    }
+
+    &:focus {
+      outline: none;
+      background: $white;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236C757D' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+
+  // ── File Upload ─────────────────────────────────────────────────────────── FIX 3
+  .form-type-managed-file,
+  .js-form-type-managed-file {
+
+    // FIX 3: show the native input as a styled upload area
+    input[type="file"] {
+      display: block;
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.88rem;
+      color: $gray-medium;
+      background: $gray-very-light;
+      border: 1.5px dashed $gray-light;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+
+      &:hover {
+        border-color: $primary;
+      }
+
+      &::file-selector-button {
+        background: $white;
+        border: 1.5px solid $gray-light;
+        border-radius: 6px;
+        padding: 0.35rem 0.85rem;
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: $black-soft;
+        cursor: pointer;
+        margin-right: 0.75rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          border-color: $primary;
+          color: $primary;
+        }
+      }
+    }
+
+    .form-file {
+      display: none; // hide duplicate if Drupal renders both
+    }
+
+    // Style the Drupal-managed "Upload" submit button
+    .button--small,
+    input[type="submit"].button--small {
+      margin-top: 0.5rem;
+      background: $gray-very-light !important;
+      color: $black-soft !important;
+      border: 1.5px solid $gray-light !important;
+      border-radius: 8px !important;
+      font-size: 0.85rem !important;
+      padding: 0.5rem 1rem !important;
+      cursor: pointer;
+      font-weight: 600 !important;
+      transition: all 0.2s ease;
+      display: inline-block !important;
+
+      &:hover {
+        border-color: $primary !important;
+        color: $primary !important;
+        background: rgba($primary, 0.04) !important;
+      }
+    }
+
+    .description {
+      margin-top: 0.5rem;
+    }
+  }
+
+  // ── Checkbox (Terms) ────────────────────────────────────────────────────── FIX 4
+  .form-type-checkbox {
+    // FIX 4: use grid so checkbox and label sit cleanly inside the box
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    align-items: start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba($primary, 0.04);
+    border: 1px solid rgba($primary, 0.12);
+    border-radius: 12px;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+
+    input[type="checkbox"] {
+      // Reset any margin/padding that pushes it outside
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      margin: 0;
+      padding: 0;
+      border: 2px solid $gray-light;
+      border-radius: 6px;
+      cursor: pointer;
+      accent-color: $primary;
+      align-self: start;
+      margin-top: 2px; // subtle optical alignment with text
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: $black-soft;
+      text-transform: none;
+      letter-spacing: 0;
+      cursor: pointer;
+      line-height: 1.5;
+      margin: 0; // remove any default label margin
+
+      a {
+        color: $primary;
+        font-weight: 700;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+    }
+  }
+
+  // ── Submit Button ─────────────────────────────────────────────────────────
+  .form-actions {
+    margin-top: 1.5rem;
+
+    input[type="submit"],
+    button[type="submit"],
+    .button--primary {
+      width: 100%;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: $white !important;
+      background: linear-gradient(135deg, $primary 0%, $primary-dark 100%) !important;
+      border: none !important;
+      border-radius: 12px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 8px 20px rgba($primary, 0.3);
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba($primary, 0.4);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  // ── Status Messages ───────────────────────────────────────────────────────
+  .messages--error {
+    grid-column: 1 / -1;
+    background: rgba(#dc3545, 0.06);
+    border: 1px solid rgba(#dc3545, 0.2);
+    border-radius: 10px;
+    color: #b02a37;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 991px) {
+  .register-page {
+    &__inner {
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    &__left {
+      flex: none;
+      padding: 3rem 2rem;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    &__heading {
+      font-size: 1.6rem;
+    }
+
+    &__benefits {
+      display: none; // Hide benefits on tablet/mobile to keep it clean
+    }
+
+    &__right {
+      padding: 2rem 1rem;
+    }
+
+    &__form-card {
+      border-radius: 16px;
+    }
+
+    &__form-header,
+    &__form-body {
+      padding: 1.5rem;
+    }
+
+    form {
+      grid-template-columns: 1fr;
+
+      >* {
+        grid-column: 1 / -1 !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .register-page {
+    &__left {
+      padding: 2rem 1.5rem;
+    }
+
+    &__logo {
+      font-size: 1.5rem;
+    }
+
+    &__heading {
+      font-size: 1.35rem;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+uuid: efcb3216-674a-4701-966d-77f340f783b0
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.vista_adjunta
+    - field.field.block_content.vista_adjunta.field_vista
+id: block_content.vista_adjunta.default
+targetEntityType: block_content
+bundle: vista_adjunta
+mode: default
+content:
+  field_vista:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

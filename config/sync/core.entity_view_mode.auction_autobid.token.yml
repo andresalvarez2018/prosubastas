@@ -1,0 +1,11 @@
+uuid: c140e7dd-80e3-4615-b4f5-07850244810d
+langcode: es
+status: true
+dependencies:
+  module:
+    - auctions_core
+id: auction_autobid.token
+label: Comodín
+description: null
+targetEntityType: auction_autobid
+cache: true

@@ -1,0 +1,11 @@
+uuid: cb441ce2-bd63-4d02-9d88-042d02b34668
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.vista_adjunta
+id: block_content.vista_adjunta
+target_entity_type_id: block_content
+target_bundle: vista_adjunta
+default_langcode: site_default
+language_alterable: false

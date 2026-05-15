@@ -33,7 +33,7 @@
 	{% endif %}
 {% endfor %}
 
-<div class="container">
+<div{{ attributes.addClass('container') }}>
 	{% include 'prosubastas:list-card-comment' with {
     title:       block_content.field_tittle.value ?? '',
     description: block_content.field_description.value ?? '',

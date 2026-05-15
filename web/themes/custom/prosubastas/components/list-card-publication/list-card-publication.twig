@@ -7,6 +7,7 @@
  * - title: (optional) Section title.
  * - description: (optional) Section description.
  * - items: (required) Array of publication items.
+ * - full_width: (optional) When true, removes Bootstrap container wrapper.
  *   - image: Image src or renderable.
  *   - title: Publication title.
  *   - description: Short description.
@@ -15,8 +16,10 @@
  */
 #}
 
-<div class="c-list-card-publication">
-	<div class="container">
+{% set is_full_width = full_width|default(false) %}
+
+<div class="c-list-card-publication{{ is_full_width ? ' c-list-card-publication--full-width' : '' }}">
+	<div class="{{ is_full_width ? 'c-list-card-publication__content' : 'container' }}">
 		{% if title %}
 			<div class="c-list-card-publication__header">
 				<h2 class="c-list-card-publication__title">{{ title }}</h2>
@@ -28,13 +31,19 @@
 
 		<div class="c-list-card-publication__grid">
 			{% for item in items %}
-				{% include 'prosubastas:card-publication' with {
-          image: item.image,
-          title: item.title,
-          description: item.description,
-          link: item.link,
-          link_text: item.link_text|default('Detalles')
-        } only %}
+				   {% include 'prosubastas:card-publication' with {
+					   image: item.image,
+					   title: item.title,
+					   description: item.description,
+					   link: item.link,
+					   link_text: item.link_text|default('Detalles'),
+					   auction_end: item.auction_end,
+					   current_bid: item.current_bid,
+					   current_user: item.current_user,
+					   combustible: item.combustible,
+					   ciudad: item.ciudad,
+					   kilometraje: item.kilometraje
+				   } only %}
 			{% endfor %}
 		</div>
 	</div>

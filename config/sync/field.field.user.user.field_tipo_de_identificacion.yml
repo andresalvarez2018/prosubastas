@@ -1,0 +1,21 @@
+uuid: 1bb2e122-f9de-4f55-8145-6f771775240e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_tipo_de_identificacion
+  module:
+    - options
+    - user
+id: user.user.field_tipo_de_identificacion
+field_name: field_tipo_de_identificacion
+entity_type: user
+bundle: user
+label: 'Tipo de identificación'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

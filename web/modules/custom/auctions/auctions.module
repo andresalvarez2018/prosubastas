@@ -9,6 +9,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 
 /**
  * Implements hook_inline_entity_form_entity_form_alter().
@@ -130,4 +131,67 @@ function auctions_node_view(array &$build, EntityInterface $entity, EntityViewDi
       $build['auction-bidder']['bidder-form'] = \Drupal::formBuilder()->getForm('\Drupal\auctions_core\Form\BiddersForm', $auctionItem);
     }
   }
+}
+
+/**
+ * Implements hook_token_info_alter().
+ */
+function auctions_token_info_alter(array &$info) {
+  if (!isset($info['tokens']['node'])) {
+    return;
+  }
+
+  $info['tokens']['node']['vehiculo_categoria'] = [
+    'name' => t('Categoria del vehiculo relacionado'),
+    'description' => t('Categoria (taxonomy term) del vehiculo referenciado desde una subasta.'),
+  ];
+
+  $info['tokens']['node']['vehiculo_titulo'] = [
+    'name' => t('Titulo del vehiculo relacionado'),
+    'description' => t('Titulo del vehiculo referenciado desde una subasta.'),
+  ];
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function auctions_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+  $replacements = [];
+
+  if ($type !== 'node' || empty($data['node']) || !$data['node'] instanceof \Drupal\node\NodeInterface) {
+    return $replacements;
+  }
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $data['node'];
+
+  // These tokens are only meaningful for subasta nodes with field_vehiculo.
+  if ($node->bundle() !== 'subasta' || !$node->hasField('field_vehiculo') || $node->get('field_vehiculo')->isEmpty()) {
+    return $replacements;
+  }
+
+  /** @var \Drupal\node\NodeInterface|null $vehiculo */
+  $vehiculo = $node->get('field_vehiculo')->entity;
+  if (!$vehiculo) {
+    return $replacements;
+  }
+
+  foreach ($tokens as $name => $original) {
+    switch ($name) {
+      case 'vehiculo_categoria':
+        $categoria = 'sin-categoria';
+        if ($vehiculo->hasField('field_tipo_de_vehiculo') && !$vehiculo->get('field_tipo_de_vehiculo')->isEmpty()) {
+          $term = $vehiculo->get('field_tipo_de_vehiculo')->entity;
+          $categoria = $term ? $term->label() : 'sin-categoria';
+        }
+        $replacements[$original] = $categoria;
+        break;
+
+      case 'vehiculo_titulo':
+        $replacements[$original] = $vehiculo->label();
+        break;
+    }
+  }
+
+  return $replacements;
 }

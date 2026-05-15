@@ -543,8 +543,8 @@
     }
 }
 
-// Force hide contextual links
-.contextual {
+// Hide contextual links only inside the site header.
+.auction-header .contextual {
     display: none !important;
 }
 

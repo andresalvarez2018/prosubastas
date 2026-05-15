@@ -1,0 +1,20 @@
+uuid: 85b0446c-cc5e-49a4-aa7d-690609401645
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_apellidos
+  module:
+    - user
+id: user.user.field_apellidos
+field_name: field_apellidos
+entity_type: user
+bundle: user
+label: Apellidos
+description: 'Por favor ingrese sus apellidos'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

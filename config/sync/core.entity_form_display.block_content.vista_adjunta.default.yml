@@ -1,0 +1,46 @@
+uuid: 35ebcd87-5886-4dff-ad7d-6ad26985a04e
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.vista_adjunta
+    - field.field.block_content.vista_adjunta.field_vista
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: block_content.vista_adjunta.default
+targetEntityType: block_content
+bundle: vista_adjunta
+mode: default
+content:
+  field_vista:
+    type: entity_reference_autocomplete
+    weight: 26
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

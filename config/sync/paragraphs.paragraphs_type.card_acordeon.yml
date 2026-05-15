@@ -1,0 +1,10 @@
+uuid: 2e439390-1b1a-496d-afc2-eacc851bd492
+langcode: es
+status: true
+dependencies: {  }
+id: card_acordeon
+label: 'Card acordeon'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

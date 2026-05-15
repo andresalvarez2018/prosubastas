@@ -1,0 +1,7 @@
+uuid: 1786f914-bc89-4281-8c23-0133d81c4fc8
+langcode: es
+status: false
+dependencies: {  }
+formId: node_auction_form
+captchaType: default
+label: node_auction_form

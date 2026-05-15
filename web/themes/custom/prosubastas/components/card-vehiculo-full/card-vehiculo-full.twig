@@ -42,7 +42,27 @@
 			{# Left: image + description #}
 			<div class="c-vehiculo-full__main">
 				<div class="c-vehiculo-full__image">
-					{% if image is iterable %}
+					{% if images is defined and images|length > 1 %}
+						{% set carousel_id = 'vehiculo-gallery-' ~ random(999999) %}
+						<div id="{{ carousel_id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
+							<div class="carousel-inner">
+								{% for gallery_image in images %}
+									<div class="carousel-item{{ loop.first ? ' active' : '' }}">
+										<img src="{{ gallery_image.src }}" alt="{{ gallery_image.alt ?: title }}"/>
+									</div>
+								{% endfor %}
+							</div>
+
+							<button class="carousel-control-prev" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
+								<span class="c-vehiculo-full__carousel-arrow" aria-hidden="true">&lsaquo;</span>
+								<span class="visually-hidden">Anterior</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
+								<span class="c-vehiculo-full__carousel-arrow" aria-hidden="true">&rsaquo;</span>
+								<span class="visually-hidden">Siguiente</span>
+							</button>
+						</div>
+					{% elseif image is iterable %}
 						{{ image }}
 					{% else %}
 						<img src="{{ image }}" alt="{{ title }}"/>

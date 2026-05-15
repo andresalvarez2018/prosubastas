@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Theme override for the user registration form.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+
+<div class="register-page">
+  <div class="register-page__inner">
+
+    {# ── Left Panel: Branding & Benefits ── #}
+    <div class="register-page__left">
+      <div class="register-page__left-content">
+
+        <div class="register-page__logo">
+          <span class="register-page__logo-text">Pro</span><span class="register-page__logo-highlight">Subastas</span>
+        </div>
+
+        <h1 class="register-page__heading">
+          Únete a la plataforma de subastas más confiable del Ecuador
+        </h1>
+        <p class="register-page__subheading">
+          Crea tu cuenta gratis y comienza a participar en subastas de vehículos, bienes y más — todo en un solo lugar.
+        </p>
+
+        <ul class="register-page__benefits">
+          <li class="register-page__benefit">
+            <span class="register-page__benefit-icon">🔒</span>
+            <div>
+              <strong>100% Seguro</strong>
+              <p>Tu información está protegida con cifrado de nivel bancario.</p>
+            </div>
+          </li>
+          <li class="register-page__benefit">
+            <span class="register-page__benefit-icon">⚡</span>
+            <div>
+              <strong>Pujas en tiempo real</strong>
+              <p>Participa en subastas en vivo con actualizaciones instantáneas.</p>
+            </div>
+          </li>
+          <li class="register-page__benefit">
+            <span class="register-page__benefit-icon">🏆</span>
+            <div>
+              <strong>Los mejores precios</strong>
+              <p>Accede a subastas exclusivas con precios por debajo del mercado.</p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="register-page__login-prompt">
+          ¿Ya tienes cuenta? <a href="/user/login">Inicia sesión aquí</a>
+        </p>
+
+      </div>
+    </div>
+
+    {# ── Right Panel: Drupal Form ── #}
+    <div class="register-page__right">
+      <div class="register-page__form-card">
+
+        <div class="register-page__form-header">
+          <h2>Crear cuenta</h2>
+          <p>Completa el formulario para registrarte. Los campos marcados con <span class="required-star">*</span> son obligatorios.</p>
+        </div>
+
+        <div class="register-page__form-body">
+          {% include "radix:form" %}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

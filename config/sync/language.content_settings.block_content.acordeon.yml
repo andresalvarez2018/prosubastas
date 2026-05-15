@@ -1,0 +1,11 @@
+uuid: 9a28e4e7-63b1-4a41-9ae5-1b4e22dba461
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.acordeon
+id: block_content.acordeon
+target_entity_type_id: block_content
+target_bundle: acordeon
+default_langcode: site_default
+language_alterable: false
