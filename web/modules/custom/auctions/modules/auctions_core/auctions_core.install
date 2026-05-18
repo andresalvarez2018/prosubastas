@@ -48,3 +48,77 @@ function auctions_core_update_110000() {
   $role_object->grantPermission('see auction bid inprogress');
   $role_object->save();
 }
+
+/**
+ * Implements hook_update_110001() for the Auctions Core module.
+ *
+ * Install the active_end base field on auction_item entities and initialize
+ * it for currently active items to prevent immediate expiry.
+ */
+function auctions_core_update_110001() {
+  $field_definition = \Drupal\Core\Field\BaseFieldDefinition::create('timestamp')
+    ->setLabel(t('Active sale end timestamp'))
+    ->setDescription(t('The timestamp when the active sale ends. Resets by 120 seconds on each bid.'))
+    ->setRevisionable(FALSE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(0)
+    ->setReadOnly(TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition('active_end', 'auction_item', 'auctions_core', $field_definition);
+
+  // Initialize active_end for items already in workflow 1 so they do not
+  // expire immediately after deployment.
+  $database = \Drupal::database();
+  $database->update('auction_item_field_data')
+    ->fields(['active_end' => \time() + 120])
+    ->condition('workflow', 1)
+    ->execute();
+}
+
+/**
+ * Implements hook_update_110002() for the Auctions Core module.
+ *
+ * Ensures the active_end base field is installed. This is a safety net for
+ * environments where update 110001 failed to run or the field storage
+ * definition was otherwise lost.
+ */
+function auctions_core_update_110002() {
+  $entity_type_manager = \Drupal::entityTypeManager();
+
+  // Check if the field storage definition is already installed.
+  $field_storage_definitions = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('auction_item');
+  if (isset($field_storage_definitions['active_end'])) {
+    // Field already installed; nothing to do.
+    return;
+  }
+
+  // Install the field using the exact same definition as baseFieldDefinitions().
+  $field_definition = \Drupal\Core\Field\BaseFieldDefinition::create('timestamp')
+    ->setLabel(t('Active sale end timestamp'))
+    ->setDescription(t('The timestamp when the active sale ends. Resets by 120 seconds on each bid.'))
+    ->setRevisionable(FALSE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(0)
+    ->setReadOnly(TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition('active_end', 'auction_item', 'auctions_core', $field_definition);
+
+  // Initialize active_end for items already in workflow 1 so they do not
+  // expire immediately after deployment. Use entity API to avoid table
+  // mismatch issues (active_end is non-translatable, so it lives in the base
+  // table, not auction_item_field_data).
+  $storage = $entity_type_manager->getStorage('auction_item');
+  $ids = $storage->getQuery()
+    ->condition('workflow', 1)
+    ->accessCheck(FALSE)
+    ->execute();
+
+  if (!empty($ids)) {
+    foreach ($storage->loadMultiple($ids) as $item) {
+      if ($item->getActiveEnd() == 0) {
+        $item->setActiveEnd(\time() + 120);
+        $item->save();
+      }
+    }
+  }
+}

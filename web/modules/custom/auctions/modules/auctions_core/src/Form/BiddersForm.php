@@ -416,6 +416,7 @@ class BiddersForm extends FormBase {
     $form['#attached']['library'][] = 'auctions_core/refresh';
     $form['#cache']['max-age'] = 0;
     $form['#cache']['tags'][] = 'auction_item:' . $item->id();
+    $form['#cache']['contexts'][] = 'user';
     return $form;
   }
 

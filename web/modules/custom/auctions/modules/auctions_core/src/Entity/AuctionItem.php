@@ -383,6 +383,56 @@ class AuctionItem extends EditorialContentEntityBase implements AuctionItemInter
    *
    * Return bool.
    */
+  /**
+   * Gets the active sale end timestamp.
+   *
+   * @return int
+   *   The Unix timestamp when the active sale ends, or 0 if not set.
+   */
+  public function getActiveEnd(): int {
+    if ($this->hasField('active_end')) {
+      return (int) $this->get('active_end')->value;
+    }
+    return 0;
+  }
+
+  /**
+   * Sets the active sale end timestamp.
+   *
+   * @param int $timestamp
+   *   The Unix timestamp.
+   *
+   * @return $this
+   */
+  public function setActiveEnd(int $timestamp): static {
+    if ($this->hasField('active_end')) {
+      $this->set('active_end', $timestamp);
+    }
+    return $this;
+  }
+
+  /**
+   * Gets the countdown end timestamp.
+   *
+   * @return int
+   *   The Unix timestamp to count down to. For active sales with an
+   *   active_end value, returns active_end; otherwise returns the planned
+   *   end date unix timestamp.
+   */
+  public function getCountdownEndTimestamp(): int {
+    if ($this->getWorkflow() == 1 && $this->getActiveEnd() > 0) {
+      return $this->getActiveEnd();
+    }
+    $dateStatus = $this->getDateStatus();
+    return $dateStatus['date_formatted']['end_unix'] ?? 0;
+  }
+
+  /**
+   * Best grouping of if auction item is closed.
+   *
+   * @return bool
+   *   TRUE if closed.
+   */
   public function isClosed() {
     $dateStatus = $this->getDateStatus();
     $workflow = $this->getWorkflow();
@@ -391,6 +441,9 @@ class AuctionItem extends EditorialContentEntityBase implements AuctionItemInter
       $isClosed = TRUE;
     }
     if ($dateStatus['status'] == 'post') {
+      $isClosed = TRUE;
+    }
+    if ($workflow == 1 && $this->getActiveEnd() > 0 && \time() > $this->getActiveEnd()) {
       $isClosed = TRUE;
     }
     return $isClosed;
@@ -844,6 +897,14 @@ class AuctionItem extends EditorialContentEntityBase implements AuctionItemInter
       ->setRevisionable(TRUE)
       ->setTranslatable(FALSE)
       ->setRequired(TRUE)
+      ->setReadOnly(TRUE);
+
+    $fields['active_end'] = BaseFieldDefinition::create('timestamp')
+      ->setLabel(t('Active sale end timestamp'))
+      ->setDescription(t('The timestamp when the active sale ends. Resets by 120 seconds on each bid.'))
+      ->setRevisionable(FALSE)
+      ->setTranslatable(FALSE)
+      ->setDefaultValue(0)
       ->setReadOnly(TRUE);
 
     $fields['workflow'] = BaseFieldDefinition::create('list_integer')

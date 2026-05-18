@@ -91,16 +91,8 @@ function auctions_node_view(array &$build, EntityInterface $entity, EntityViewDi
   if ($entity->bundle() == 'auction' || $entity->bundle() == 'subasta') {
     $auctionItem = $entity->hasField('field_auction_item') && !$entity->get('field_auction_item')->isEmpty() ? $entity->field_auction_item->referencedEntities() : FALSE;
 
-    // Disable caching.
-    $build['#cache'] = [
-      'max-age' => 0,
-      'tags' => $entity->getCacheTags(),
-    ];
     if ($auctionItem) {
       $build['#cache']['tags'][] = 'auction_item:' . $auctionItem[0]->id();
-    }
-
-    if ($auctionItem) {
       $build['auction-countdown'] = [
         '#weight' => -500,
         '#type' => 'container',

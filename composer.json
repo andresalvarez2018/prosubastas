@@ -17,7 +17,6 @@
     "require": {
         "composer/installers": "^2.3",
         "cweagans/composer-patches": "^2.0",
-        "drupal/auctions_core": "3.0.x-dev@dev",
         "drupal/better_exposed_filters": "^7.1",
         "drupal/commerce": "^3.3",
         "drupal/components": "^3.2",

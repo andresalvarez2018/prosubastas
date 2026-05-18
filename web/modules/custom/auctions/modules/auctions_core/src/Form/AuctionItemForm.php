@@ -123,6 +123,7 @@ class AuctionItemForm extends ContentEntityForm {
     // Can not start with adding bids, reverse entity ref.
     $form['bids']['#access'] = FALSE;
     $form['workflow']['#access'] = FALSE;
+    $form['active_end']['#access'] = FALSE;
     $form['revision_log_message']['#access'] = FALSE;
     $form['status']['#access'] = FALSE;
     $form['#after_build'][] = '::afterBuild';

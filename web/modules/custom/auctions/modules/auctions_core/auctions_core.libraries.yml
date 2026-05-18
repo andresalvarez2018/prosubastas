@@ -25,3 +25,16 @@ refresh:
     - core/jquery
     - core/drupal
     - core/once
+
+active_sale:
+  version: VERSION
+  js:
+    js/drupal.behaviors.auctionActiveSale.js: {}
+  css:
+    component:
+      css/auction-active-sale.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - core/drupal.ajax

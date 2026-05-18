@@ -1,0 +1,27 @@
+.auction-active-sale-countdown {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d9534f;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@keyframes auction-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.auction-active-sale-countdown.pulse {
+  animation: auction-pulse 1s infinite;
+}
+
+.auction-ended {
+  opacity: 0.6;
+}

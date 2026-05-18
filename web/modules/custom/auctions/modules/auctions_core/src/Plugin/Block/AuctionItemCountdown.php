@@ -4,6 +4,7 @@ namespace Drupal\auctions_core\Plugin\Block;
 
 use Drupal\auctions_core\Entity\AuctionItem;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -137,6 +138,7 @@ class AuctionItemCountdown extends BlockBase implements ContainerFactoryPluginIn
           '#markup' => $this->t('Esta subasta ha terminado.'),
         ];
       }
+      CacheableMetadata::createFromObject($auctionItem)->applyTo($build);
     }
     $build['#attached']['library'][] = 'auctions_core/countdown';
     return $build;

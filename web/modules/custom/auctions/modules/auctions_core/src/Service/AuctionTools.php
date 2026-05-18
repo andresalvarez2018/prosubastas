@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageDefault;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Site\Settings;
@@ -96,6 +97,13 @@ class AuctionTools {
   public $uuidService;
 
   /**
+   * The cache tags invalidator.
+   *
+   * @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface
+   */
+  protected $cacheTagsInvalidator;
+
+  /**
    * AuctionTools constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -116,8 +124,10 @@ class AuctionTools {
    *   The renderer.
    * @param \Drupal\Component\Uuid\UuidInterface $uuid_service
    *   The UUID service.
+   * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator
+   *   The cache tags invalidator service.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager, ModuleHandlerInterface $module_handler, ConfigFactoryInterface $configFactory, AccountProxyInterface $currentUser, LanguageDefault $language_default, LanguageManagerInterface $language_manager, Connection $database, RendererInterface $renderer, UuidInterface $uuid_service) {
+  public function __construct(EntityTypeManagerInterface $entityTypeManager, ModuleHandlerInterface $module_handler, ConfigFactoryInterface $configFactory, AccountProxyInterface $currentUser, LanguageDefault $language_default, LanguageManagerInterface $language_manager, Connection $database, RendererInterface $renderer, UuidInterface $uuid_service, CacheTagsInvalidatorInterface $cache_tags_invalidator) {
     $this->entityTypeManager = $entityTypeManager;
     $this->moduleHandler = $module_handler;
     $this->configFactory = $configFactory;
@@ -127,6 +137,7 @@ class AuctionTools {
     $this->database = $database;
     $this->renderer = $renderer;
     $this->uuidService = $uuid_service;
+    $this->cacheTagsInvalidator = $cache_tags_invalidator;
   }
 
   /**
@@ -600,7 +611,13 @@ class AuctionTools {
         $item->setWorkflow(3);
       }
 
+      // Anti-sniping: reset active sale timer for standard/instant bids.
+      if (\in_array($values['type'], ['standard', 'instant']) && $item->getWorkflow() == 1) {
+        $item->setActiveEnd(\time() + 120);
+      }
+
       $item->save();
+      $this->cacheTagsInvalidator->invalidateTags(['auction_item:' . $item->id()]);
     }
 
     return $bid;
